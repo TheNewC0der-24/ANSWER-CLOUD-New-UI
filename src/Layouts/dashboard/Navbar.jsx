@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React from 'react';
 import {
   AppBar,
   Box,
@@ -46,7 +45,7 @@ const Navbar = ({ handleDrawerToggle }) => {
           }}>
             {/* Left Box */}
             <Stack direction='row' justifyContent='center' alignItems='center' mr={1}>
-              <img src='/brand.png' width='150px' />
+              <img src='/brand.png' alt="app-logo" width='150px' />
             </Stack>
 
             {/* Right Box */}
