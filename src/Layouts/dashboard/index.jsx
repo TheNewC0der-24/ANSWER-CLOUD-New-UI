@@ -11,6 +11,7 @@ const DashboardLayout = () => {
 
   // Link Should be here
   const handleDrawerToggle = (link) => {
+    // eslint-disable-next-line
     const { innerWidth: width, innerHeight: height } = window;
     if (width < 600) {
       setMobileOpen(!mobileOpen);
