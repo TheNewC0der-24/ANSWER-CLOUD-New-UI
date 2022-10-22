@@ -10,7 +10,7 @@ import {
 import { styled, alpha } from "@mui/material/styles";
 
 import { useNavigate } from "react-router-dom";
-import defaultAvatar from "../../../assets/Images/defaultAvatar.png";
+// import defaultAvatar from "../../../assets/Images/defaultAvatar.png";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -108,8 +108,8 @@ const Profile = () => {
           <Button
             size="small"
             fullWidth
-            color="inherit"
-            variant="outlined"
+            color="error"
+            variant="contained"
             sx={{ fontFamily: "Public Sans,sans-serif" }}
             onClick={handleLogout}
           >
