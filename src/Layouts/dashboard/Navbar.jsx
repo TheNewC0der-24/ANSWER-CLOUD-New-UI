@@ -14,14 +14,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 import Profile from './Navtabs/Profile';
 
-// import userImg from '../../assets/avatars/avatar_3.jpg'
-
 const drawerWidth = 240;
 
-
-
 const Navbar = ({ handleDrawerToggle }) => {
-  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -51,7 +46,7 @@ const Navbar = ({ handleDrawerToggle }) => {
           }}>
             {/* Left Box */}
             <Stack direction='row' justifyContent='center' alignItems='center' mr={1}>
-              <img src='/brand.png' width='120px' />
+              <img src='/brand.png' width='150px' />
             </Stack>
 
             {/* Right Box */}
