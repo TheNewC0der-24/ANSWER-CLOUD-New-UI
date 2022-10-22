@@ -1,0 +1,78 @@
+import { Navigate, useRoutes } from 'react-router-dom';
+
+// Layout
+import DashboardLayout from '../Layouts/dashboard';
+
+// Components
+import Login from '../Components/Login';
+import SignUp from '../Components/SignUp';
+import ForgetPassword from '../Components/ForgetPassword';
+import Dashboard from '../Components/Dashboard';
+import Workspace from '../Components/Workspace';
+import Team from '../Components/Teams';
+import InternalBot from '../Components/InternalBot';
+import ExternalBot from '../Components/ExternalBot';
+
+const Router = () => {
+
+    return useRoutes([
+        {
+            path: '/',
+            element: <Login />,
+        },
+        {
+            path: 'auth',
+            children: [
+                {
+                    path: "",
+                    element: <Navigate to="/auth/login" />
+                },
+                {
+                    path: "login",
+                    element: (<Login />)
+                }
+            ]
+        },
+        {
+            path: 'login',
+            element: <Navigate to="/auth/login" />
+        },
+        {
+            path: "forget-password",
+            element: <ForgetPassword />
+        },
+        {
+            path: 'register',
+            element: <SignUp />
+        },
+        {
+            path: 'account',
+            element: <DashboardLayout />,
+            children: [
+                { path: "", element: <Navigate to="/account/dashboard" /> },
+                { path: "dashboard", element: <Dashboard /> },
+                { path: "workspace", element: <Workspace /> },
+                { path: "teams", element: <Team /> },
+            ]
+        },
+        {
+            path: 'dashboard',
+            element: <Navigate to="/account/dashboard" />
+        },
+        {
+            path: 'internal-bot',
+            element: <InternalBot />
+        },
+        {
+            path: 'external-bot',
+            element: <ExternalBot />
+        },
+        {
+            path: '*',
+            element: <h1>Page Not Found</h1>
+        }
+
+    ])
+}
+
+export default Router;
