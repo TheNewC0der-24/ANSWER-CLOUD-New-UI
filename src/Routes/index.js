@@ -55,6 +55,8 @@ const Router = () => {
                 { path: "", element: <Navigate to="/account/dashboard" /> },
                 { path: "dashboard", element: <Dashboard /> },
                 { path: "workspace", element: <Workspace /> },
+                { path: "internal-bot", element: <InternalBot /> },
+                { path: "external-bot", element: <ExternalBot /> },
                 { path: "library", element: <Library /> },
                 { path: "teams", element: <Team /> },
                 { path: "profile", element: <Profile /> },
@@ -63,18 +65,6 @@ const Router = () => {
         {
             path: 'dashboard',
             element: <Navigate to="/account/dashboard" />
-        },
-        {
-            path: 'internal-bot',
-            element: <InternalBot />
-        },
-        {
-            path: 'external-bot',
-            element: <ExternalBot />
-        },
-        {
-            path: '*',
-            element: <h1>Page Not Found</h1>
         },
         {
             path: "form",
@@ -88,8 +78,11 @@ const Router = () => {
                     element: <Form />
                 }
             ]
-        }
-
+        },
+        {
+            path: '*',
+            element: <h1>Page Not Found</h1>
+        },
     ])
 }
 
