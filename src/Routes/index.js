@@ -9,9 +9,11 @@ import SignUp from '../Components/SignUp';
 import ForgetPassword from '../Components/ForgetPassword';
 import Dashboard from '../Components/Dashboard';
 import Workspace from '../Components/Workspace';
+import Library from '../Components/Library';
 import Team from '../Components/Teams';
 import InternalBot from '../Components/InternalBot';
 import ExternalBot from '../Components/ExternalBot';
+import Form from '../Components/Form';
 
 const Router = () => {
 
@@ -52,6 +54,7 @@ const Router = () => {
                 { path: "", element: <Navigate to="/account/dashboard" /> },
                 { path: "dashboard", element: <Dashboard /> },
                 { path: "workspace", element: <Workspace /> },
+                { path: "library", element: <Library /> },
                 { path: "teams", element: <Team /> },
             ]
         },
@@ -70,6 +73,19 @@ const Router = () => {
         {
             path: '*',
             element: <h1>Page Not Found</h1>
+        },
+        {
+            path: "form",
+            children: [
+                {
+                    path: "",
+                    element: <Navigate to="/form/start" />
+                },
+                {
+                    path: "start",
+                    element: <Form />
+                }
+            ]
         }
 
     ])

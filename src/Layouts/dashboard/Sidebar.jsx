@@ -21,6 +21,9 @@ import defaultAvatar from '../../assets/Images/defaultAvatar.png';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import WorkspacesIcon from '@mui/icons-material/Workspaces';
 import GroupIcon from '@mui/icons-material/Group';
+import LayersIcon from '@mui/icons-material/Layers';
+import GradingIcon from '@mui/icons-material/Grading';
+import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 
 // Styles
 import { makeStyles } from '@mui/styles';
@@ -31,8 +34,8 @@ export const drawerWidth = 240;
 const useStyles = makeStyles({
   sideBarActive: {
     backgroundColor: '#f4f4f4',
-    borderRight: '3px solid #000',
-    color: 'black'
+    borderRight: '3px solid black',
+    color: 'black',
   },
   sideBarActiveIcon: {
     color: 'black'
@@ -60,15 +63,25 @@ function Sidebar({ handleDrawerToggle, mobileOpen }) {
       link: '/account/workspace'
     },
     {
+      label: 'Library',
+      icon: <LocalLibraryIcon />,
+      link: '/account/library'
+    },
+    {
       label: 'Teams',
       icon: <GroupIcon />,
       link: '/account/teams'
     },
-    // {
-    //   label: 'External Bot',
-    //   icon: <GroupIcon />,
-    //   link: '/account/external-bot'
-    // },
+    {
+      label: 'View Interaction',
+      icon: <LayersIcon />,
+      link: '/account/interaction'
+    },
+    {
+      label: 'View Reports',
+      icon: <GradingIcon />,
+      link: '/account/reports'
+    }
   ]
   const drawer = (
     <div style={{ paddingTop: '5px', paddingLeft: '10px', paddingRight: '10px' }}>
@@ -95,7 +108,7 @@ function Sidebar({ handleDrawerToggle, mobileOpen }) {
               <ListItemIcon className={location.pathname === item.link ? classes.sideBarActiveIcon : null}>
                 {item.icon}
               </ListItemIcon>
-              <ListItemText primary={item.label} />
+              <ListItemText className={location.pathname === item.label ? classes.sideBarActive : null} primary={item.label} />
             </ListItemButton>
           </ListItem>
         ))}
