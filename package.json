@@ -6,6 +6,7 @@
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@iconify/icons-eva": "^1.2.3",
+    "@iconify/icons-ic": "^1.2.10",
     "@iconify/react": "^4.0.0",
     "@material-table/core": "^5.1.7",
     "@material-ui/pickers": "^3.3.10",
