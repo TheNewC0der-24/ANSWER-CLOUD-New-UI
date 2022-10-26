@@ -1,13 +1,24 @@
 import React, { useState } from "react";
 import {
   IconButton,
+  Typography,
+  MenuItem,
   Menu,
   Avatar,
+  Divider,
+  Stack,
   Box,
-  Button,
+  Button
 } from "@mui/material";
 
 import { styled, alpha } from "@mui/material/styles";
+
+// Icons
+import { Icon } from "@iconify/react";
+
+import roundDashboard from '@iconify/icons-ic/round-dashboard';
+import personFill from '@iconify/icons-eva/person-fill';
+import roundWorkspaces from '@iconify/icons-ic/round-workspaces';
 
 import { useNavigate } from "react-router-dom";
 // import defaultAvatar from "../../../assets/Images/defaultAvatar.png";
@@ -104,6 +115,54 @@ const Profile = () => {
         open={open}
         onClose={handleClose}
       >
+        <MenuItem>
+          <Stack>
+            <Typography variant='subtitle1' color='text.primary' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif" }}>
+              Bhavya Khurana
+            </Typography>
+            <Typography variant='subtitle2' color='text.secondary' sx={{ fontFamily: "Public Sans,sans-serif" }}>bhavyakhurana002@gmail.com</Typography>
+          </Stack>
+
+        </MenuItem>
+        <Divider sx={{ my: 1 }} />
+
+        <MenuItem onClick={() => { navigate('/account/profile'); handleClose(); }} disableRipple>
+          <Box
+            component={Icon}
+            icon={personFill}
+            sx={{
+              mr: 2,
+              width: 24,
+              height: 24
+            }}
+          />
+
+          Profile
+        </MenuItem>
+        <MenuItem onClick={() => { navigate('/account/dashboard'); handleClose(); }} disableRipple>
+          <Box
+            component={Icon}
+            icon={roundDashboard}
+            sx={{
+              mr: 2,
+              width: 24,
+              height: 24
+            }}
+          />
+          Dashboard
+        </MenuItem>
+        <MenuItem onClick={() => { navigate("/account/workspace"); handleClose(); }} disableRipple>
+          <Box
+            component={Icon}
+            icon={roundWorkspaces}
+            sx={{
+              mr: 2,
+              width: 24,
+              height: 24
+            }}
+          />
+          Workspace
+        </MenuItem>
         <Box sx={{ p: 2, pt: 2 }}>
           <Button
             size="small"
@@ -117,7 +176,7 @@ const Profile = () => {
           </Button>
         </Box>
       </StyledMenu>
-    </div>
+    </div >
   );
 };
 
