@@ -15,7 +15,7 @@ import {
 // react-router-dom
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import defaultAvatar from '../../assets/Images/defaultAvatar.png';
+import defaultAvatar from '../assets/Images/defaultAvatar.png';
 
 // Icons
 import DashboardIcon from '@mui/icons-material/Dashboard';

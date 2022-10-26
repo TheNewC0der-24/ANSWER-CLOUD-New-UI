@@ -1,7 +1,7 @@
 import { Navigate, useRoutes } from 'react-router-dom';
 
 // Layout
-import DashboardLayout from '../Layouts/dashboard';
+import DashboardLayout from "../Layouts";
 
 // Components
 import Login from '../Components/Login';
