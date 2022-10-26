@@ -11,6 +11,7 @@ import Dashboard from '../Components/Dashboard';
 import Workspace from '../Components/Workspace';
 import Library from '../Components/Library';
 import Team from '../Components/Teams';
+import Profile from '../Components/Profile';
 import InternalBot from '../Components/InternalBot';
 import ExternalBot from '../Components/ExternalBot';
 import Form from '../Components/Form';
@@ -56,6 +57,7 @@ const Router = () => {
                 { path: "workspace", element: <Workspace /> },
                 { path: "library", element: <Library /> },
                 { path: "teams", element: <Team /> },
+                { path: "profile", element: <Profile /> },
             ]
         },
         {
