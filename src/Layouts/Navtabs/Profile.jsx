@@ -103,7 +103,7 @@ const Profile = () => {
       >
         {/* <Avatar sx={{ width: 40, height: 40 }} src={defaultAvatar}> */}
         <Avatar sx={{ width: 40, height: 40 }}>
-          B
+          BK
         </Avatar>
       </IconButton>
       <StyledMenu

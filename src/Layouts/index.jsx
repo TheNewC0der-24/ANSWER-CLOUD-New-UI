@@ -13,7 +13,7 @@ const DashboardLayout = () => {
   const handleDrawerToggle = (link) => {
     // eslint-disable-next-line
     const { innerWidth: width, innerHeight: height } = window;
-    if (width < 600) {
+    if (width < 900) {
       setMobileOpen(!mobileOpen);
     }
   }
@@ -22,10 +22,10 @@ const DashboardLayout = () => {
     <>
       <Navbar handleDrawerToggle={handleDrawerToggle} />
       <Sidebar handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} />
-      <Box sx={{ height: '100vh', width: '98vw', position: 'absolute' }}>
+      <Box sx={{ height: '100vh', width: '100vw', position: 'absolute', backgroundColor: '#fafafa' }}>
         <Box p={2} sx={{
-          width: { xs: '100vw', sm: `calc( 100vw - 299px)` },
-          position: 'relative', left: { sm: '17rem' }, top: '4.5rem'
+          width: { xs: '100vw', md: `calc( 100vw - 299px)` },
+          position: 'relative', left: { md: '17rem' }, top: '4.5rem'
         }}>
           <Outlet />
         </Box>

@@ -23,8 +23,8 @@ const Navbar = ({ handleDrawerToggle }) => {
       <AppBar
         position="fixed"
         sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
+          width: { md: `calc(100% - ${drawerWidth}px)` },
+          ml: { md: `${drawerWidth}px` },
           bgcolor: '#fff'
         }}
       >
@@ -33,7 +33,7 @@ const Navbar = ({ handleDrawerToggle }) => {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { md: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
@@ -44,12 +44,12 @@ const Navbar = ({ handleDrawerToggle }) => {
             justifyContent: 'space-between'
           }}>
             {/* Left Box */}
-            <Stack direction='row' justifyContent='center' alignItems='center' mr={1}>
+            {/* <Stack direction='row' justifyContent='center' alignItems='center' mr={1}>
               <img src='/brand.png' alt="app-logo" width='150px' />
-            </Stack>
+            </Stack> */}
 
             {/* Right Box */}
-            <Stack direction='row' spacing={-1} alignItems='center'>
+            <Stack direction='row' style={{ display: "flex", justifyContent: "end", marginLeft: "auto" }}>
               <Profile />
             </Stack>
           </Box>

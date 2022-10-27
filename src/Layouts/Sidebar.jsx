@@ -33,7 +33,7 @@ export const drawerWidth = 240;
 
 const useStyles = makeStyles({
   sideBarActive: {
-    backgroundColor: '#f4f4f4',
+    backgroundColor: '#f0f0f0',
     borderRight: '3px solid black',
     color: 'black',
   },
@@ -86,14 +86,15 @@ function Sidebar({ handleDrawerToggle, mobileOpen }) {
   const drawer = (
     <div style={{ paddingTop: '5px', paddingLeft: '10px', paddingRight: '10px' }}>
       <Box sx={{ height: '3.70rem', borderBottom: "1px solid #000" }}>
-        <Box sx={{ width: '100%', height: '3.25rem', display: 'flex', bgcolor: '#000', justifyContent: 'space-around', alignItems: 'center', borderRadius: '10px' }}>
+        <Box sx={{ width: '100%', height: '3.25rem', display: 'flex', bgcolor: '#fafafa', justifyContent: 'space-around', alignItems: 'center', borderRadius: '10px' }}>
           <Avatar
             alt='user-image'
+            variant="rounded"
             src={defaultAvatar}
             sx={{ width: 40, height: 40 }}
           />
           <Stack>
-            <Typography variant='subtitle1' sx={{ color: '#fff', fontWeight: "bold", fontFamily: "Public Sans,sans-serif" }}>Bhavya Khurana</Typography>
+            <Typography variant='subtitle1' sx={{ fontWeight: "bold", fontFamily: "Public Sans,sans-serif" }}>Bhavya Khurana</Typography>
           </Stack>
         </Box>
       </Box>
@@ -119,7 +120,7 @@ function Sidebar({ handleDrawerToggle, mobileOpen }) {
   return (
     <Box
       component="nav"
-      sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+      sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
       aria-label="mailbox folders"
     >
       {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
@@ -131,7 +132,7 @@ function Sidebar({ handleDrawerToggle, mobileOpen }) {
           keepMounted: true, // Better open performance on mobile.
         }}
         sx={{
-          display: { xs: 'block', sm: 'none' },
+          display: { xs: 'block', md: 'none' },
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
         }}
       >
@@ -140,7 +141,7 @@ function Sidebar({ handleDrawerToggle, mobileOpen }) {
       <Drawer
         variant="permanent"
         sx={{
-          display: { xs: 'none', sm: 'block' },
+          display: { xs: 'none', md: 'block' },
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
         }}
         open
