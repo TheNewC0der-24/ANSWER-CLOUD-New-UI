@@ -15,6 +15,7 @@ import Profile from '../Components/Profile';
 import InternalBot from '../Components/InternalBot';
 import ExternalBot from '../Components/ExternalBot';
 import Form from '../Components/Form';
+import PageNotFound from '../Components/PageNotFound';
 
 const Router = () => {
 
@@ -81,7 +82,7 @@ const Router = () => {
         },
         {
             path: '*',
-            element: <h1>Page Not Found</h1>
+            element: <PageNotFound />
         },
     ])
 }
