@@ -2,17 +2,19 @@ import React, { createContext, useEffect, useState } from 'react';
 
 import LoadingScreen from '../Components/LoadingScreen';
 
-const Context = createContext();
+const AuthContext = createContext();
 
-const ContextProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
 
     const [loading, setLoading] = useState(false);
+    const [user, setUser] = useState(null);
 
     const initialize = async () => {
         try {
             setLoading(true);
         } catch (error) {
             console.log(error);
+            setUser(null);
         }
         setLoading(false);
     };
@@ -22,17 +24,30 @@ const ContextProvider = ({ children }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const login = async ({ email, password }) => {
+        try {
+            setLoading(true);
+        } catch (error) {
+            console.log(error);
+        }
+        setLoading(false);
+    }
+
+    const logout = async () => {
+        setUser(null);
+    }
+
     const values = {
         login,
         logout,
     }
 
     return (
-        <Context.Provider value={values}>
+        <AuthContext.Provider value={values}>
             {loading ? <LoadingScreen /> : children}
-        </Context.Provider>
+        </AuthContext.Provider>
     )
 }
 
 
-export default { Context, ContextProvider };
+export default { AuthContext, AuthProvider };
