@@ -102,7 +102,7 @@ const Login = () => {
                                 </Box>
                             }
                         </Stack>
-                        {/***************************** Lock Icon *****************************/}
+                        {/***************************** Logo *****************************/}
                         <Stack alignItems='center' spacing={1}>
                             <img src={logo} alt="aCLOUD" style={{ width: '50%' }} />
                             <Typography variant='h4' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Log In </Typography>
@@ -167,7 +167,7 @@ const Login = () => {
                                 type='submit'
                                 fullWidth
                                 sx={{ height: '2.5rem' }}
-                                disabled={errors.email || errors.password || loading}
+                                disabled={errors.email || errors.password ? true : false}
                             >
                                 Log In
                             </Button>
@@ -175,7 +175,7 @@ const Login = () => {
                         <Typography variant='subtitle1' sx={{ textAlign: 'center' }}>Don't have an account? <Link to="/register">Sign In</Link></Typography>
                     </Paper>
                 </Stack>
-            </Form>
+            </Form >
         </FormikProvider >
     )
 }
