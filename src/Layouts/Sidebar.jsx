@@ -34,11 +34,11 @@ export const drawerWidth = 240;
 const useStyles = makeStyles({
   sideBarActive: {
     backgroundColor: '#f0f0f0',
-    borderRight: '3px solid black',
-    color: 'black',
+    borderRight: '3px solid #1976d2',
+    color: '#1976d2',
   },
   sideBarActiveIcon: {
-    color: 'black'
+    color: '#1976d2'
   }
 })
 
