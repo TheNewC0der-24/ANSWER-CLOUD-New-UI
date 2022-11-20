@@ -8,7 +8,7 @@
     "@iconify/icons-eva": "^1.2.3",
     "@iconify/icons-ic": "^1.2.10",
     "@iconify/react": "^4.0.0",
-    "@material-table/core": "^5.1.7",
+    "@material-table/core": "^0.2.53",
     "@material-ui/pickers": "^3.3.10",
     "@mui/icons-material": "^5.10.9",
     "@mui/lab": "^5.0.0-alpha.104",
