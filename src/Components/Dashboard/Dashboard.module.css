@@ -1,0 +1,9 @@
+.avatar {
+    margin-right: 10px !important;
+    background-color: #deebff !important;
+    transform: translateY(-2.5px) !important;
+}
+
+.dashboardIcon {
+    color: #1976d2 !important;
+}
