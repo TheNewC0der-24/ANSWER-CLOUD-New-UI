@@ -14,6 +14,8 @@ import styles from './Dashboard.module.css';
 
 // Icon
 import { Icon } from "@iconify/react";
+import { RiNumber1, RiNumber2, RiNumber3, RiNumber4 } from "react-icons/ri";
+
 import Chart from './Chart';
 import ViewInteraction from './ViewInteraction';
 
@@ -37,6 +39,9 @@ function Dashboard() {
                         <Card sx={{ backgroundColor: "#C1F0F5" }}>
                             <CardActionArea>
                                 <CardContent>
+                                    <Avatar sx={{ backgroundColor: "#8BDBE5" }}>
+                                        <RiNumber1 />
+                                    </Avatar>
                                     <Typography variant="subtitle1" component="div">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, iste porro! Voluptatum ex natus beatae eligendi mollitia quos, numquam assumenda.
                                     </Typography>
@@ -48,6 +53,9 @@ function Dashboard() {
                         <Card sx={{ backgroundColor: "#DFD8FD" }}>
                             <CardActionArea>
                                 <CardContent>
+                                    <Avatar sx={{ backgroundColor: "#B8ACF6" }}>
+                                        <RiNumber2 />
+                                    </Avatar>
                                     <Typography variant="subtitle1" component="div">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, iste porro! Voluptatum ex natus beatae eligendi mollitia quos, numquam assumenda.
                                     </Typography>
@@ -59,6 +67,9 @@ function Dashboard() {
                         <Card sx={{ backgroundColor: "#FFE2BD" }}>
                             <CardActionArea>
                                 <CardContent>
+                                    <Avatar sx={{ backgroundColor: "#FEC57B" }}>
+                                        <RiNumber3 />
+                                    </Avatar>
                                     <Typography variant="subtitle1" component="div">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, iste porro! Voluptatum ex natus beatae eligendi mollitia quos, numquam assumenda.
                                     </Typography>
@@ -70,6 +81,9 @@ function Dashboard() {
                         <Card sx={{ backgroundColor: "#FFD2CC" }}>
                             <CardActionArea>
                                 <CardContent>
+                                    <Avatar sx={{ backgroundColor: "#FF9C8F" }}>
+                                        <RiNumber4 />
+                                    </Avatar>
                                     <Typography variant="subtitle1" component="div">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, iste porro! Voluptatum ex natus beatae eligendi mollitia quos, numquam assumenda.
                                     </Typography>
