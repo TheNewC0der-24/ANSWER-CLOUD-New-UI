@@ -6,6 +6,11 @@
 
 .createButton {
     background-color: #262627 !important;
+    border-radius: 50px !important;
 }
 
-
+.inviteCard {
+    height: 180px !important;
+    width: 400px !important;
+    overflow-y: auto !important;
+}
