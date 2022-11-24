@@ -35,7 +35,7 @@ function Dashboard() {
                 </Typography>
 
                 <Grid mt={2} container spacing={2}>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <Grid item xs={12} sm={6} md={6} lg={3}>
                         <Card sx={{ backgroundColor: "#C1F0F5" }}>
                             <CardActionArea>
                                 <CardContent>
@@ -49,7 +49,7 @@ function Dashboard() {
                             </CardActionArea>
                         </Card>
                     </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <Grid item xs={12} sm={6} md={6} lg={3}>
                         <Card sx={{ backgroundColor: "#DFD8FD" }}>
                             <CardActionArea>
                                 <CardContent>
@@ -63,7 +63,7 @@ function Dashboard() {
                             </CardActionArea>
                         </Card>
                     </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <Grid item xs={12} sm={6} md={6} lg={3}>
                         <Card sx={{ backgroundColor: "#FFE2BD" }}>
                             <CardActionArea>
                                 <CardContent>
@@ -77,7 +77,7 @@ function Dashboard() {
                             </CardActionArea>
                         </Card>
                     </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={3}>
+                    <Grid item xs={12} sm={6} md={6} lg={3}>
                         <Card sx={{ backgroundColor: "#FFD2CC" }}>
                             <CardActionArea>
                                 <CardContent>
