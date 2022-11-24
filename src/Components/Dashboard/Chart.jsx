@@ -56,10 +56,10 @@ const options = {
 };
 
 const labels = [
-    'On-the job, hands-on or experiential learning',
-    'Mentoring or coaching',
-    'Instructor-led or classroom training',
-    'Formal curriculum or courses*',
+    'On-the job, hands-on learning',
+    'Mentoring',
+    'Classroom training',
+    'Formal courses*',
     'Videos',
     'Online simulations games',
     'Virtual instructor-let training**',
@@ -67,8 +67,8 @@ const labels = [
     'Podcast',
     'Augmented reality',
     'Virtual reality',
-    'Social collaboration or learning applications***',
-    'Mobile device notifications or text messages',
+    'Social collaboration***',
+    'Mobile device notifications',
 ];
 
 const data = {
