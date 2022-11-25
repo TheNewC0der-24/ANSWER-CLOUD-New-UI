@@ -56,27 +56,20 @@ const options = {
 };
 
 const labels = [
-    'On-the job, hands-on learning',
-    'Mentoring',
-    'Classroom training',
-    'Formal courses*',
-    'Videos',
-    'Online simulations games',
-    'Virtual instructor-let training**',
-    'eLearning courses',
-    'Podcast',
-    'Augmented reality',
-    'Virtual reality',
-    'Social collaboration***',
-    'Mobile device notifications',
+    'Sales',
+    'Marketing',
+    'Human Resource ',
+    'Strategy',
+    'Operations',
+    'General Interview'
 ];
 
 const data = {
     labels,
     datasets: [
         {
-            label: 'Share of respondents in (%)',
-            data: [90, 83, 78, 60, 57, 54, 52, 44, 35, 30, 29, 23, 20],
+            label: 'Interactions So Far',
+            data: [12, 19, 3, 5, 2, 3],
             borderColor: 'rgb(25, 118, 210)',
             backgroundColor: 'rgba(25, 118, 210, 0.5)',
         },
@@ -89,7 +82,7 @@ const Chart = () => {
         <>
             <Box>
                 <Typography sx={{ fontSize: { xs: "18px", sm: "20px", md: "22px" } }} variant="h5">
-                    Share of employees worldwide who believe learning technologies are effective in 2018, by type of technology
+                    Our Interaction Library : <span style={{ color: "rgb(25, 118, 210)" }}>Interactions counts so far Nov 2022</span>
                 </Typography>
                 <Box mt={1}>
                     <Card elevation={2}>
