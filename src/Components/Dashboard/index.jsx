@@ -19,7 +19,6 @@ import { RiNumber1, RiNumber2, RiNumber3, RiNumber4 } from "react-icons/ri";
 import Chart from './Chart';
 import ViewInteraction from './ViewInteraction';
 
-
 function Dashboard() {
     return (
         <>
@@ -36,56 +35,56 @@ function Dashboard() {
 
                 <Grid mt={2} container spacing={2}>
                     <Grid item xs={12} sm={6} md={6} lg={3}>
-                        <Card sx={{ backgroundColor: "#C1F0F5" }}>
+                        <Card className={styles.fullHeightCard} sx={{ backgroundColor: "#C1F0F5" }}>
                             <CardActionArea>
                                 <CardContent>
                                     <Avatar sx={{ backgroundColor: "#8BDBE5" }}>
                                         <RiNumber1 />
                                     </Avatar>
                                     <Typography variant="subtitle1" component="div">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, iste porro! Voluptatum ex natus beatae eligendi mollitia quos, numquam assumenda.
+                                        Create interactions via the dashboard and distribute it to your participants.
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={6} lg={3}>
-                        <Card sx={{ backgroundColor: "#DFD8FD" }}>
+                        <Card className={styles.fullHeightCard} sx={{ backgroundColor: "#DFD8FD" }}>
                             <CardActionArea>
                                 <CardContent>
                                     <Avatar sx={{ backgroundColor: "#B8ACF6" }}>
                                         <RiNumber2 />
                                     </Avatar>
                                     <Typography variant="subtitle1" component="div">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, iste porro! Voluptatum ex natus beatae eligendi mollitia quos, numquam assumenda.
+                                        Participants engage and complete the interactions as per their convenience.
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={6} lg={3}>
-                        <Card sx={{ backgroundColor: "#FFE2BD" }}>
+                        <Card className={styles.fullHeightCard} sx={{ backgroundColor: "#FFE2BD" }}>
                             <CardActionArea>
                                 <CardContent>
                                     <Avatar sx={{ backgroundColor: "#FEC57B" }}>
                                         <RiNumber3 />
                                     </Avatar>
                                     <Typography variant="subtitle1" component="div">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, iste porro! Voluptatum ex natus beatae eligendi mollitia quos, numquam assumenda.
+                                        View scores, reports and certificates of the candidates attempting the virtual interaction.
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={6} md={6} lg={3}>
-                        <Card sx={{ backgroundColor: "#FFD2CC" }}>
+                        <Card className={styles.fullHeightCard} sx={{ backgroundColor: "#FFD2CC" }}>
                             <CardActionArea>
                                 <CardContent>
                                     <Avatar sx={{ backgroundColor: "#FF9C8F" }}>
                                         <RiNumber4 />
                                     </Avatar>
                                     <Typography variant="subtitle1" component="div">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, iste porro! Voluptatum ex natus beatae eligendi mollitia quos, numquam assumenda.
+                                        Use our library or invite teammates to co-create learning interactions.
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
