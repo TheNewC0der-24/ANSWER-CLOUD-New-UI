@@ -69,13 +69,13 @@ const Addquestion = () => {
         <>
             <Box>
                 <Box className={styles.header}>
-                    <Typography variant='h5'>
-                        My Workspace
+                    <Typography mt={3} variant='h5'>
+                        Question Section
                     </Typography>
                 </Box>
 
                 <Box mt={2} mb={2}>
-                    <Button size='small' variant="contained" className={styles.createButton} onClick={"Ayush"}><AddIcon /> Create interaction</Button>
+                    <Button size='small' variant="contained" className={styles.createButton} onClick={"Ayush"}><AddIcon />Add Questions</Button>
                 </Box>
 
                 <Divider />
