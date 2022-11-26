@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 // import styles from './InternalBot.module.css';
-import Addquestion from './Addquestions';
+
+import AddQuestion from './AddQuestions';
 import Skills from './Skills';
+
 import {
     Stack,
-    Box,
     Alert,
     Typography,
     TextField,
     FormControl,
     InputLabel,
-    Select,
     MenuItem,
     FormControlLabel,
     FormLabel,
@@ -31,7 +31,7 @@ import LoadingScreen from '../LoadingScreen';
 
 
 // Validation
-import { useFormik, FormikProvider, Form } from 'formik';
+import { useFormik, FormikProvider, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
 
@@ -44,35 +44,35 @@ const InternalBot = () => {
     const [loading, setLoading] = useState(false);
 
     const internalBotSchema = Yup.object().shape({
-        companyname: Yup.string().min(2).required('It must be least 2 characters'),
-        interactiontitle: Yup.string().min(2).required('It must be least 2 characters'),
-        testid: Yup.string().min(6).max(6).required('TestId must be of exactly 6 numbers'),
-        track: Yup.string().min(1).required('TestId must be of exactly 6 numbers'),
-        accesscode: Yup.string().min(6).max(6).required('TestId must be of exactly 6 numbers'),
-        timer: Yup.string().required('Timer cannot be blank'),
-        expirydate: Yup.string().required('Date is required'),
+        companyName: Yup.string().min(2).required('It must be least 2 characters'),
+        interactionTitle: Yup.string().min(2).required('It must be least 2 characters'),
+        testId: Yup.string().min(6).max(6).required('Test Id must be of exactly 6 numbers'),
+        track: Yup.string().required('Select your Track'),
+        interactionMode: Yup.string().required('Select Interaction Mode'),
+        accessCode: Yup.string().min(6).max(6).required('Access must be of exactly 6 numbers'),
+        expiryDate: Yup.string().required('Expiry Date is required'),
         emailOne: Yup.string().email('Invalid email').required('Email is required'),
-        timer: Yup.string().required('Timer cannot be blank'),
-        certificates: Yup.string().required('It is required'),
-        names: Yup.string().required('It is required'),
+        timer: Yup.string().required('Select Timer'),
+        certificates: Yup.string().required('This is required'),
+        name: Yup.string().required('Mentor Name is required'),
         description: Yup.string().required('Description is required'),
-        generalfeedback: Yup.string().min(400).max(615).required('Feedback must be of exactly 6 numbers'),
+        generalFeedback: Yup.string().min(400).max(615).required('Feedback must be of exactly 6 numbers'),
     });
 
     const formik = useFormik({
         initialValues: {
-            companyname: '',
-            interactiontitle: '',
-            testid: '',
+            companyName: '',
+            interactionTitle: '',
+            testId: '',
             track: '',
-            accesscode: '',
-            expirydate: '',
+            accessCode: '',
+            expiryDate: '',
             emailOne: '',
             timer: '',
             certificates: '',
-            names: '',
+            name: '',
             description: '',
-            generalfeedback: ''
+            generalFeedback: ''
         },
         validationSchema: internalBotSchema,
         onSubmit: async (values, { setErrors, resetForm }) => {
@@ -99,17 +99,12 @@ const InternalBot = () => {
 
     const handleChange = (event) => {
         setTrack(event.target.value);
-    };
-    const handleChang = (event) => {
         setTimer(event.target.value);
-    };
-
-    const handleChanges = (event) => {
         setMode(event.target.value);
     };
 
     const handleClick = (event) => {
-        if (event.target.value == "No") {
+        if (event.target.value === "No") {
             setCertificate(false);
         }
         else {
@@ -118,7 +113,7 @@ const InternalBot = () => {
     };
 
     const handleClicks = (event) => {
-        if (event.target.value == "No") {
+        if (event.target.value === "No") {
             setName(false);
         }
         else {
@@ -131,15 +126,64 @@ const InternalBot = () => {
         return <LoadingScreen />;
     }
 
+    const trackDomainOptions = [
+        {
+            value: "Sales",
+            label: "Sales"
+        },
+        {
+            value: "Service",
+            label: "Service"
+        },
+        {
+            value: "HR",
+            label: "HR"
+        },
+        {
+            value: "New Grad.",
+            label: "New Grad."
+        },
+        {
+            value: "Others",
+            label: "Others"
+        }
+    ];
+
+    const timerOptions = [
+        {
+            value: "15 minutes",
+            label: "15 minutes"
+        },
+        {
+            value: "20 minutes",
+            label: "20 minutes"
+        },
+        {
+            value: "30 minutes",
+            label: "30 minutes"
+        },
+        {
+            value: "45 minutes",
+            label: "45 minutes"
+        },
+        {
+            value: "60 minutes",
+            label: "60 minutes"
+        },
+        {
+            value: "None",
+            label: "None"
+        }
+    ];
+
     return (
         <>
             <FormikProvider value={formik}>
                 <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
-                    <Card component={Stack} p={3} spacing={2} elevation={10} >
-
+                    <Card component={Stack} p={3} spacing={2} elevation={3}>
                         <CardContent>
+                            <Typography variant="h4" mb={3}>Internal Bot</Typography>
                             {errors.afterSubmit && <Alert severity="error">{errors.afterSubmit}</Alert>}
-
                             <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                                 <Stack sx={{ width: '100%' }}>
                                     <TextField
@@ -149,9 +193,9 @@ const InternalBot = () => {
                                         required
                                         type='text'
                                         sx={{ marginBottom: { xs: '0', sm: '0', md: '0' } }}
-                                        {...getFieldProps('companyname')}
-                                        error={Boolean(touched.companyname && errors.companyname)}
-                                        helperText={touched.companyname && errors.companyname}
+                                        {...getFieldProps('companyName')}
+                                        error={Boolean(touched.companyName && errors.companyName)}
+                                        helperText={touched.companyName && errors.companyName}
                                     />
                                 </Stack>
                                 <Stack sx={{ width: '100%' }}>
@@ -161,9 +205,9 @@ const InternalBot = () => {
                                         label="Interaction Title"
                                         required
                                         type='text'
-                                        {...getFieldProps('interactiontitle')}
-                                        error={Boolean(touched.interactiontitle && errors.interactiontitle)}
-                                        helperText={touched.interactiontitle && errors.interactiontitle}
+                                        {...getFieldProps('interactionTitle')}
+                                        error={Boolean(touched.interactionTitle && errors.interactionTitle)}
+                                        helperText={touched.interactionTitle && errors.interactionTitle}
                                     />
                                 </Stack>
                                 <Stack sx={{ width: '100%' }}>
@@ -173,83 +217,73 @@ const InternalBot = () => {
                                         label="Test Id"
                                         required
                                         type='number'
-                                        {...getFieldProps('testid')}
-                                        error={Boolean(touched.testid && errors.testid)}
-                                        helperText={touched.testid && errors.testid}
+                                        {...getFieldProps('testId')}
+                                        error={Boolean(touched.testId && errors.testId)}
+                                        helperText={touched.testId && errors.testId}
                                     />
                                 </Stack>
                             </Stack>
-                            <Stack spacing={1} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
+                            <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                                 <Stack sx={{ width: '100%' }}>
-                                    <FormControl fullWidth size='small'>
-                                        <InputLabel id="demo-simple-select-label">Track</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            value={track}
-                                            label="Track"
-                                            onChange={handleChange}
-                                            {...getFieldProps('track')}
-                                            error={Boolean(touched.track && errors.track)}
-                                            helperText={touched.track && errors.track}
-                                        >
-                                            <MenuItem value="Sales">Sales</MenuItem>
-                                            <MenuItem value="Service">Service</MenuItem>
-                                            <MenuItem value="HR">HR</MenuItem>
-                                            <MenuItem value="New Grad.">New Grad.</MenuItem>
-                                            <MenuItem value="None / Others">None / Others</MenuItem>
-                                        </Select>
-                                    </FormControl>
+                                    <TextField
+                                        select
+                                        size='small'
+                                        value={track}
+                                        label="Track/Domain"
+                                        required
+                                        onChange={handleChange}
+                                        {...getFieldProps('track')}
+                                        error={Boolean(touched.track && errors.track)}
+                                        helperText={touched.track && errors.track}
+                                    >
+                                        {trackDomainOptions.map(option => (
+                                            <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+                                        ))}
+                                    </TextField>
                                 </Stack>
                                 <Stack sx={{ width: '100%' }}>
-                                    <FormControl fullWidth size='small'>
-                                        <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            value={track}
-                                            label="Age"
-                                            onChange={handleChange}
-                                        >
-                                            <MenuItem value={10}>Ten</MenuItem>
-                                            <MenuItem value={20}>Twenty</MenuItem>
-                                            <MenuItem value={30}>Thirty</MenuItem>
-                                        </Select>
-                                    </FormControl>
+                                    <TextField
+                                        select
+                                        value={mode}
+                                        size='small'
+                                        label="Interaction Mode"
+                                        required
+                                        onChange={handleChange}
+                                        {...getFieldProps('interactionMode')}
+                                        error={Boolean(touched.interactionMode && errors.interactionMode)}
+                                        helperText={touched.interactionMode && errors.interactionMode}
+                                    >
+                                        <MenuItem value="Audio">Audio</MenuItem>
+                                    </TextField>
                                 </Stack>
                             </Stack>
-                            <Stack spacing={1} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
+                            <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                                 <Stack sx={{ width: '100%' }}>
-                                    <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Access Code</Typography>
                                     <TextField
                                         fullWidth
                                         size='small'
                                         label="Access Code"
                                         required
                                         type='number'
-                                        sx={{ marginBottom: { xs: '0', sm: '0', md: '0' } }}
-                                        {...getFieldProps('accesscode')}
-                                        error={Boolean(touched.accesscode && errors.accesscode)}
-                                        helperText={touched.accesscode && errors.accesscode}
+                                        {...getFieldProps('accessCode')}
+                                        error={Boolean(touched.accessCode && errors.accessCode)}
+                                        helperText={touched.accessCode && errors.accessCode}
                                     />
                                 </Stack>
                                 <Stack sx={{ width: '100%' }}>
-                                    <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Expiry Date</Typography>
                                     <TextField
                                         fullWidth
                                         size='small'
-                                        // label="Expiry Date"
                                         required
                                         type='date'
-                                        {...getFieldProps('expirydate')}
-                                        error={Boolean(touched.expirydate && errors.expirydate)}
-                                        helperText={touched.expirydate && errors.expirydate}
+                                        {...getFieldProps('expiryDate')}
+                                        error={Boolean(touched.expiryDate && errors.expiryDate)}
+                                        helperText={touched.expiryDate && errors.expiryDate}
                                     />
                                 </Stack>
                             </Stack>
-                            <Stack spacing={1} direction={{ xs: 'column', sm: 'row', md: "row" }}>
+                            <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                                 <Stack sx={{ width: '100%' }}>
-                                    <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Report send to email</Typography>
                                     <TextField
                                         fullWidth
                                         size='small'
@@ -262,33 +296,27 @@ const InternalBot = () => {
                                     />
                                 </Stack>
                                 <Stack sx={{ width: '100%' }}>
-                                    <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Timer</Typography>
-                                    <FormControl fullWidth size='small'>
-                                        <InputLabel id="demo-simple-select-label">Timer</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            value={timer}
-                                            label="Timer"
-                                            onChange={handleChang}
-                                            {...getFieldProps('timer')}
-                                            error={Boolean(touched.timer && errors.timer)}
-                                            helperText={touched.timer && errors.timer}
-                                        >
-                                            <MenuItem value="15 minutes">15 minutes</MenuItem>
-                                            <MenuItem value="20 minutes">20 minutes</MenuItem>
-                                            <MenuItem value="30 minutes">30 minutes</MenuItem>
-                                            <MenuItem value="45 minutes">45 minutes</MenuItem>
-                                            <MenuItem value="60 minutes">60 minutes</MenuItem>
-                                            <MenuItem value="None">None</MenuItem>
-                                        </Select>
-                                    </FormControl>
+                                    <TextField
+                                        select
+                                        value={timer}
+                                        size='small'
+                                        label="Timer"
+                                        required
+                                        onChange={handleChange}
+                                        {...getFieldProps('timer')}
+                                        error={Boolean(touched.timer && errors.timer)}
+                                        helperText={touched.timer && errors.timer}
+                                    >
+                                        {timerOptions.map(option => (
+                                            <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+                                        ))}
+                                    </TextField>
                                 </Stack>
                             </Stack>
-                            <Stack spacing={2} direction={{ xs: 'column', sm: 'row', md: "row" }}>
+                            <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                                 <Stack sx={{ width: '100%' }}>
                                     <FormControl>
-                                        <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Generate Certificate</FormLabel>
+                                        <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Generate Certificate</FormLabel>
                                         <RadioGroup
                                             row
                                             aria-labelledby="demo-row-radio-buttons-group-label"
@@ -316,7 +344,7 @@ const InternalBot = () => {
                                 </Stack>
                                 <Stack sx={{ width: '100%' }}>
                                     <FormControl>
-                                        <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Mentor Name(in Report)</FormLabel>
+                                        <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Mentor Name(in Report)</FormLabel>
                                         <RadioGroup
                                             row
                                             aria-labelledby="demo-row-radio-buttons-group-label"
@@ -336,15 +364,15 @@ const InternalBot = () => {
                                             label="Mentor name"
                                             required
                                             type='text'
-                                            {...getFieldProps('names')}
-                                            error={Boolean(touched.names && errors.names)}
-                                            helperText={touched.names && errors.names}
+                                            {...getFieldProps('name')}
+                                            error={Boolean(touched.name && errors.name)}
+                                            helperText={touched.name && errors.name}
                                         />
                                     }
                                 </Stack>
                                 <Stack sx={{ width: '100%' }}>
                                     <FormControl>
-                                        <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Report send to Candidate</FormLabel>
+                                        <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Report send to Candidate</FormLabel>
                                         <RadioGroup
                                             row
                                             aria-labelledby="demo-row-radio-buttons-group-label"
@@ -357,12 +385,14 @@ const InternalBot = () => {
                                     </FormControl>
                                 </Stack>
                             </Stack>
-                            <Stack spacing={1} direction={{ xs: 'column', sm: 'row', md: "row" }}>
+                            <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                                 <Stack sx={{ width: '100%' }}>
-                                    <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Description</Typography>
-                                    <TextField
+                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Your description *</InputLabel>
+                                    <TextareaAutosize
                                         fullWidth
                                         size='small'
+                                        maxRows={5}
+                                        minRows={5}
                                         label="Your description"
                                         required
                                         type='text'
@@ -372,44 +402,31 @@ const InternalBot = () => {
                                     />
                                 </Stack>
                                 <Stack sx={{ width: '100%' }}>
-                                    <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Interaction Mode</Typography>
-                                    <FormControl fullWidth size='small'>
-                                        <InputLabel id="demo-simple-select-label">Mode</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            value={mode}
-                                            label="mode"
-                                            onChange={handleChanges}
-                                            {...getFieldProps('timer')}
-                                            error={Boolean(touched.timer && errors.timer)}
-                                            helperText={touched.timer && errors.timer}
-                                        >
-                                            <MenuItem value="audio minutes">Audio</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                </Stack>
-                            </Stack>
-                            <Stack>
-                                <Stack sx={{ width: '100%' }}>
-                                    <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Add Insights</Typography>
+                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Add Insights *</InputLabel>
                                     <TextareaAutosize
                                         fullWidth
                                         size='small'
                                         maxRows={5}
+                                        minRows={5}
+                                        required
                                         aria-label="maximum height"
                                         placeholder="Example: Every human interaction is an opportunity to learn. It also an opportunity to demonstrate your skills and expertise is a specific context and capacity. We view every professional interaction as a high-stakes game - whether you are likely to save money, generate revenue, make a process more efficient or improve your performance. These virtual interaction act as practice sessions where you can test drive real-world interactions. Experts in the world may differ on what skills matter - but they all have a common point of view. Practice is the key to improvement - and specific feedback makes improvement faster."
-                                        {...getFieldProps('generalfeedback')}
-                                        error={Boolean(touched.generalfeedback && errors.generalfeedback)}
-                                        helperText={touched.generalfeedback && errors.generalfeedback}
+                                        {...getFieldProps('generalFeedback')}
+                                        error={Boolean(touched.generalFeedback && errors.generalFeedback)}
+                                        helperText={touched.generalFeedback && errors.generalFeedback}
                                     />
                                 </Stack>
+                            </Stack>
+                            <Stack>
+
                             </Stack>
                         </CardContent>
                     </Card>
                 </Form>
             </FormikProvider>
-            <Addquestion mt={3} />
+            <AddQuestion mt={3} />
+
+            <Skills mt={3} />
         </>
     )
 }
