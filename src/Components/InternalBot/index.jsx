@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 // import styles from './InternalBot.module.css';
 import Addquestion from './Addquestions';
+import Skills from './Skills';
 import {
     Stack,
     Paper,
@@ -233,21 +234,7 @@ const InternalBot = () => {
                             </FormControl>
                         </Stack>
                         <Stack sx={{ width: '100%' }}>
-                            <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Track</Typography>
-                            <FormControl fullWidth size='small'>
-                                <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={track}
-                                    label="Age"
-                                    onChange={handleChange}
-                                >
-                                    <MenuItem value={10}>Ten</MenuItem>
-                                    <MenuItem value={20}>Twenty</MenuItem>
-                                    <MenuItem value={30}>Thirty</MenuItem>
-                                </Select>
-                            </FormControl>
+                            <Skills />
                         </Stack>
                     </Stack>
                     <Stack spacing={1} direction={{ xs: 'column', sm: 'row', md: "row" }}>
