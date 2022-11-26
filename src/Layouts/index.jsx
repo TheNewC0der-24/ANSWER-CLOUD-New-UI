@@ -22,7 +22,7 @@ const DashboardLayout = () => {
     <>
       <Navbar handleDrawerToggle={handleDrawerToggle} />
       <Sidebar handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen} />
-      <Box sx={{ height: '100vh', width: "100vw", position: 'absolute', backgroundColor: '#fafafa' }}>
+      <Box sx={{ height: '100vh', width: "100vw", position: 'absolute', backgroundColor: 'white' }}>
         <Box p={2} sx={{
           width: { xs: '100vw', md: `calc( 100vw - 299px)` },
           position: 'relative', left: { md: '17rem' }, top: '4.5rem'
