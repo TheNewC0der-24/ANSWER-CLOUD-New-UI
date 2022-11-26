@@ -178,7 +178,8 @@ const SignUp = () => {
                                 fullWidth
                                 size='small'
                                 type={showPassword ? 'text' : 'password'}
-                                label='Password *'
+                                label='Password'
+                                required
                                 {...getFieldProps('password')}
                                 InputProps={{
                                     endAdornment: (
@@ -197,7 +198,8 @@ const SignUp = () => {
                                 fullWidth
                                 size='small'
                                 type={showConfirmPassword ? 'text' : 'password'}
-                                label='ConfirmPassword *'
+                                label='ConfirmPassword'
+                                required
                                 {...getFieldProps('confirmpassword')}
                                 InputProps={{
                                     endAdornment: (
