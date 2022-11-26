@@ -129,7 +129,8 @@ const Login = () => {
                             <TextField
                                 fullWidth
                                 type={showPassword ? 'text' : 'password'}
-                                label='Password *'
+                                label='Password'
+                                required
                                 {...getFieldProps('password')}
                                 InputProps={{
                                     endAdornment: (
