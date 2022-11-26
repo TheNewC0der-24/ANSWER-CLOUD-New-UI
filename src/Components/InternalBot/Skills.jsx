@@ -9,13 +9,12 @@ import {
     Chip,
     Select,
     Stack,
-    Typography
+    Typography,
+    Card,
+    CardContent,
 } from '@mui/material';
 
 import { useTheme } from '@mui/material/styles';
-
-// Routing
-import { useNavigate, Link } from 'react-router-dom';
 
 // Validation
 import { useFormik, FormikProvider, Form } from 'formik';
@@ -38,7 +37,6 @@ const Skills = () => {
             try {
                 setLoading(true);
                 setLoading(false);
-                navigate('/dashboard');
                 resetForm();
             } catch (error) {
                 setErrors({ afterSubmit: error.message });
@@ -82,7 +80,7 @@ const Skills = () => {
         };
     }
     const theme = useTheme();
-    const [personName, setPersonName] = React.useState([]);
+    const [personName, setPersonName] = useState([]);
 
     const handleChange = (event) => {
         const {
@@ -94,44 +92,47 @@ const Skills = () => {
         );
     };
 
-    const navigate = useNavigate();
     return (
         <>
             <FormikProvider value={formik}>
                 <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
-                    <Stack sx={{ width: '100%' }}>
-                        <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Access Code</Typography>
-                        <FormControl>
-                            <InputLabel id="demo-multiple-chip-label">Skills</InputLabel>
-                            <Select
-                                labelId="demo-multiple-chip-label"
-                                id="demo-multiple-chip"
-                                size="small"
-                                multiple
-                                value={personName}
-                                onChange={handleChange}
-                                input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-                                renderValue={(selected) => (
-                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                        {selected.map((value) => (
-                                            <Chip key={value} label={value} />
-                                        ))}
-                                    </Box>
-                                )}
-                                MenuProps={MenuProps}
-                            >
-                                {names.map((name) => (
-                                    <MenuItem
-                                        key={name}
-                                        value={name}
-                                        style={getStyles(name, personName, theme)}
+                    <Card component={Stack} p={3} mt={3} spacing={2} elevation={3}>
+                        <CardContent>
+                            <Typography mb={3} variant="h4">Add Skills</Typography>
+                            <Stack sx={{ width: '100%' }}>
+                                <FormControl>
+                                    <InputLabel id="demo-multiple-chip-label">Skills *</InputLabel>
+                                    <Select
+                                        labelId="demo-multiple-chip-label"
+                                        id="demo-multiple-chip"
+                                        multiple
+                                        required
+                                        value={personName}
+                                        onChange={handleChange}
+                                        input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                                        renderValue={(selected) => (
+                                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                                {selected.map((value) => (
+                                                    <Chip key={value} label={value} />
+                                                ))}
+                                            </Box>
+                                        )}
+                                        MenuProps={MenuProps}
                                     >
-                                        {name}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                    </Stack>
+                                        {names.map((name) => (
+                                            <MenuItem
+                                                key={name}
+                                                value={name}
+                                                style={getStyles(name, personName, theme)}
+                                            >
+                                                {name}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                </FormControl>
+                            </Stack>
+                        </CardContent>
+                    </Card>
                 </Form>
             </FormikProvider>
         </>
