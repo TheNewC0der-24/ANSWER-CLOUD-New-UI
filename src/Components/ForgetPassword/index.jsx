@@ -109,7 +109,8 @@ const ForgetPassword = () => {
                             <TextField
                                 fullWidth
                                 type={showPassword ? 'text' : 'password'}
-                                label='Password *'
+                                label='Password'
+                                required
                                 {...getFieldProps('password')}
                                 InputProps={{
                                     endAdornment: (
@@ -129,7 +130,8 @@ const ForgetPassword = () => {
                             <TextField
                                 fullWidth
                                 type={showConfirmPassword ? 'text' : 'password'}
-                                label='Confirm Password *'
+                                label='Confirm Password'
+                                required
                                 {...getFieldProps('confirmPassword')}
                                 InputProps={{
                                     endAdornment: (
