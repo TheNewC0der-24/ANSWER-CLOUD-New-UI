@@ -72,11 +72,11 @@ function Sidebar({ handleDrawerToggle, mobileOpen }) {
       icon: <GroupIcon />,
       link: '/account/teams'
     },
-    {
-      label: 'View Interaction',
-      icon: <LayersIcon />,
-      link: '/account/external-bot'
-    },
+    // {
+    //   label: 'View Interaction',
+    //   icon: <LayersIcon />,
+    //   link: '/account/external-bot'
+    // },
     {
       label: 'View Reports and Certificate',
       icon: <GradingIcon />,
