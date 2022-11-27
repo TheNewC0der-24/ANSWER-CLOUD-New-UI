@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import styles from './InternalBot.module.css';
 
 import {
     Paper,
