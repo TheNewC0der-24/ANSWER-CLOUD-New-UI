@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import styles from './InternalBot.module.css';
 
-import AddQuestion from './AddQuestions';
+import Addquestion from './Addquestions';
 import Skills from './Skills';
 
 import {
@@ -68,6 +68,7 @@ const InternalBot = () => {
             interactionTitle: '',
             testId: '',
             track: '',
+            interactionMode: '',
             accessCode: '',
             expiryDate: '',
             emailOne: '',
@@ -426,13 +427,13 @@ const InternalBot = () => {
 
 
                         {/*************** Add Questions ***************/}
-                        <AddQuestion mt={3} />
+                        <Addquestion mt={3} />
 
                         {/*************** Add Skills ***************/}
                         <Skills mt={3} />
 
                         <Box mt={3} display="flex" justifyContent="center" sx={{ gap: "1rem" }}>
-                            <Button variant='contained'>Submit</Button>
+                            <Button variant='contained' type='submit'>Submit</Button>
                             <Button onClick={() => navigate("/account/external-bot")} color="warning" variant='contained'>Go to External Bot</Button>
                         </Box>
                     </Paper>
