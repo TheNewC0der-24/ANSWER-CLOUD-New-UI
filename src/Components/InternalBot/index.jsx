@@ -2,26 +2,29 @@ import React, { useState } from 'react';
 // import styles from './InternalBot.module.css';
 
 import {
+    Paper,
     Stack,
+    Box,
+    Card,
+    CardContent,
+    CardActions,
     Alert,
     Typography,
-    TextField,
     FormControl,
-    InputLabel,
-    MenuItem,
     FormControlLabel,
+    FormGroup,
+    TextField,
     FormLabel,
+    InputLabel,
+    Checkbox,
+    Select,
+    MenuItem,
+    OutlinedInput,
+    Chip,
     RadioGroup,
     Radio,
     TextareaAutosize,
-    Card,
-    CardContent,
-    Paper,
     Button,
-    Box,
-    OutlinedInput,
-    Select,
-    Chip,
 } from '@mui/material';
 
 import { useTheme } from '@mui/material/styles';
@@ -169,6 +172,12 @@ const InternalBot = () => {
         }
     };
 
+    const [checked, setChecked] = useState(false);
+
+    const handleCheck = () => {
+        setChecked(!checked);
+    };
+
     if (loading) {
         setLoading(true);
         return <LoadingScreen />;
@@ -235,6 +244,7 @@ const InternalBot = () => {
             <FormikProvider value={formik}>
                 <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
                     <Paper component={Stack} p={3}>
+                        {/*************** Internal Bot ***************/}
                         <Card component={Stack} p={3} spacing={2} elevation={3}>
                             <CardContent>
                                 <Typography variant="h4" mb={3}>Internal Bot</Typography>
@@ -475,30 +485,18 @@ const InternalBot = () => {
                             </CardContent>
                         </Card>
 
-
                         {/*************** Add Questions ***************/}
                         <Card component={Stack} p={3} mt={3} spacing={2} elevation={3}>
                             <CardContent style={style}>
-                                <Box sx={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" }} mt={2}>
-                                    <Typography variant="h4">Add Questions</Typography>
-                                    <Stack direction="row" sx={{ gap: "0.25rem" }}>
-                                        <Button sx={{ cursor: 'pointer' }} size='small' variant="contained" color='success' onClick={() => setNoOfRows(noOfRows + 1)}>Add</Button>
-                                        <Button sx={{ cursor: 'pointer' }} disabled={noOfRows <= 1} size='small' variant="contained" color='error' onClick={() => setNoOfRows(noOfRows - 1)}>Delete</Button>
-                                    </Stack>
-                                </Box>
+                                <Typography variant="h4">Add Questions</Typography>
+
                                 {errors.afterSubmit && <Alert severity="error">{errors.afterSubmit}</Alert>}
 
-                                {/* <Stack spacing={2} direction={{ xs: 'row', sm: 'row', md: "row" }}>
-                                <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2', width: '100%' }}>Question:</Typography>
-                                <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2', width: '100%' }}>Media Context:</Typography>
-                                <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2', width: '100%' }}>Hints/Description:</Typography>
-                                <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2', width: '100%' }}>Ideal Answer:</Typography>
-
-                            </Stack> */}
                                 {[...Array(noOfRows)].map((index) => {
                                     return (
-                                        <Stack spacing={2} mt={3} direction={{ xs: 'row', sm: 'row', md: "row" }}>
+                                        <Stack key={index} spacing={2} mt={3} direction={{ xs: 'row', sm: 'row', md: "row" }}>
                                             <Stack mb={1} sx={{ width: '100%' }}>
+                                                <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Question</InputLabel>
                                                 <TextareaAutosize
                                                     fullWidth
                                                     size='small'
@@ -506,12 +504,10 @@ const InternalBot = () => {
                                                     minRows={3}
                                                     aria-label="maximum height"
                                                     placeholder="Add Question"
-                                                // {...getFieldProps('generalfeedback')}
-                                                // error={Boolean(touched.generalfeedback && errors.generalfeedback)}
-                                                // helperText={touched.generalfeedback && errors.generalfeedback}
                                                 />
                                             </Stack>
                                             <Stack mb={1} sx={{ width: '100%' }}>
+                                                <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Media Context</InputLabel>
                                                 <TextareaAutosize
                                                     fullWidth
                                                     size='small'
@@ -519,12 +515,10 @@ const InternalBot = () => {
                                                     minRows={3}
                                                     aria-label="maximum height"
                                                     placeholder="Paste your media link here"
-                                                // {...getFieldProps('generalfeedback')}
-                                                // error={Boolean(touched.generalfeedback && errors.generalfeedback)}
-                                                // helperText={touched.generalfeedback && errors.generalfeedback}
                                                 />
                                             </Stack>
                                             <Stack mb={1} sx={{ width: '100%' }}>
+                                                <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Hints/Description</InputLabel>
                                                 <TextareaAutosize
                                                     fullWidth
                                                     size='small'
@@ -532,12 +526,10 @@ const InternalBot = () => {
                                                     minRows={3}
                                                     aria-label="maximum height"
                                                     placeholder="Add Hints/Description"
-                                                // {...getFieldProps('generalfeedback')}
-                                                // error={Boolean(touched.generalfeedback && errors.generalfeedback)}
-                                                // helperText={touched.generalfeedback && errors.generalfeedback}
                                                 />
                                             </Stack>
                                             <Stack mb={1} sx={{ width: '100%' }}>
+                                                <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Ideal Answer</InputLabel>
                                                 <TextareaAutosize
                                                     fullWidth
                                                     size='small'
@@ -545,15 +537,35 @@ const InternalBot = () => {
                                                     minRows={3}
                                                     aria-label="maximum height"
                                                     placeholder="Add Ideal Answer"
-                                                // {...getFieldProps('generalfeedback')}
-                                                // error={Boolean(touched.generalfeedback && errors.generalfeedback)}
-                                                // helperText={touched.generalfeedback && errors.generalfeedback}
                                                 />
                                             </Stack>
                                         </Stack>
                                     )
                                 }
                                 )}
+                            </CardContent>
+                            <CardActions sx={{ backgroundColor: "#fafafa" }}>
+                                <Stack direction="row" sx={{ gap: "0.25rem" }}>
+                                    <Button sx={{ cursor: 'pointer' }} size='small' variant="contained" color='success' onClick={() => setNoOfRows(noOfRows + 1)}>Add</Button>
+                                    <Button sx={{ cursor: 'pointer' }} disabled={noOfRows <= 1} size='small' variant="contained" color='error' onClick={() => setNoOfRows(noOfRows - 1)}>Delete</Button>
+                                </Stack>
+                            </CardActions>
+                            <CardContent>
+                                <FormGroup>
+                                    <FormControlLabel control={<Checkbox onClick={handleCheck} />} label="Case-Study/Description Text :" />
+                                </FormGroup>
+                                {
+                                    checked && (
+                                        <Stack sx={{ width: '100%' }}>
+                                            <TextareaAutosize
+                                                fullWidth
+                                                maxRows={7}
+                                                minRows={7}
+                                                aria-label="maximum height"
+                                            />
+                                        </Stack>
+                                    )
+                                }
                             </CardContent>
                         </Card>
 
