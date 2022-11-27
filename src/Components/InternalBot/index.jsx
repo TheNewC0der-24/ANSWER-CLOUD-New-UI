@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 // import styles from './InternalBot.module.css';
 
-import Addquestion from './Addquestions';
-import Skills from './Skills';
-
 import {
     Stack,
     Alert,
@@ -21,8 +18,13 @@ import {
     CardContent,
     Paper,
     Button,
-    Box
+    Box,
+    OutlinedInput,
+    Select,
+    Chip,
 } from '@mui/material';
+
+import { useTheme } from '@mui/material/styles';
 
 
 // Routing
@@ -42,9 +44,49 @@ const InternalBot = () => {
 
     const navigate = useNavigate();
 
-    // const { login } = useAuth();
-
     const [loading, setLoading] = useState(false);
+    const [track, setTrack] = useState('');
+    const [timer, setTimer] = useState('');
+    const [mode, setMode] = useState('');
+    const [certificate, setCertificate] = useState(false);
+    const [name, setName] = useState(false);
+    const [noOfRows, setNoOfRows] = useState(1);
+
+    const ITEM_HEIGHT = 48;
+    const ITEM_PADDING_TOP = 8;
+    const MenuProps = {
+        PaperProps: {
+            style: {
+                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                width: 250,
+            },
+        },
+    };
+
+    const names = [
+        'Oliver Hansen',
+        'Van Henry',
+        'April Tucker',
+        'Ralph Hubbard',
+        'Omar Alexander',
+        'Carlos Abbott',
+        'Miriam Wagner',
+        'Bradley Wilkerson',
+        'Virginia Andrews',
+        'Kelly Snyder',
+    ];
+
+    function getStyles(name, personName, theme) {
+        return {
+            fontWeight:
+                personName.indexOf(name) === -1
+                    ? theme.typography.fontWeightRegular
+                    : theme.typography.fontWeightMedium,
+        };
+    }
+    const theme = useTheme();
+    const [personName, setPersonName] = useState([]);
+
 
     const internalBotSchema = Yup.object().shape({
         companyName: Yup.string().min(2).required('It must be least 2 characters'),
@@ -95,16 +137,18 @@ const InternalBot = () => {
 
     const { errors, touched, values, handleSubmit, getFieldProps } = formik;
 
-    const [track, setTrack] = useState('');
-    const [timer, setTimer] = useState('');
-    const [mode, setMode] = useState('');
-    const [certificate, setCertificate] = useState(false);
-    const [name, setName] = useState(false);
-
     const handleChange = (event) => {
         setTrack(event.target.value);
         setTimer(event.target.value);
         setMode(event.target.value);
+
+        const {
+            target: { value },
+        } = event;
+        setPersonName(
+            // On autofill we get a stringified value.
+            typeof value === 'string' ? value.split(',') : value,
+        );
     };
 
     const handleClick = (event) => {
@@ -179,6 +223,12 @@ const InternalBot = () => {
             label: "None"
         }
     ];
+
+    const style = {
+        height: '210px',
+        overflow: 'auto',
+    }
+
 
     return (
         <>
@@ -427,10 +477,125 @@ const InternalBot = () => {
 
 
                         {/*************** Add Questions ***************/}
-                        <Addquestion mt={3} />
+                        <Card component={Stack} p={3} mt={3} spacing={2} elevation={3}>
+                            <CardContent style={style}>
+                                <Box sx={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" }} mt={2}>
+                                    <Typography variant="h4">Add Questions</Typography>
+                                    <Stack direction="row" sx={{ gap: "0.25rem" }}>
+                                        <Button sx={{ cursor: 'pointer' }} size='small' variant="contained" color='success' onClick={() => setNoOfRows(noOfRows + 1)}>Add</Button>
+                                        <Button sx={{ cursor: 'pointer' }} disabled={noOfRows <= 1} size='small' variant="contained" color='error' onClick={() => setNoOfRows(noOfRows - 1)}>Delete</Button>
+                                    </Stack>
+                                </Box>
+                                {errors.afterSubmit && <Alert severity="error">{errors.afterSubmit}</Alert>}
+
+                                {/* <Stack spacing={2} direction={{ xs: 'row', sm: 'row', md: "row" }}>
+                                <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2', width: '100%' }}>Question:</Typography>
+                                <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2', width: '100%' }}>Media Context:</Typography>
+                                <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2', width: '100%' }}>Hints/Description:</Typography>
+                                <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2', width: '100%' }}>Ideal Answer:</Typography>
+
+                            </Stack> */}
+                                {[...Array(noOfRows)].map((index) => {
+                                    return (
+                                        <Stack spacing={2} mt={3} direction={{ xs: 'row', sm: 'row', md: "row" }}>
+                                            <Stack mb={1} sx={{ width: '100%' }}>
+                                                <TextareaAutosize
+                                                    fullWidth
+                                                    size='small'
+                                                    maxRows={3}
+                                                    minRows={3}
+                                                    aria-label="maximum height"
+                                                    placeholder="Add Question"
+                                                // {...getFieldProps('generalfeedback')}
+                                                // error={Boolean(touched.generalfeedback && errors.generalfeedback)}
+                                                // helperText={touched.generalfeedback && errors.generalfeedback}
+                                                />
+                                            </Stack>
+                                            <Stack mb={1} sx={{ width: '100%' }}>
+                                                <TextareaAutosize
+                                                    fullWidth
+                                                    size='small'
+                                                    maxRows={3}
+                                                    minRows={3}
+                                                    aria-label="maximum height"
+                                                    placeholder="Paste your media link here"
+                                                // {...getFieldProps('generalfeedback')}
+                                                // error={Boolean(touched.generalfeedback && errors.generalfeedback)}
+                                                // helperText={touched.generalfeedback && errors.generalfeedback}
+                                                />
+                                            </Stack>
+                                            <Stack mb={1} sx={{ width: '100%' }}>
+                                                <TextareaAutosize
+                                                    fullWidth
+                                                    size='small'
+                                                    maxRows={3}
+                                                    minRows={3}
+                                                    aria-label="maximum height"
+                                                    placeholder="Add Hints/Description"
+                                                // {...getFieldProps('generalfeedback')}
+                                                // error={Boolean(touched.generalfeedback && errors.generalfeedback)}
+                                                // helperText={touched.generalfeedback && errors.generalfeedback}
+                                                />
+                                            </Stack>
+                                            <Stack mb={1} sx={{ width: '100%' }}>
+                                                <TextareaAutosize
+                                                    fullWidth
+                                                    size='small'
+                                                    maxRows={3}
+                                                    minRows={3}
+                                                    aria-label="maximum height"
+                                                    placeholder="Add Ideal Answer"
+                                                // {...getFieldProps('generalfeedback')}
+                                                // error={Boolean(touched.generalfeedback && errors.generalfeedback)}
+                                                // helperText={touched.generalfeedback && errors.generalfeedback}
+                                                />
+                                            </Stack>
+                                        </Stack>
+                                    )
+                                }
+                                )}
+                            </CardContent>
+                        </Card>
+
 
                         {/*************** Add Skills ***************/}
-                        <Skills mt={3} />
+                        <Card component={Stack} p={3} mt={3} spacing={2} elevation={3}>
+                            <CardContent>
+                                <Typography mb={3} variant="h4">Add Skills</Typography>
+                                <Stack sx={{ width: '100%' }}>
+                                    <FormControl>
+                                        <InputLabel id="demo-multiple-chip-label">Skills *</InputLabel>
+                                        <Select
+                                            labelId="demo-multiple-chip-label"
+                                            id="demo-multiple-chip"
+                                            multiple
+                                            required
+                                            value={personName}
+                                            onChange={handleChange}
+                                            input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                                            renderValue={(selected) => (
+                                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                                    {selected.map((value) => (
+                                                        <Chip key={value} label={value} />
+                                                    ))}
+                                                </Box>
+                                            )}
+                                            MenuProps={MenuProps}
+                                        >
+                                            {names.map((name) => (
+                                                <MenuItem
+                                                    key={name}
+                                                    value={name}
+                                                    style={getStyles(name, personName, theme)}
+                                                >
+                                                    {name}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                    </FormControl>
+                                </Stack>
+                            </CardContent>
+                        </Card>
 
                         <Box mt={3} display="flex" justifyContent="center" sx={{ gap: "1rem" }}>
                             <Button variant='contained' type='submit'>Submit</Button>
