@@ -40,6 +40,9 @@ import LoadingScreen from '../LoadingScreen';
 import { useFormik, FormikProvider, Form } from 'formik';
 import * as Yup from 'yup';
 
+// Alert
+import { message } from 'antd';
+
 
 const InternalBot = () => {
 
@@ -99,15 +102,12 @@ const InternalBot = () => {
         expiryDate: Yup.string().required('Expiry Date is required'),
         emailOne: Yup.string().email('Invalid email').required('Email is required'),
         timer: Yup.string().required('Select Timer'),
-        certificates: Yup.string().required('This is required'),
-        name: Yup.string().required('Mentor Name is required'),
         description: Yup.string().required('Description is required'),
         generalFeedback: Yup.string().min(400).max(615).required('Minimum 400 and Maximum 615 characters required'),
         questions: Yup.string().required('This is required'),
         mediaContext: Yup.string().required('This is required'),
         hints: Yup.string().required('This is required'),
         idealAnswer: Yup.string().required('This is required'),
-        caseStudy: Yup.string().required('This is required'),
     });
 
     const formik = useFormik({
@@ -121,15 +121,12 @@ const InternalBot = () => {
             expiryDate: '',
             emailOne: '',
             timer: '',
-            certificates: '',
-            name: '',
             description: '',
             generalFeedback: '',
             questions: '',
             mediaContext: '',
             hints: '',
             idealAnswer: '',
-            caseStudy: '',
         },
         validationSchema: internalBotSchema,
         onSubmit: async (values, { setErrors, resetForm }) => {
@@ -245,6 +242,18 @@ const InternalBot = () => {
         height: '215px',
         overflow: 'auto',
     }
+
+
+    const handleGoto = () => {
+        if (errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
+            || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.description
+            || errors.generalFeedback || errors.questions || errors.mediaContext
+            || errors.hints || errors.idealAnswer) {
+            message.error('Please fill all the required fields');
+        } else {
+            navigate('/account/external-bot');
+        }
+    };
 
 
     return (
@@ -409,9 +418,6 @@ const InternalBot = () => {
                                                 label="Certificate Name"
                                                 required
                                                 type='text'
-                                                {...getFieldProps('certificates')}
-                                                error={Boolean(touched.certificates && errors.certificates)}
-                                                helperText={touched.certificates && errors.certificates}
                                             />
                                         }
                                     </Stack>
@@ -437,9 +443,6 @@ const InternalBot = () => {
                                                 label="Mentor name"
                                                 required
                                                 type='text'
-                                                {...getFieldProps('name')}
-                                                error={Boolean(touched.name && errors.name)}
-                                                helperText={touched.name && errors.name}
                                             />
                                         }
                                     </Stack>
@@ -580,9 +583,6 @@ const InternalBot = () => {
                                                 fullWidth
                                                 maxRows={7}
                                                 minRows={7}
-                                                {...getFieldProps('caseStudy')}
-                                                error={Boolean(touched.caseStudy && errors.caseStudy)}
-                                                helperText={touched.caseStudy && errors.caseStudy}
                                             />
                                         </Stack>
                                     )
@@ -633,16 +633,22 @@ const InternalBot = () => {
                         <Box mt={3} display="flex" justifyContent="center" sx={{ gap: "1rem" }}>
                             <Button
                                 disabled={errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
-                                    || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.certificates
-                                    || errors.name || errors.description || errors.generalFeedback || errors.questions || errors.mediaContext
-                                    || errors.hints || errors.idealAnswer || errors.caseStudy ? true : false
+                                    || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.description
+                                    || errors.generalFeedback || errors.questions || errors.mediaContext || errors.hints
+                                    || errors.idealAnswer ? true : false
                                 }
                                 variant='contained'
                                 type='submit'
                             >
                                 Submit
                             </Button>
-                            <Button onClick={() => navigate("/account/external-bot")} color="warning" variant='contained'>Go to External Bot</Button>
+                            <Button
+                                onClick={handleGoto}
+                                color="warning"
+                                variant='contained'
+                            >
+                                Go to External Bot
+                            </Button>
                         </Box>
                     </Paper>
                 </Form>
