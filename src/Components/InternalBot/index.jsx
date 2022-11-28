@@ -22,7 +22,6 @@ import {
     Chip,
     RadioGroup,
     Radio,
-    TextareaAutosize,
     Button,
 } from '@mui/material';
 
@@ -103,7 +102,12 @@ const InternalBot = () => {
         certificates: Yup.string().required('This is required'),
         name: Yup.string().required('Mentor Name is required'),
         description: Yup.string().required('Description is required'),
-        generalFeedback: Yup.string().min(400).max(615).required('Feedback must be of exactly 6 numbers'),
+        generalFeedback: Yup.string().min(400).max(615).required('Minimum 400 and Maximum 615 characters required'),
+        questions: Yup.string().required('This is required'),
+        mediaContext: Yup.string().required('This is required'),
+        hints: Yup.string().required('This is required'),
+        idealAnswer: Yup.string().required('This is required'),
+        caseStudy: Yup.string().required('This is required'),
     });
 
     const formik = useFormik({
@@ -120,7 +124,12 @@ const InternalBot = () => {
             certificates: '',
             name: '',
             description: '',
-            generalFeedback: ''
+            generalFeedback: '',
+            questions: '',
+            mediaContext: '',
+            hints: '',
+            idealAnswer: '',
+            caseStudy: '',
         },
         validationSchema: internalBotSchema,
         onSubmit: async (values, { setErrors, resetForm }) => {
@@ -233,7 +242,7 @@ const InternalBot = () => {
     ];
 
     const style = {
-        height: '210px',
+        height: '215px',
         overflow: 'auto',
     }
 
@@ -452,12 +461,11 @@ const InternalBot = () => {
                                 <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                                     <Stack sx={{ width: '100%' }}>
                                         <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Your description *</InputLabel>
-                                        <TextareaAutosize
+                                        <TextField
                                             fullWidth
-                                            size='small'
+                                            multiline
                                             maxRows={5}
                                             minRows={5}
-                                            label="Your description"
                                             required
                                             type='text'
                                             {...getFieldProps('description')}
@@ -467,13 +475,12 @@ const InternalBot = () => {
                                     </Stack>
                                     <Stack sx={{ width: '100%' }}>
                                         <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Add Insights *</InputLabel>
-                                        <TextareaAutosize
+                                        <TextField
                                             fullWidth
-                                            size='small'
+                                            multiline
                                             maxRows={5}
                                             minRows={5}
                                             required
-                                            aria-label="maximum height"
                                             placeholder="Example: Every human interaction is an opportunity to learn. It also an opportunity to demonstrate your skills and expertise is a specific context and capacity. We view every professional interaction as a high-stakes game - whether you are likely to save money, generate revenue, make a process more efficient or improve your performance. These virtual interaction act as practice sessions where you can test drive real-world interactions. Experts in the world may differ on what skills matter - but they all have a common point of view. Practice is the key to improvement - and specific feedback makes improvement faster."
                                             {...getFieldProps('generalFeedback')}
                                             error={Boolean(touched.generalFeedback && errors.generalFeedback)}
@@ -496,46 +503,58 @@ const InternalBot = () => {
                                         <Stack key={index} spacing={2} mt={3} direction={{ xs: 'row', sm: 'row', md: "row" }}>
                                             <Stack mb={1} sx={{ width: '100%' }}>
                                                 <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Question</InputLabel>
-                                                <TextareaAutosize
+                                                <TextField
+                                                    multiline
                                                     fullWidth
                                                     size='small'
                                                     maxRows={3}
                                                     minRows={3}
-                                                    aria-label="maximum height"
                                                     placeholder="Add Question"
+                                                    {...getFieldProps('questions')}
+                                                    error={Boolean(touched.questions && errors.questions)}
+                                                    helperText={touched.questions && errors.questions}
                                                 />
                                             </Stack>
                                             <Stack mb={1} sx={{ width: '100%' }}>
                                                 <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Media Context</InputLabel>
-                                                <TextareaAutosize
+                                                <TextField
+                                                    multiline
                                                     fullWidth
                                                     size='small'
                                                     maxRows={3}
                                                     minRows={3}
-                                                    aria-label="maximum height"
                                                     placeholder="Paste your media link here"
+                                                    {...getFieldProps('mediaContext')}
+                                                    error={Boolean(touched.mediaContext && errors.mediaContext)}
+                                                    helperText={touched.mediaContext && errors.mediaContext}
                                                 />
                                             </Stack>
                                             <Stack mb={1} sx={{ width: '100%' }}>
                                                 <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Hints/Description</InputLabel>
-                                                <TextareaAutosize
+                                                <TextField
+                                                    multiline
                                                     fullWidth
                                                     size='small'
                                                     maxRows={3}
                                                     minRows={3}
-                                                    aria-label="maximum height"
                                                     placeholder="Add Hints/Description"
+                                                    {...getFieldProps('hints')}
+                                                    error={Boolean(touched.hints && errors.hints)}
+                                                    helperText={touched.hints && errors.hints}
                                                 />
                                             </Stack>
                                             <Stack mb={1} sx={{ width: '100%' }}>
                                                 <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Ideal Answer</InputLabel>
-                                                <TextareaAutosize
+                                                <TextField
+                                                    multiline
                                                     fullWidth
                                                     size='small'
                                                     maxRows={3}
                                                     minRows={3}
-                                                    aria-label="maximum height"
                                                     placeholder="Add Ideal Answer"
+                                                    {...getFieldProps('idealAnswer')}
+                                                    error={Boolean(touched.idealAnswer && errors.idealAnswer)}
+                                                    helperText={touched.idealAnswer && errors.idealAnswer}
                                                 />
                                             </Stack>
                                         </Stack>
@@ -556,11 +575,14 @@ const InternalBot = () => {
                                 {
                                     checked && (
                                         <Stack sx={{ width: '100%' }}>
-                                            <TextareaAutosize
+                                            <TextField
+                                                multiline
                                                 fullWidth
                                                 maxRows={7}
                                                 minRows={7}
-                                                aria-label="maximum height"
+                                                {...getFieldProps('caseStudy')}
+                                                error={Boolean(touched.caseStudy && errors.caseStudy)}
+                                                helperText={touched.caseStudy && errors.caseStudy}
                                             />
                                         </Stack>
                                     )
@@ -609,7 +631,17 @@ const InternalBot = () => {
                         </Card>
 
                         <Box mt={3} display="flex" justifyContent="center" sx={{ gap: "1rem" }}>
-                            <Button variant='contained' type='submit'>Submit</Button>
+                            <Button
+                                disabled={errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
+                                    || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.certificates
+                                    || errors.name || errors.description || errors.generalFeedback || errors.questions || errors.mediaContext
+                                    || errors.hints || errors.idealAnswer || errors.caseStudy ? true : false
+                                }
+                                variant='contained'
+                                type='submit'
+                            >
+                                Submit
+                            </Button>
                             <Button onClick={() => navigate("/account/external-bot")} color="warning" variant='contained'>Go to External Bot</Button>
                         </Box>
                     </Paper>
