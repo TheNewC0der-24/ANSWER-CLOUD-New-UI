@@ -16,6 +16,7 @@ import InternalBot from '../Components/InternalBot';
 import ExternalBot from '../Components/ExternalBot';
 import Form from '../Components/Form';
 import PageNotFound from '../Components/PageNotFound';
+import BotThankYou from '../Components/BotThankYou';
 
 const Router = () => {
 
@@ -66,6 +67,10 @@ const Router = () => {
         {
             path: 'dashboard',
             element: <Navigate to="/account/dashboard" />
+        },
+        {
+            path: "thank-you",
+            element: <BotThankYou />
         },
         {
             path: "form",
