@@ -26,7 +26,7 @@ import LoadingScreen from '../LoadingScreen';
 
 // Images
 import signUpImg from '../../assets/Images/signup.svg';
-import logo from '../../assets/Images/brand.png';
+import logo from '../../assets/Images/brand.svg';
 
 // Validation
 import { useFormik, FormikProvider, Form } from 'formik';
