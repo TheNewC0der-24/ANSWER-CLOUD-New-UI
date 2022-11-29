@@ -667,7 +667,7 @@ const InternalBot = () => {
                             </CardContent>
                         </Card>
 
-                        <Box mt={3} display="flex" justifyContent="center" sx={{ gap: "1rem" }}>
+                        <Box mt={3} display="flex" justifyContent="center" sx={{ gap: "0.5rem" }}>
                             <Button
                                 disabled={errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
                                     || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.description
