@@ -8,11 +8,11 @@ import {
     TextField,
     Card,
     CardContent,
+    CardActions,
     Button,
     FormControlLabel,
     Radio,
     RadioGroup,
-    Switch,
 } from "@mui/material";
 
 import styles from './Teams.module.css';
@@ -90,13 +90,13 @@ const Teams = () => {
                 {
                     open && (
                         <Box mt={5} sx={{ display: "flex", justifyContent: "flex-end" }}>
-                            <Card className={styles.inviteCard}>
+                            <Card className={styles.card}>
                                 <Stack direction="row" justifyContent="flex-end">
                                     <IconButton color="error" onClick={handleCloseCard}>
                                         <CancelIcon />
                                     </IconButton>
                                 </Stack>
-                                <CardContent>
+                                <CardContent className={styles.inviteCard}>
                                     {[...Array(noOfRows)].map((index) => {
                                         return (
                                             <Stack mb={1} key={index}>
@@ -109,16 +109,17 @@ const Teams = () => {
                                             </Stack>
                                         )
                                     })}
-                                    <Box sx={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" }} mt={2}>
-                                        <Stack direction="row" sx={{ gap: "0.25rem" }}>
-                                            <Button sx={{ cursor: 'pointer' }} size='small' variant="contained" color='success' onClick={() => setNoOfRows(noOfRows + 1)}>Add</Button>
-                                            <Button sx={{ cursor: 'pointer' }} disabled={noOfRows <= 1} size='small' variant="contained" color='error' onClick={() => setNoOfRows(noOfRows - 1)}>Delete</Button>
-                                        </Stack>
-                                        <Stack>
-                                            <Button sx={{ cursor: 'pointer' }} size='small' variant="contained" color="secondary">Generate Link</Button>
-                                        </Stack>
-                                    </Box>
+
                                 </CardContent>
+                                <CardActions sx={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem", backgroundColor: '#f6f6f6' }}>
+                                    <Stack direction="row" sx={{ gap: "0.25rem" }}>
+                                        <Button sx={{ cursor: 'pointer' }} size='small' variant="contained" color='success' onClick={() => setNoOfRows(noOfRows + 1)}>Add</Button>
+                                        <Button sx={{ cursor: 'pointer' }} disabled={noOfRows <= 1} size='small' variant="contained" color='error' onClick={() => setNoOfRows(noOfRows - 1)}>Delete</Button>
+                                    </Stack>
+                                    <Stack>
+                                        <Button sx={{ cursor: 'pointer' }} size='small' variant="contained" color="secondary">Generate Link</Button>
+                                    </Stack>
+                                </CardActions>
                             </Card>
                         </Box>
                     )

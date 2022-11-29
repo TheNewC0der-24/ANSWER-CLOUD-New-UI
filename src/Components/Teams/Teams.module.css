@@ -9,8 +9,11 @@
     border-radius: 50px !important;
 }
 
+.card {
+    width: 400px;
+}
+
 .inviteCard {
-    height: 180px !important;
-    width: 400px !important;
-    overflow-y: auto !important;
+    height: 80px;
+    overflow: auto;
 }
