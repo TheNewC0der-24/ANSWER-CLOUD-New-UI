@@ -243,6 +243,30 @@ const InternalBot = () => {
         overflow: 'auto',
     }
 
+    const handleSubmitIb = () => {
+        if (
+            values.companyName === '' ||
+            values.interactionTitle === '' ||
+            values.testId === '' ||
+            values.track === '' ||
+            values.interactionMode === '' ||
+            values.accessCode === '' ||
+            values.expiryDate === '' ||
+            values.emailOne === '' ||
+            values.timer === '' ||
+            values.description === '' ||
+            values.generalFeedback === '' ||
+            values.questions === '' ||
+            values.mediaContext === '' ||
+            values.hints === '' ||
+            values.idealAnswer === ''
+        ) {
+            return null;
+        }
+        else {
+            navigate('/thank-you');
+        }
+    }
 
     const handleGoto = () => {
         if (errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
@@ -637,6 +661,7 @@ const InternalBot = () => {
                                     || errors.generalFeedback || errors.questions || errors.mediaContext || errors.hints
                                     || errors.idealAnswer ? true : false
                                 }
+                                onClick={handleSubmitIb}
                                 variant='contained'
                                 type='submit'
                             >
