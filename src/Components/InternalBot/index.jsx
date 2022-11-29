@@ -80,16 +80,16 @@ const InternalBot = () => {
         'Kelly Snyder',
     ];
 
-    function getStyles(name, personName, theme) {
+    function getStyles(name, skill, theme) {
         return {
             fontWeight:
-                personName.indexOf(name) === -1
+                skill.indexOf(name) === -1
                     ? theme.typography.fontWeightRegular
                     : theme.typography.fontWeightMedium,
         };
     }
     const theme = useTheme();
-    const [personName, setPersonName] = useState([]);
+    const [skill, setSkill] = useState([]);
 
 
     const internalBotSchema = Yup.object().shape({
@@ -153,7 +153,7 @@ const InternalBot = () => {
         const {
             target: { value },
         } = event;
-        setPersonName(
+        setSkill(
             // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
@@ -640,7 +640,7 @@ const InternalBot = () => {
                                             id="demo-multiple-chip"
                                             multiple
                                             required
-                                            value={personName}
+                                            value={skill}
                                             onChange={handleChange}
                                             input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
                                             renderValue={(selected) => (
@@ -656,7 +656,7 @@ const InternalBot = () => {
                                                 <MenuItem
                                                     key={name}
                                                     value={name}
-                                                    style={getStyles(name, personName, theme)}
+                                                    style={getStyles(name, skill, theme)}
                                                 >
                                                     {name}
                                                 </MenuItem>
