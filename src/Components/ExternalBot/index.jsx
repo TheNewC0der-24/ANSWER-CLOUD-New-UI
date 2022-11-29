@@ -23,6 +23,8 @@ import {
     Grid
 } from '@mui/material';
 
+import { useNavigate } from 'react-router-dom';
+
 // Validation
 import { useFormik, FormikProvider, Form } from 'formik';
 import * as Yup from 'yup';
@@ -84,6 +86,25 @@ const ExternalBot = () => {
         { value: "No", label: "No" },
     ];
 
+    const navigate = useNavigate();
+
+    const handleSubmitExternalBot = () => {
+        if (
+            values.initiate === '' ||
+            values.phoneNumberList === '' ||
+            values.email === '' ||
+            values.reportSent === '' ||
+            values.welcomeMsg === '' ||
+            values.instructionMsg === '' ||
+            values.completeMsg === '' ||
+            values.botMsg === ''
+        ) {
+            return null;
+        }
+        else {
+            navigate('/thank-you');
+        }
+    }
 
     return (
         <>
@@ -303,16 +324,28 @@ const ExternalBot = () => {
                                 </Card>
                             </Grid>
                         </Grid>
-                        <Box mt={3} display="flex" justifyContent="center" sx={{ gap: "1rem" }}>
+                        <Box mt={3} display="flex" justifyContent="center" sx={{ gap: "0.5rem" }}>
                             <Button
+                                disabled={
+                                    errors.initiate ||
+                                        errors.phoneNumberList ||
+                                        errors.email ||
+                                        errors.reportSent ||
+                                        errors.welcomeMsg ||
+                                        errors.instructionMsg ||
+                                        errors.completeMsg ||
+                                        errors.botMsg ? true : false
+                                }
                                 variant='contained'
                                 type='submit'
+                                onClick={handleSubmitExternalBot}
                             >
                                 Submit
                             </Button>
                             <Button
                                 color="warning"
                                 variant='contained'
+                                onClick={() => navigate('/account/internal-bot')}
                             >
                                 Go to Internal Bot
                             </Button>
