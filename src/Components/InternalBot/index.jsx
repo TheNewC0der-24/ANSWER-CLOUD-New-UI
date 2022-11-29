@@ -269,11 +269,24 @@ const InternalBot = () => {
     }
 
     const handleGoto = () => {
-        if (errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
-            || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.description
-            || errors.generalFeedback || errors.questions || errors.mediaContext
-            || errors.hints || errors.idealAnswer) {
-            message.error('Please fill all the required fields');
+        if (
+            values.companyName === '' ||
+            values.interactionTitle === '' ||
+            values.testId === '' ||
+            values.track === '' ||
+            values.interactionMode === '' ||
+            values.accessCode === '' ||
+            values.expiryDate === '' ||
+            values.emailOne === '' ||
+            values.timer === '' ||
+            values.description === '' ||
+            values.generalFeedback === '' ||
+            values.questions === '' ||
+            values.mediaContext === '' ||
+            values.hints === '' ||
+            values.idealAnswer === ''
+        ) {
+            message.error('Please fill the form completely');
         } else {
             navigate('/account/external-bot');
         }
