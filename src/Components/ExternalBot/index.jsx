@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-// import styles from './ExternalBot.module.css';
+
+import styles from './ExternalBot.module.css'
 
 import {
     Stack,
@@ -9,36 +10,51 @@ import {
     Typography,
     TextField,
     FormControl,
-    InputLabel,
-    Select,
     MenuItem,
     FormControlLabel,
+    Checkbox,
+    FormGroup,
     FormLabel,
     RadioGroup,
     Radio,
-    TextareaAutosize,
-    Divider
+    Button,
+    Card,
+    CardContent,
+    Grid
 } from '@mui/material';
 
-import loginImg from '../../assets/Images/login.svg';
-
+// Validation
 import { useFormik, FormikProvider, Form } from 'formik';
 import * as Yup from 'yup';
 
 const ExternalBot = () => {
-    // const navigate = useNavigate();
 
-    const externalbotSchema = Yup.object().shape({
-        phonenumberlist: Yup.string().required('It must be required'),
-        email: Yup.string().email('Invalid email').required('Email is required'),
+    const [reportSent, setReportSent] = useState('');
+
+    const externalBotSchema = Yup.object().shape({
+        initiate: Yup.string().required('Select Who can Initiate'),
+        phoneNumberList: Yup.string().required('Upload Phone Number List'),
+        email: Yup.string().email('Invalid email').required('This field is required'),
+        reportSent: Yup.string().required('This field is required'),
+        welcomeMsg: Yup.string().required('This field is required'),
+        instructionMsg: Yup.string().required('This field is required'),
+        completeMsg: Yup.string().required('This field is required'),
+        botMsg: Yup.string().required('This field is required'),
     });
+
 
     const formik = useFormik({
         initialValues: {
-            phonenumberlist: '',
+            initiate: '',
+            phoneNumberList: '',
             email: '',
+            reportSent: '',
+            welcomeMsg: '',
+            instructionMsg: '',
+            completeMsg: '',
+            botMsg: ''
         },
-        validationSchema: externalbotSchema,
+        validationSchema: externalBotSchema,
         onSubmit: async (values, { setErrors, resetForm }) => {
             try {
                 resetForm();
@@ -49,239 +65,259 @@ const ExternalBot = () => {
         }
     });
 
-    const [whocaninitiate, setWhocaninitiate] = useState('');
+    const { errors, touched, values, handleSubmit, getFieldProps } = formik;
+
+    const [initiate, setInitiate] = useState('');
 
     const handleChange = (event) => {
-        setWhocaninitiate(event.target.value);
+        setInitiate(event.target.value);
+        setReportSent(event.target.value);
     };
 
+    const whoCanInitiateOptions = [
+        { value: "Bot", label: "Bot" },
+        { value: "User", label: "User" },
+    ];
 
-    const { errors, touched, values, handleSubmit, getFieldProps } = formik;
+    const reportSentOptions = [
+        { value: "Yes", label: "Yes" },
+        { value: "No", label: "No" },
+    ];
+
 
     return (
         <>
             <FormikProvider value={formik}>
                 <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
-                    <Box mb={3}>
-                        <Typography variant='h4'>
-                            External Bot
-                        </Typography>
-                        <Divider />
-                    </Box>
-                    <Paper component={Stack} p={3} spacing={2} elevation={10} >
-                        {errors.afterSubmit && <Alert severity="error">{errors.afterSubmit}</Alert>}
+                    <Paper component={Stack} p={3}>
+                        <Card component={Stack} p={3} spacing={2} elevation={3}>
+                            <CardContent>
+                                {errors.afterSubmit && <Alert severity="error">{errors.afterSubmit}</Alert>}
+                                <Typography variant="h4" mb={3}>External Bot</Typography>
+                                <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
+                                    <Stack sx={{ width: '100%' }}>
+                                        <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Who can Initiate</Typography>
+                                        <TextField
+                                            select
+                                            value={initiate}
+                                            size='small'
+                                            onChange={handleChange}
+                                            {...getFieldProps('initiate')}
+                                            error={Boolean(touched.initiate && errors.initiate)}
+                                            helperText={touched.initiate && errors.initiate}
+                                        >
+                                            {whoCanInitiateOptions.map((option) => (
+                                                <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+                                            ))}
+                                        </TextField>
+                                    </Stack>
+                                    <Stack sx={{ width: '100%' }}>
+                                        <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Phone Number List</Typography>
+                                        <TextField
+                                            fullWidth
+                                            size='small'
+                                            required
+                                            type='file'
+                                            {...getFieldProps('phoneNumberList')}
+                                            error={Boolean(touched.phoneNumberList && errors.phoneNumberList)}
+                                            helperText={touched.phoneNumberList && errors.phoneNumberList}
+                                        />
+                                        <Box mt={1} display="flex" justifyContent="start" sx={{ gap: "0.5rem" }}>
+                                            <Button
+                                                size='small'
+                                                variant='outlined'
+                                            >
+                                                View List
+                                            </Button>
+                                            <Button
+                                                size='small'
+                                                variant='contained'
+                                            >
+                                                Upload
+                                            </Button>
+                                        </Box>
+                                    </Stack>
+                                </Stack>
+                                <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
+                                    <Stack sx={{ width: '100%' }}>
+                                        <FormControl>
+                                            <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Collect Email</FormLabel>
+                                            <RadioGroup
+                                                row
+                                                aria-labelledby="demo-row-radio-buttons-group-label"
+                                                defaultValue="No"
+                                                name="row-radio-buttons-group"
+                                            >
+                                                <FormControlLabel value="No" control={<Radio />} label="No" />
+                                                <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                                            </RadioGroup>
+                                        </FormControl>
+                                    </Stack>
+                                    <Stack sx={{ width: '100%' }}>
+                                        <FormControl>
+                                            <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Collect Resume</FormLabel>
+                                            <RadioGroup
+                                                row
+                                                aria-labelledby="demo-row-radio-buttons-group-label"
+                                                defaultValue="No"
+                                                name="row-radio-buttons-group"
+                                            >
+                                                <FormControlLabel value="No" control={<Radio />} label="No" />
+                                                <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                                            </RadioGroup>
+                                        </FormControl>
+                                    </Stack>
+                                    <Stack sx={{ width: '100%' }}>
+                                        <FormControl>
+                                            <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Candidate Feedback Message</FormLabel>
+                                            <RadioGroup
+                                                row
+                                                aria-labelledby="demo-row-radio-buttons-group-label"
+                                                defaultValue="No"
+                                                name="row-radio-buttons-group"
+                                            >
+                                                <FormControlLabel value="No" control={<Radio />} label="No" />
+                                                <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                                            </RadioGroup>
+                                        </FormControl>
+                                    </Stack>
+                                </Stack>
+                                <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
+                                    <Stack sx={{ width: '100%' }}>
+                                        <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Channel</FormLabel>
+                                        <FormGroup sx={{ display: "flex", flexDirection: "row" }}>
+                                            <FormControlLabel disabled control={<Checkbox />} label="Telegram" />
+                                            <FormControlLabel disabled control={<Checkbox />} label="Whatsapp" />
+                                            <FormControlLabel disabled control={<Checkbox />} label="Slack" />
+                                            <FormControlLabel control={<Checkbox defaultChecked />} label="Form" />
+                                        </FormGroup>
+                                    </Stack>
+                                    <Stack sx={{ width: '100%' }}>
+                                        <FormControl>
+                                            <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Collect Candidate ID</FormLabel>
+                                            <RadioGroup
+                                                row
+                                                aria-labelledby="demo-row-radio-buttons-group-label"
+                                                defaultValue="No"
+                                                name="row-radio-buttons-group"
+                                            >
+                                                <FormControlLabel value="No" control={<Radio />} label="No" />
+                                                <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                                            </RadioGroup>
+                                        </FormControl>
+                                    </Stack>
+                                </Stack>
+                            </CardContent>
+                        </Card>
 
-                        <Stack spacing={1} direction={{ xs: 'column', sm: 'row', md: "row" }}>
-                            <Stack sx={{ width: '100%' }}>
-                                <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Who can Initiate</Typography>
-                                <FormControl fullWidth size='small'>
-                                    <InputLabel id="demo-simple-select-label">WhoCanInitiate</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={whocaninitiate}
-                                        label="WhoCanInitiate"
-                                        onChange={handleChange}
-                                    // {...getFieldProps('whocaninitiate')}
-                                    // error={Boolean(touched.whocaninitiate && errors.whocaninitiate)}
-                                    // helperText={touched.whocaninitiate && errors.whocaninitiate}
-                                    >
-                                        <MenuItem value="Sales">Bot</MenuItem>
-                                        <MenuItem value="Service">User</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </Stack>
-                            <Stack sx={{ width: '100%' }}>
-                                <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Phone Number List</Typography>
-                                <TextField
-                                    fullWidth
-                                    size='small'
-                                    required
-                                    type='file'
-                                    {...getFieldProps('phonenumberlist')}
-                                    error={Boolean(touched.phonenumberlist && errors.phonenumberlist)}
-                                    helperText={touched.phonenumberlist && errors.phonenumberlist}
-                                />
-                            </Stack>
-                        </Stack>
-                        <Stack spacing={2} direction={{ xs: 'column', sm: 'row', md: "row" }}>
-                            <Stack sx={{ width: '100%' }}>
-                                <FormControl>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Collect Email</FormLabel>
-                                    <RadioGroup
-                                        row
-                                        aria-labelledby="demo-row-radio-buttons-group-label"
-                                        defaultValue="No"
-                                        name="row-radio-buttons-group"
-                                    >
-                                        <FormControlLabel value="No" control={<Radio />} label="No" />
-                                        <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-                                    </RadioGroup>
-                                </FormControl>
-                            </Stack>
-                            <Stack sx={{ width: '100%' }}>
-                                <FormControl>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Collect Resume</FormLabel>
-                                    <RadioGroup
-                                        row
-                                        aria-labelledby="demo-row-radio-buttons-group-label"
-                                        defaultValue="No"
-                                        name="row-radio-buttons-group"
-                                    >
-                                        <FormControlLabel value="No" control={<Radio />} label="No" />
-                                        <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-                                    </RadioGroup>
-                                </FormControl>
-                            </Stack>
-                            <Stack sx={{ width: '100%' }}>
-                                <FormControl>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Candidate Feedback Message</FormLabel>
-                                    <RadioGroup
-                                        row
-                                        aria-labelledby="demo-row-radio-buttons-group-label"
-                                        defaultValue="No"
-                                        name="row-radio-buttons-group"
-                                    >
-                                        <FormControlLabel value="No" control={<Radio />} label="No" />
-                                        <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-                                    </RadioGroup>
-                                </FormControl>
-                            </Stack>
-                        </Stack>
-                        <Stack spacing={1} direction={{ xs: 'column', sm: 'row', md: "row" }}>
-                            <Stack sx={{ width: '100%' }}>
-                                <FormControl>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Channel</FormLabel>
-                                    <RadioGroup
-                                        row
-                                        aria-labelledby="demo-row-radio-buttons-group-label"
-                                        defaultValue="Channel"
-                                        name="row-radio-buttons-group"
-                                    >
-                                        <FormControlLabel value="Channel" control={<Radio />} label="Channel" />
-                                        <FormControlLabel value="Telegram" control={<Radio />} label="Telegram" />
-                                        <FormControlLabel value="Whatsapp" control={<Radio />} label="Whatsapp" />
-                                        <FormControlLabel value="Slack" control={<Radio />} label="Slack" />
-                                        <FormControlLabel value="Form" control={<Radio />} label="Form" />
-                                    </RadioGroup>
-                                </FormControl>
-                            </Stack>
-                            <Stack sx={{ width: '100%' }}>
-                                <FormControl>
-                                    <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Collect Candidate ID</FormLabel>
-                                    <RadioGroup
-                                        row
-                                        aria-labelledby="demo-row-radio-buttons-group-label"
-                                        defaultValue="No"
-                                        name="row-radio-buttons-group"
-                                    >
-                                        <FormControlLabel value="No" control={<Radio />} label="No" />
-                                        <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-                                    </RadioGroup>
-                                </FormControl>
-                            </Stack>
-                        </Stack>
+                        <Grid container spacing={3} mb={3}>
+                            <Grid item xs={12} sm={12} md={6} lg={6}>
+                                <Card className={styles.fullHeightCard} component={Stack} p={3} mt={3} spacing={2} elevation={3}>
+                                    <CardContent>
+                                        <Typography variant='h4' mb={3}>Interaction Notification</Typography>
+                                        <Stack direction='row' mb={3}>
+                                            <TextField
+                                                fullWidth
+                                                label="Report sent to Extra Email"
+                                                required
+                                                type='email'
+                                                {...getFieldProps('email')}
+                                                error={Boolean(touched.email && errors.email)}
+                                                helperText={touched.email && errors.email}
+                                            />
+                                        </Stack>
+                                        <Stack direction='row'>
+                                            <FormControl fullWidth size='small'>
+                                                <TextField
+                                                    select
+                                                    value={reportSent}
+                                                    label="Report sent to User"
+                                                    required
+                                                    onChange={handleChange}
+                                                    {...getFieldProps('reportSent')}
+                                                    error={Boolean(touched.reportSent && errors.reportSent)}
+                                                    helperText={touched.reportSent && errors.reportSent}
+                                                >
+                                                    {reportSentOptions.map((option) => (
+                                                        <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+                                                    ))}
+                                                </TextField>
+                                            </FormControl>
+                                        </Stack>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                            <Grid item xs={12} sm={12} md={6} lg={6}>
+                                <Card className={styles.fullHeightCard} component={Stack} p={3} mt={3} spacing={2} elevation={3}>
+                                    <CardContent>
+                                        <Typography variant='h4' mb={3}>Bot Message</Typography>
+                                        <Stack sx={{ width: '100%' }} mb={2}>
+                                            <TextField
+                                                multiline
+                                                fullWidth
+                                                size='small'
+                                                maxRows={1}
+                                                placeholder="Interaction Welcome Message"
+                                                {...getFieldProps('welcomeMsg')}
+                                                error={Boolean(touched.welcomeMsg && errors.welcomeMsg)}
+                                                helperText={touched.welcomeMsg && errors.welcomeMsg}
+                                            />
+                                        </Stack>
+                                        <Stack sx={{ width: '100%' }} mb={2}>
+                                            <TextField
+                                                multiline
+                                                fullWidth
+                                                size='small'
+                                                maxRows={1}
+                                                placeholder="Interaction Instruction Message"
+                                                {...getFieldProps('instructionMsg')}
+                                                error={Boolean(touched.instructionMsg && errors.instructionMsg)}
+                                                helperText={touched.instructionMsg && errors.instructionMsg}
+                                            />
+                                        </Stack>
+                                        <Stack sx={{ width: '100%' }} mb={2}>
+                                            <TextField
+                                                multiline
+                                                fullWidth
+                                                size='small'
+                                                maxRows={1}
+                                                placeholder="Interaction Completion Message"
+                                                {...getFieldProps('completeMsg')}
+                                                error={Boolean(touched.completeMsg && errors.completeMsg)}
+                                                helperText={touched.completeMsg && errors.completeMsg}
+                                            />
+                                        </Stack>
+                                        <Stack sx={{ width: '100%' }} mb={2}>
+                                            <TextField
+                                                multiline
+                                                fullWidth
+                                                size='small'
+                                                maxRows={1}
+                                                placeholder="Bot Message"
+                                                {...getFieldProps('botMsg')}
+                                                error={Boolean(touched.botMsg && errors.botMsg)}
+                                                helperText={touched.botMsg && errors.botMsg}
+                                            />
+                                        </Stack>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        </Grid>
+                        <Box mt={3} display="flex" justifyContent="center" sx={{ gap: "1rem" }}>
+                            <Button
+                                variant='contained'
+                                type='submit'
+                            >
+                                Submit
+                            </Button>
+                            <Button
+                                color="warning"
+                                variant='contained'
+                            >
+                                Go to Internal Bot
+                            </Button>
+                        </Box>
                     </Paper>
-
-                    <Stack direction='row' mt={3} justifyContent={{ xs: 'center', sm: 'center', md: 'space-between' }} alignItems='center'>
-                        <Stack display={{ xs: 'none', sm: 'none', md: "block" }} sx={{ width: { sm: '300px', md: '400px', lg: '600px' }, height: { sm: '300px', md: '400px', lg: '600px' } }}>
-                            <img src={loginImg} alt="login" style={{ width: '100%', height: '100%' }} />
-                        </Stack>
-                        <Paper component={Stack} p={4} spacing={2.5} elevation={10} sx={{ width: { xs: '22rem', sm: '25rem', md: '30rem' } }}>
-                            <Stack alignItems='center' spacing={1}>
-                                <Typography variant='h4' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b', textAlign: 'center' }}>Interaction Notification</Typography>
-                            </Stack>
-                            <Stack direction='row'>
-                                <TextField
-                                    fullWidth
-                                    label="Report sent to Extra Email"
-                                    required
-                                    type='email'
-                                    {...getFieldProps('email')}
-                                    error={Boolean(touched.email && errors.email)}
-                                    helperText={touched.email && errors.email}
-                                />
-                            </Stack>
-                            <Stack direction='row'>
-                                <FormControl fullWidth size='small'>
-                                    <InputLabel id="demo-simple-select-label">Report sent to User</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={whocaninitiate}
-                                        label="WhoCanInitiate"
-                                        onChange={handleChange}
-                                    // {...getFieldProps('whocaninitiate')}
-                                    // error={Boolean(touched.whocaninitiate && errors.whocaninitiate)}
-                                    // helperText={touched.whocaninitiate && errors.whocaninitiate}
-                                    >
-                                        <MenuItem value="Sales">Bot</MenuItem>
-                                        <MenuItem value="Service">User</MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </Stack>
-                        </Paper>
-                    </Stack>
-
-
-                    <Stack direction='row' mt={3} justifyContent={{ xs: 'center', sm: 'center', md: 'space-between' }} alignItems='center'>
-                        <Paper component={Stack} p={4} spacing={2.5} elevation={10} sx={{ width: { xs: '22rem', sm: '25rem', md: '30rem' } }}>
-                            <Stack alignItems='center' spacing={1}>
-                                <Typography variant='h4' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b', textAlign: 'center' }}>Bot Message</Typography>
-                            </Stack>
-                            <Stack sx={{ width: '100%' }}>
-                                <TextareaAutosize
-                                    fullWidth
-                                    // size='small'
-                                    maxRows={1}
-                                    aria-label="maximum height"
-                                    placeholder="Interaction Welcome Message"
-                                    {...getFieldProps('generalfeedback')}
-                                    error={Boolean(touched.generalfeedback && errors.generalfeedback)}
-                                    helperText={touched.generalfeedback && errors.generalfeedback}
-                                />
-                            </Stack>
-                            <Stack sx={{ width: '100%' }}>
-                                <TextareaAutosize
-                                    fullWidth
-                                    // size='small'
-                                    maxRows={1}
-                                    aria-label="maximum height"
-                                    placeholder="Interaction Instruction Message"
-                                    {...getFieldProps('generalfeedback')}
-                                    error={Boolean(touched.generalfeedback && errors.generalfeedback)}
-                                    helperText={touched.generalfeedback && errors.generalfeedback}
-                                />
-                            </Stack>
-                            <Stack sx={{ width: '100%' }}>
-                                <TextareaAutosize
-                                    fullWidth
-                                    // size='small'
-                                    maxRows={1}
-                                    aria-label="maximum height"
-                                    placeholder="Interaction Completion Message"
-                                    {...getFieldProps('generalfeedback')}
-                                    error={Boolean(touched.generalfeedback && errors.generalfeedback)}
-                                    helperText={touched.generalfeedback && errors.generalfeedback}
-                                />
-                            </Stack>
-                            <Stack sx={{ width: '100%' }}>
-                                <TextareaAutosize
-                                    fullWidth
-                                    // size='small'
-                                    maxRows={1}
-                                    aria-label="maximum height"
-                                    placeholder="Bot Message"
-                                    {...getFieldProps('generalfeedback')}
-                                    error={Boolean(touched.generalfeedback && errors.generalfeedback)}
-                                    helperText={touched.generalfeedback && errors.generalfeedback}
-                                />
-                            </Stack>
-                        </Paper>
-                        <Stack display={{ xs: 'none', sm: 'none', md: "block" }} sx={{ width: { sm: '300px', md: '400px', lg: '600px' }, height: { sm: '300px', md: '400px', lg: '600px' } }}>
-                            <img src={loginImg} alt="login" style={{ width: '100%', height: '100%' }} />
-                        </Stack>
-                    </Stack>
                 </Form>
             </FormikProvider>
         </>
