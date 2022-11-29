@@ -681,6 +681,11 @@ const InternalBot = () => {
                                 Submit
                             </Button>
                             <Button
+                                disabled={errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
+                                    || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.description
+                                    || errors.generalFeedback || errors.questions || errors.mediaContext || errors.hints
+                                    || errors.idealAnswer ? true : false
+                                }
                                 onClick={handleGoto}
                                 color="warning"
                                 variant='contained'
