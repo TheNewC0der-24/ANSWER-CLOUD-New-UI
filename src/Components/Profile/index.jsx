@@ -223,6 +223,7 @@ const Profile = () => {
                                                 value={country}
                                                 size='small'
                                                 label='Country'
+                                                disabled={!edit}
                                                 required
                                                 onChange={handleChange}
                                                 {...getFieldProps('country')}
