@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import {
     Stack,
-    Paper,
     Grid,
     Card,
     CardContent,
@@ -10,13 +9,17 @@ import {
     Alert,
     Typography,
     TextField,
+    MenuItem,
     Button,
 } from '@mui/material';
 
 // Routing
 import { useNavigate } from 'react-router-dom';
 
+// Image
 import defaultAvatar from '../../assets/Images/defaultAvatar.png'
+
+import { countries } from "../../assets/Countries/countries";
 
 // Auth
 // import useAuth from '../../Hooks/useAuth';
@@ -33,11 +36,13 @@ const Profile = () => {
     const [imageUrl, setImageUrl] = useState(null);
 
     const [edit, setEdit] = useState(false);
+    const [country, setCountry] = useState('');
 
     const ProfileSchema = Yup.object().shape({
         email: Yup.string().email('Invalid email').required('Email is required'),
         phoneNumber: Yup.string().required('Phone number is required'),
         companyName: Yup.string().required('Company name is required'),
+        country: Yup.string().required('Select your Country'),
         linkedin: Yup.string().required('Linkedin is required'),
         facebook: Yup.string().required('Facebook is required'),
         twitter: Yup.string().required('Twitter is required'),
@@ -49,6 +54,7 @@ const Profile = () => {
             email: '',
             phoneNumber: '',
             companyName: '',
+            country: '',
             linkedin: '',
             facebook: '',
             twitter: '',
@@ -76,6 +82,10 @@ const Profile = () => {
 
     const handleEdit = () => {
         setEdit(true);
+    }
+
+    const handleChange = (event) => {
+        setCountry(event.target.value)
     }
 
     return (
@@ -193,18 +203,41 @@ const Profile = () => {
                                             helperText={touched.phoneNumber && errors.phoneNumber}
                                         />
                                     </Stack>
-                                    <Stack sx={{ width: '100%' }}>
-                                        <TextField
-                                            fullWidth
-                                            disabled={!edit}
-                                            size='small'
-                                            label="Company Name"
-                                            required
-                                            type='text'
-                                            {...getFieldProps('companyName')}
-                                            error={Boolean(touched.companyName && errors.companyName)}
-                                            helperText={touched.companyName && errors.companyName}
-                                        />
+                                    <Stack spacing={2} mb={2} direction={{ xs: 'column', sm: 'row', md: "row" }}>
+                                        <Stack sx={{ width: '100%' }}>
+                                            <TextField
+                                                fullWidth
+                                                disabled={!edit}
+                                                size='small'
+                                                label="Company Name"
+                                                required
+                                                type='text'
+                                                {...getFieldProps('companyName')}
+                                                error={Boolean(touched.companyName && errors.companyName)}
+                                                helperText={touched.companyName && errors.companyName}
+                                            />
+                                        </Stack>
+                                        <Stack sx={{ width: '100%' }}>
+                                            <TextField
+                                                select
+                                                value={country}
+                                                size='small'
+                                                label='Country'
+                                                required
+                                                onChange={handleChange}
+                                                {...getFieldProps('country')}
+                                                error={Boolean(touched.country && errors.country)}
+                                                helperText={touched.country && errors.country}
+                                            >
+                                                {countries.map((item) => (
+                                                    <MenuItem key={item.code} value={item.name}>{item.name}</MenuItem>
+                                                ))
+                                                }
+                                                {/* {whoCanInitiateOptions.map((option) => (
+                                                    <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+                                                ))} */}
+                                            </TextField>
+                                        </Stack>
                                     </Stack>
                                 </Stack>
                                 <Typography variant='h5' mt={5} mb={2}>Social Links :</Typography>
