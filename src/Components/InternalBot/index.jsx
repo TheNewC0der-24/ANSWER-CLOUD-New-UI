@@ -54,6 +54,7 @@ const InternalBot = () => {
     const [mode, setMode] = useState('');
     const [certificate, setCertificate] = useState(false);
     const [name, setName] = useState(false);
+    const [skill, setSkill] = useState([]);
     const [noOfRows, setNoOfRows] = useState(1);
 
     const ITEM_HEIGHT = 48;
@@ -67,7 +68,7 @@ const InternalBot = () => {
         },
     };
 
-    const names = [
+    const skills = [
         'Oliver Hansen',
         'Van Henry',
         'April Tucker',
@@ -89,8 +90,6 @@ const InternalBot = () => {
         };
     }
     const theme = useTheme();
-    const [skill, setSkill] = useState([]);
-
 
     const internalBotSchema = Yup.object().shape({
         companyName: Yup.string().min(2).required('It must be least 2 characters'),
@@ -632,6 +631,10 @@ const InternalBot = () => {
                         <Card component={Stack} p={3} mt={3} spacing={2} elevation={3}>
                             <CardContent>
                                 <Typography mb={3} variant="h4">Add Skills</Typography>
+
+                                <Box mb={2}>
+                                    <Alert severity="error">This is an error alert — check it out!</Alert>
+                                </Box>
                                 <Stack sx={{ width: '100%' }}>
                                     <FormControl>
                                         <InputLabel id="demo-multiple-chip-label">Skills *</InputLabel>
@@ -652,7 +655,7 @@ const InternalBot = () => {
                                             )}
                                             MenuProps={MenuProps}
                                         >
-                                            {names.map((name) => (
+                                            {skills.map((name) => (
                                                 <MenuItem
                                                     key={name}
                                                     value={name}
