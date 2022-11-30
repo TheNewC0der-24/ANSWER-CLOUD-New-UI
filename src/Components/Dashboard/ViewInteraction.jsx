@@ -12,6 +12,8 @@ import LoadAnimation from '../LoadAnimation/index';
 
 import MaterialTable from "@material-table/core";
 
+import { useNavigate } from 'react-router-dom';
+
 import CountUp from "react-countup";
 
 const ViewInteraction = () => {
@@ -36,6 +38,7 @@ const ViewInteraction = () => {
                 <Button
                     size='small'
                     variant='contained'
+                    onClick={() => navigate("/form/welcome")}
                 >
                     View Answer Bot
                 </Button>
@@ -50,6 +53,8 @@ const ViewInteraction = () => {
         { testID: "4", interactionTitle: "Interaction 4", track: "Track 4" },
         { testID: "5", interactionTitle: "Interaction 5", track: "Track 5" },
     ]
+
+    const navigate = useNavigate();
 
     return (
         <>
