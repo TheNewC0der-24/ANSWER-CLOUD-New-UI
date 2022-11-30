@@ -62,7 +62,6 @@ const Router = () => {
                 { path: "external-bot", element: <ExternalBot /> },
                 { path: "library", element: <Library /> },
                 { path: "teams", element: <Team /> },
-                { path: "responses", element: <ViewResponse /> },
                 { path: "profile", element: <Profile /> },
             ]
         },
