@@ -21,7 +21,6 @@ import defaultAvatar from '../assets/Images/defaultAvatar.png';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import WorkspacesIcon from '@mui/icons-material/Workspaces';
 import GroupIcon from '@mui/icons-material/Group';
-import ContentPasteOutlinedIcon from '@mui/icons-material/ContentPasteOutlined';
 import GradingIcon from '@mui/icons-material/Grading';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 
@@ -73,14 +72,9 @@ function Sidebar({ handleDrawerToggle, mobileOpen }) {
       link: '/account/teams'
     },
     {
-      label: 'View Response',
-      icon: <ContentPasteOutlinedIcon />,
-      link: '/account/responses'
-    },
-    {
-      label: 'View Reports and Certificate',
+      label: 'View Responses and Reports',
       icon: <GradingIcon />,
-      link: '/account/reports&certificate'
+      link: '/account/responses&reports'
     }
   ]
   const drawer = (
