@@ -25,6 +25,8 @@ import {
     Button,
 } from '@mui/material';
 
+import { DatePicker } from "@mui/x-date-pickers";
+
 import { useTheme } from '@mui/material/styles';
 
 
@@ -142,7 +144,7 @@ const InternalBot = () => {
     });
 
 
-    const { errors, touched, values, handleSubmit, getFieldProps } = formik;
+    const { errors, touched, values, handleSubmit, getFieldProps, setFieldValue } = formik;
 
     const handleChange = (event) => {
         setTrack(event.target.value);
@@ -389,15 +391,22 @@ const InternalBot = () => {
                                         />
                                     </Stack>
                                     <Stack sx={{ width: '100%' }}>
-                                        <TextField
-                                            fullWidth
-                                            size='small'
-                                            required
-                                            type='date'
-                                            {...getFieldProps('expiryDate')}
-                                            error={Boolean(touched.expiryDate && errors.expiryDate)}
-                                            helperText={touched.expiryDate && errors.expiryDate}
-                                        />
+                                        <DatePicker
+                                            inputFormat='dd/MM/yyyy'
+                                            value={values.expiryDate}
+                                            label='Expiry Date'
+                                            onChange={(newValue) => setFieldValue("expiryDate", newValue)}
+                                            renderInput={(params) => (
+                                                <TextField
+                                                    required
+                                                    size='small'
+                                                    fullWidth
+                                                    {...params}
+                                                    error={Boolean(touched.expiryDate && errors.expiryDate)}
+                                                    helperText={touched.expiryDate && errors.expiryDate}
+                                                />
+                                            )}
+                                        ></DatePicker>
                                     </Stack>
                                 </Stack>
                                 <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
