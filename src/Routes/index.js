@@ -17,7 +17,6 @@ import ExternalBot from '../Components/ExternalBot';
 import Form from '../Components/Form';
 import PageNotFound from '../Components/PageNotFound';
 import BotThankYou from '../Components/BotThankYou';
-import ViewResponse from '../Components/ViewResponse';
 
 const Router = () => {
 
