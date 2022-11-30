@@ -14,9 +14,11 @@ import Team from '../Components/Teams';
 import Profile from '../Components/Profile';
 import InternalBot from '../Components/InternalBot';
 import ExternalBot from '../Components/ExternalBot';
-import Form from '../Components/Form';
+import Form from '../Components/Form/Welcome/Welcome';
 import PageNotFound from '../Components/PageNotFound';
 import BotThankYou from '../Components/BotThankYou';
+import Start from '../Components/Form/Start/Start';
+import Welcome from '../Components/Form/Welcome/Welcome';
 
 const Router = () => {
 
@@ -74,15 +76,11 @@ const Router = () => {
         },
         {
             path: "form",
+            element: <Form />,
             children: [
-                {
-                    path: "",
-                    element: <Navigate to="/form/start" />
-                },
-                {
-                    path: "start",
-                    element: <Form />
-                }
+                { path: "", element: <Navigate to="/form/welcome" /> },
+                { path: "welcome", element: <Welcome /> },
+                { path: "start", element: <Start /> }
             ]
         },
         {
