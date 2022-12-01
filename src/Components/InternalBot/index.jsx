@@ -25,8 +25,9 @@ import {
     Button,
 } from '@mui/material';
 
-import { useTheme } from '@mui/material/styles';
+import { DatePicker } from "@mui/x-date-pickers";
 
+import { useTheme } from '@mui/material/styles';
 
 // Routing
 import { useNavigate } from 'react-router-dom';
@@ -143,7 +144,7 @@ const InternalBot = () => {
     });
 
 
-    const { errors, touched, values, handleSubmit, getFieldProps } = formik;
+    const { errors, touched, values, handleSubmit, getFieldProps, setFieldValue } = formik;
 
     const handleChange = (event) => {
         setTrack(event.target.value);
@@ -259,12 +260,12 @@ const InternalBot = () => {
             values.questions === '' ||
             values.mediaContext === '' ||
             values.hints === '' ||
-            values.idealAnswer === ''
+            values.idealAnswer === '' &&
+            skill == ""
         ) {
-            return null;
-        } else if (skill == "") {
             setDesign({ display: 'block' })
-        } else {
+        }
+        else {
             navigate('/thank-you');
         }
     }
@@ -286,11 +287,15 @@ const InternalBot = () => {
             values.mediaContext === '' ||
             values.hints === '' ||
             values.idealAnswer === ''
+            // skill == ""
         ) {
             message.error('Please fill the form completely');
-        } else if (skill == "") {
-            setDesign({ display: 'block' })
-        } else {
+            // setDesign({ display: 'block' })
+        }
+        // else if (skill == "") {
+        //     setDesign({ display: 'block' })
+        // }
+        else {
             navigate('/account/external-bot');
         }
     };
@@ -393,15 +398,22 @@ const InternalBot = () => {
                                         />
                                     </Stack>
                                     <Stack sx={{ width: '100%' }}>
-                                        <TextField
-                                            fullWidth
-                                            size='small'
-                                            required
-                                            type='date'
-                                            {...getFieldProps('expiryDate')}
-                                            error={Boolean(touched.expiryDate && errors.expiryDate)}
-                                            helperText={touched.expiryDate && errors.expiryDate}
-                                        />
+                                        <DatePicker
+                                            inputFormat='dd/MM/yyyy'
+                                            value={values.expiryDate}
+                                            label='Expiry Date'
+                                            onChange={(newValue) => setFieldValue("expiryDate", newValue)}
+                                            renderInput={(params) => (
+                                                <TextField
+                                                    required
+                                                    size='small'
+                                                    fullWidth
+                                                    {...params}
+                                                    error={Boolean(touched.expiryDate && errors.expiryDate)}
+                                                    helperText={touched.expiryDate && errors.expiryDate}
+                                                />
+                                            )}
+                                        ></DatePicker>
                                     </Stack>
                                 </Stack>
                                 <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
@@ -637,7 +649,7 @@ const InternalBot = () => {
                                 <Typography mb={3} variant="h4">Add Skills</Typography>
 
                                 <Box mb={2} sx={design}>
-                                    <Alert severity="error">This is an error alert — check it out!</Alert>
+                                    <Alert severity="error">Select Skills!, This is required</Alert>
                                 </Box>
                                 <Stack sx={{ width: '100%' }}>
                                     <FormControl>
@@ -679,7 +691,7 @@ const InternalBot = () => {
                                 disabled={errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
                                     || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.description
                                     || errors.generalFeedback || errors.questions || errors.mediaContext || errors.hints
-                                    || errors.idealAnswer || skill=="" ? true : false
+                                    || errors.idealAnswer ? true : false
                                 }
                                 onClick={handleSubmitIb}
                                 variant='contained'
