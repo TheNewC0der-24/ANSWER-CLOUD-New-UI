@@ -25,8 +25,6 @@ import {
     Button,
 } from '@mui/material';
 
-import { DatePicker } from "@mui/x-date-pickers";
-
 import { useTheme } from '@mui/material/styles';
 
 
@@ -58,6 +56,7 @@ const InternalBot = () => {
     const [name, setName] = useState(false);
     const [skill, setSkill] = useState([]);
     const [noOfRows, setNoOfRows] = useState(1);
+    const [design, setDesign] = useState({ display: 'none' });
 
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
@@ -144,7 +143,7 @@ const InternalBot = () => {
     });
 
 
-    const { errors, touched, values, handleSubmit, getFieldProps, setFieldValue } = formik;
+    const { errors, touched, values, handleSubmit, getFieldProps } = formik;
 
     const handleChange = (event) => {
         setTrack(event.target.value);
@@ -263,8 +262,9 @@ const InternalBot = () => {
             values.idealAnswer === ''
         ) {
             return null;
-        }
-        else {
+        } else if (skill == "") {
+            setDesign({ display: 'block' })
+        } else {
             navigate('/thank-you');
         }
     }
@@ -288,6 +288,8 @@ const InternalBot = () => {
             values.idealAnswer === ''
         ) {
             message.error('Please fill the form completely');
+        } else if (skill == "") {
+            setDesign({ display: 'block' })
         } else {
             navigate('/account/external-bot');
         }
@@ -391,22 +393,15 @@ const InternalBot = () => {
                                         />
                                     </Stack>
                                     <Stack sx={{ width: '100%' }}>
-                                        <DatePicker
-                                            inputFormat='dd/MM/yyyy'
-                                            value={values.expiryDate}
-                                            label='Expiry Date'
-                                            onChange={(newValue) => setFieldValue("expiryDate", newValue)}
-                                            renderInput={(params) => (
-                                                <TextField
-                                                    required
-                                                    size='small'
-                                                    fullWidth
-                                                    {...params}
-                                                    error={Boolean(touched.expiryDate && errors.expiryDate)}
-                                                    helperText={touched.expiryDate && errors.expiryDate}
-                                                />
-                                            )}
-                                        ></DatePicker>
+                                        <TextField
+                                            fullWidth
+                                            size='small'
+                                            required
+                                            type='date'
+                                            {...getFieldProps('expiryDate')}
+                                            error={Boolean(touched.expiryDate && errors.expiryDate)}
+                                            helperText={touched.expiryDate && errors.expiryDate}
+                                        />
                                     </Stack>
                                 </Stack>
                                 <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
@@ -641,7 +636,7 @@ const InternalBot = () => {
                             <CardContent>
                                 <Typography mb={3} variant="h4">Add Skills</Typography>
 
-                                <Box mb={2}>
+                                <Box mb={2} sx={design}>
                                     <Alert severity="error">This is an error alert — check it out!</Alert>
                                 </Box>
                                 <Stack sx={{ width: '100%' }}>
@@ -684,7 +679,7 @@ const InternalBot = () => {
                                 disabled={errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
                                     || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.description
                                     || errors.generalFeedback || errors.questions || errors.mediaContext || errors.hints
-                                    || errors.idealAnswer ? true : false
+                                    || errors.idealAnswer || skill=="" ? true : false
                                 }
                                 onClick={handleSubmitIb}
                                 variant='contained'
