@@ -75,7 +75,6 @@ const Router = () => {
         },
         {
             path: "form",
-            element: <Welcome />,
             children: [
                 {
                     path: "",
