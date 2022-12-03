@@ -32,6 +32,7 @@
     "react-phone-input-2": "^2.15.1",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
+    "react-to-print": "^2.14.10",
     "reset-css": "^5.0.1",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
