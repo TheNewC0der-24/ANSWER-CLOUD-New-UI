@@ -58,7 +58,18 @@ const InternalBot = () => {
     const [name, setName] = useState(false);
     const [skill, setSkill] = useState([]);
     const [noOfRows, setNoOfRows] = useState(1);
-    // const [design, setDesign] = useState({ display: 'none' });
+    const [ques, setQues] = useState(false);
+
+    const onChange = (event) => {
+        if (event.target.value == "") {
+            console.log("Ayush")
+            setQues(true);
+        }
+        else {
+            setQues(false);
+            console.log("AyushJ")
+        }
+    }
 
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
@@ -681,33 +692,35 @@ const InternalBot = () => {
                             <CardContent style={style}>
                                 <Typography variant="h4">Add Questions</Typography>
                                 <Stack spacing={2} mt={3} direction={{ xs: 'row', sm: 'row', md: "row" }}>
-                                            <Stack mb={1} sx={{ width: '100%' }}>
-                                                <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Question</InputLabel>
-                                            </Stack>
-                                            <Stack mb={1} sx={{ width: '100%' }}>
-                                                <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Media Context</InputLabel>
-                                            </Stack>
-                                            <Stack mb={1} sx={{ width: '100%' }}>
-                                                <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Hints/Description</InputLabel>
-                                            </Stack>
-                                            <Stack mb={1} sx={{ width: '100%' }}>
-                                                <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Ideal Answer</InputLabel>
-                                            </Stack>
-                                        </Stack>
+                                    <Stack mb={1} sx={{ width: '100%' }}>
+                                        <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Question</InputLabel>
+                                    </Stack>
+                                    <Stack mb={1} sx={{ width: '100%' }}>
+                                        <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Media Context</InputLabel>
+                                    </Stack>
+                                    <Stack mb={1} sx={{ width: '100%' }}>
+                                        <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Hints/Description</InputLabel>
+                                    </Stack>
+                                    <Stack mb={1} sx={{ width: '100%' }}>
+                                        <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Ideal Answer</InputLabel>
+                                    </Stack>
+                                </Stack>
                                 {[...Array(noOfRows)].map((index) => {
                                     return (
                                         <Stack key={index} spacing={2} mt={1} direction={{ xs: 'row', sm: 'row', md: "row" }}>
                                             <Stack mb={1} sx={{ width: '100%' }}>
                                                 <TextField
+                                                    error={`${ques}`}
                                                     multiline
                                                     fullWidth
+                                                    onChange={onChange}
                                                     size='small'
                                                     maxRows={3}
                                                     minRows={3}
                                                     placeholder="Add Question"
-                                                    {...getFieldProps('questions')}
-                                                    error={Boolean(touched.questions && errors.questions)}
-                                                    helperText={touched.questions && errors.questions}
+                                                // {...getFieldProps('questions')}
+                                                // error={Boolean(touched.questions && errors.questions)}
+                                                // helperText={touched.questions && errors.questions}
                                                 />
                                             </Stack>
                                             <Stack mb={1} sx={{ width: '100%' }}>
@@ -790,23 +803,23 @@ const InternalBot = () => {
                                 </Box> */}
                                 <Stack sx={{ width: '100%' }}>
                                     {/* <FormControl> */}
-                                        {/* <InputLabel id="demo-multiple-chip-label">Skills *</InputLabel> */}
-                                        <Autocomplete
-                                            multiple
-                                            limitTags={2}
-                                            id="multiple-limit-tags"
-                                            options={top100Films}
-                                            getOptionLabel={(option) => option.title}
-                                            // defaultValue={[top100Films[13], top100Films[12], top100Films[11]]}
-                                            renderInput={(params) => (
-                                                <TextField label="Skills *"
-                                                    {...params}
-                                                    // {...getFieldProps('skill')}
-                                                    error={Boolean(touched.sk && errors.sk)}
-                                                    helperText={touched.sk && errors.sk} />
-                                            )}
-                                        // sx={{ width: '500px' }}
-                                        />
+                                    {/* <InputLabel id="demo-multiple-chip-label">Skills *</InputLabel> */}
+                                    <Autocomplete
+                                        multiple
+                                        limitTags={2}
+                                        id="multiple-limit-tags"
+                                        options={top100Films}
+                                        getOptionLabel={(option) => option.title}
+                                        // defaultValue={[top100Films[13], top100Films[12], top100Films[11]]}
+                                        renderInput={(params) => (
+                                            <TextField label="Skills *"
+                                                {...params}
+                                                // {...getFieldProps('skill')}
+                                                error={Boolean(touched.sk && errors.sk)}
+                                                helperText={touched.sk && errors.sk} />
+                                        )}
+                                    // sx={{ width: '500px' }}
+                                    />
                                     {/* </FormControl> */}
                                 </Stack>
                             </CardContent>
