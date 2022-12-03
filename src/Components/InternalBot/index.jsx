@@ -17,10 +17,7 @@ import {
     InputLabel,
     Checkbox,
     Autocomplete,
-    Select,
     MenuItem,
-    OutlinedInput,
-    Chip,
     RadioGroup,
     Radio,
     Button,
@@ -28,7 +25,6 @@ import {
 
 import { DatePicker } from "@mui/x-date-pickers";
 
-import { useTheme } from '@mui/material/styles';
 
 // Routing
 import { useNavigate } from 'react-router-dom';
@@ -37,14 +33,12 @@ import { useNavigate } from 'react-router-dom';
 // Components
 import LoadingScreen from '../LoadingScreen';
 
-
 // Validation
 import { useFormik, FormikProvider, Form } from 'formik';
 import * as Yup from 'yup';
 
 // Alert
 import { message } from 'antd';
-
 
 const InternalBot = () => {
 
@@ -56,72 +50,41 @@ const InternalBot = () => {
     const [mode, setMode] = useState('');
     const [certificate, setCertificate] = useState(false);
     const [name, setName] = useState(false);
-    const [skill, setSkill] = useState([]);
+    // const [skill, setSkill] = useState([]);
     const [noOfRows, setNoOfRows] = useState(1);
     const [ques, setQues] = useState(false);
 
     const onChange = (event) => {
         if (event.target.value == "") {
-            console.log("Ayush")
             setQues(true);
         }
         else {
             setQues(false);
-            console.log("AyushJ")
         }
     }
-
-    const ITEM_HEIGHT = 48;
-    const ITEM_PADDING_TOP = 8;
-    const MenuProps = {
-        PaperProps: {
-            style: {
-                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-                width: 250,
-            },
-        },
-    };
-
-    const skills = [
-        'Oliver Hansen',
-        'Van Henry',
-        'April Tucker',
-        'Ralph Hubbard',
-        'Omar Alexander',
-        'Carlos Abbott',
-        'Miriam Wagner',
-        'Bradley Wilkerson',
-        'Virginia Andrews',
-        'Kelly Snyder',
-    ];
-
-    function getStyles(name, skill, theme) {
-        return {
-            fontWeight:
-                skill.indexOf(name) === -1
-                    ? theme.typography.fontWeightRegular
-                    : theme.typography.fontWeightMedium,
-        };
-    }
-    const theme = useTheme();
 
     const internalBotSchema = Yup.object().shape({
         companyName: Yup.string().min(2).required('It must be least 2 characters'),
         interactionTitle: Yup.string().min(2).required('It must be least 2 characters'),
-        testId: Yup.string().min(6).max(6).required('Test Id must be of exactly 6 numbers'),
+        testId: Yup.string().min(6, 'Too Short!').max(6, 'Too Long!').required('Test Id must be of exactly 6 numbers'),
         track: Yup.string().required('Select your Track'),
         interactionMode: Yup.string().required('Select Interaction Mode'),
-        accessCode: Yup.string().min(6).max(6).required('Access must be of exactly 6 numbers'),
+        accessCode: Yup.string().min(6, 'Too Short!').max(6, 'Too Long!').required('Access must be of exactly 6 numbers'),
         expiryDate: Yup.string().required('Expiry Date is required'),
         emailOne: Yup.string().email('Invalid email').required('Email is required'),
         timer: Yup.string().required('Select Timer'),
         description: Yup.string().required('Description is required'),
-        generalFeedback: Yup.string().min(400).max(615).required('Minimum 400 and Maximum 615 characters required'),
+        generalFeedback: Yup.string().min(400, 'Too Short!').max(615, 'Too Long!').required('Minimum 400 and Maximum 615 characters required'),
         questions: Yup.string().required('This is required'),
         mediaContext: Yup.string().required('This is required'),
         hints: Yup.string().required('This is required'),
         idealAnswer: Yup.string().required('This is required'),
-        sk: Yup.string().required('This is required'),
+        sk: Yup.array().of(
+            Yup.object().shape({
+                value: Yup.string(),
+                title: Yup.string(),
+            })
+        ).min(1, 'Skills are required')
     });
 
     const formik = useFormik({
@@ -164,14 +127,6 @@ const InternalBot = () => {
         setTrack(event.target.value);
         setTimer(event.target.value);
         setMode(event.target.value);
-
-        const {
-            target: { value },
-        } = event;
-        setSkill(
-            // On autofill we get a stringified value.
-            typeof value === 'string' ? value.split(',') : value,
-        );
     };
 
     const handleClick = (event) => {
@@ -203,7 +158,7 @@ const InternalBot = () => {
         return <LoadingScreen />;
     }
 
-    const top100Films = [
+    const skillsOption = [
         { title: 'The Shawshank Redemption', year: 1994 },
         { title: 'The Godfather', year: 1972 },
         { title: 'The Godfather: Part II', year: 1974 },
@@ -211,123 +166,6 @@ const InternalBot = () => {
         { title: '12 Angry Men', year: 1957 },
         { title: "Schindler's List", year: 1993 },
         { title: 'Pulp Fiction', year: 1994 },
-        {
-            title: 'The Lord of the Rings: The Return of the King',
-            year: 2003,
-        },
-        { title: 'The Good, the Bad and the Ugly', year: 1966 },
-        { title: 'Fight Club', year: 1999 },
-        {
-            title: 'The Lord of the Rings: The Fellowship of the Ring',
-            year: 2001,
-        },
-        {
-            title: 'Star Wars: Episode V - The Empire Strikes Back',
-            year: 1980,
-        },
-        { title: 'Forrest Gump', year: 1994 },
-        { title: 'Inception', year: 2010 },
-        {
-            title: 'The Lord of the Rings: The Two Towers',
-            year: 2002,
-        },
-        { title: "One Flew Over the Cuckoo's Nest", year: 1975 },
-        { title: 'Goodfellas', year: 1990 },
-        { title: 'The Matrix', year: 1999 },
-        { title: 'Seven Samurai', year: 1954 },
-        {
-            title: 'Star Wars: Episode IV - A New Hope',
-            year: 1977,
-        },
-        { title: 'City of God', year: 2002 },
-        { title: 'Se7en', year: 1995 },
-        { title: 'The Silence of the Lambs', year: 1991 },
-        { title: "It's a Wonderful Life", year: 1946 },
-        { title: 'Life Is Beautiful', year: 1997 },
-        { title: 'The Usual Suspects', year: 1995 },
-        { title: 'Léon: The Professional', year: 1994 },
-        { title: 'Spirited Away', year: 2001 },
-        { title: 'Saving Private Ryan', year: 1998 },
-        { title: 'Once Upon a Time in the West', year: 1968 },
-        { title: 'American History X', year: 1998 },
-        { title: 'Interstellar', year: 2014 },
-        { title: 'Casablanca', year: 1942 },
-        { title: 'City Lights', year: 1931 },
-        { title: 'Psycho', year: 1960 },
-        { title: 'The Green Mile', year: 1999 },
-        { title: 'The Intouchables', year: 2011 },
-        { title: 'Modern Times', year: 1936 },
-        { title: 'Raiders of the Lost Ark', year: 1981 },
-        { title: 'Rear Window', year: 1954 },
-        { title: 'The Pianist', year: 2002 },
-        { title: 'The Departed', year: 2006 },
-        { title: 'Terminator 2: Judgment Day', year: 1991 },
-        { title: 'Back to the Future', year: 1985 },
-        { title: 'Whiplash', year: 2014 },
-        { title: 'Gladiator', year: 2000 },
-        { title: 'Memento', year: 2000 },
-        { title: 'The Prestige', year: 2006 },
-        { title: 'The Lion King', year: 1994 },
-        { title: 'Apocalypse Now', year: 1979 },
-        { title: 'Alien', year: 1979 },
-        { title: 'Sunset Boulevard', year: 1950 },
-        {
-            title: 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb',
-            year: 1964,
-        },
-        { title: 'The Great Dictator', year: 1940 },
-        { title: 'Cinema Paradiso', year: 1988 },
-        { title: 'The Lives of Others', year: 2006 },
-        { title: 'Grave of the Fireflies', year: 1988 },
-        { title: 'Paths of Glory', year: 1957 },
-        { title: 'Django Unchained', year: 2012 },
-        { title: 'The Shining', year: 1980 },
-        { title: 'WALL·E', year: 2008 },
-        { title: 'American Beauty', year: 1999 },
-        { title: 'The Dark Knight Rises', year: 2012 },
-        { title: 'Princess Mononoke', year: 1997 },
-        { title: 'Aliens', year: 1986 },
-        { title: 'Oldboy', year: 2003 },
-        { title: 'Once Upon a Time in America', year: 1984 },
-        { title: 'Witness for the Prosecution', year: 1957 },
-        { title: 'Das Boot', year: 1981 },
-        { title: 'Citizen Kane', year: 1941 },
-        { title: 'North by Northwest', year: 1959 },
-        { title: 'Vertigo', year: 1958 },
-        {
-            title: 'Star Wars: Episode VI - Return of the Jedi',
-            year: 1983,
-        },
-        { title: 'Reservoir Dogs', year: 1992 },
-        { title: 'Braveheart', year: 1995 },
-        { title: 'M', year: 1931 },
-        { title: 'Requiem for a Dream', year: 2000 },
-        { title: 'Amélie', year: 2001 },
-        { title: 'A Clockwork Orange', year: 1971 },
-        { title: 'Like Stars on Earth', year: 2007 },
-        { title: 'Taxi Driver', year: 1976 },
-        { title: 'Lawrence of Arabia', year: 1962 },
-        { title: 'Double Indemnity', year: 1944 },
-        {
-            title: 'Eternal Sunshine of the Spotless Mind',
-            year: 2004,
-        },
-        { title: 'Amadeus', year: 1984 },
-        { title: 'To Kill a Mockingbird', year: 1962 },
-        { title: 'Toy Story 3', year: 2010 },
-        { title: 'Logan', year: 2017 },
-        { title: 'Full Metal Jacket', year: 1987 },
-        { title: 'Dangal', year: 2016 },
-        { title: 'The Sting', year: 1973 },
-        { title: '2001: A Space Odyssey', year: 1968 },
-        { title: "Singin' in the Rain", year: 1952 },
-        { title: 'Toy Story', year: 1995 },
-        { title: 'Bicycle Thieves', year: 1948 },
-        { title: 'The Kid', year: 1921 },
-        { title: 'Inglourious Basterds', year: 2009 },
-        { title: 'Snatch', year: 2000 },
-        { title: '3 Idiots', year: 2009 },
-        { title: 'Monty Python and the Holy Grail', year: 1975 },
     ];
 
     const trackDomainOptions = [
@@ -404,7 +242,7 @@ const InternalBot = () => {
             values.idealAnswer === '' &&
             values.sk === ""
         ) {
-            // setDesign({ display: 'block' })
+            return null;
         }
         else {
             navigate('/thank-you');
@@ -428,14 +266,9 @@ const InternalBot = () => {
             values.mediaContext === '' ||
             values.hints === '' ||
             values.idealAnswer === ''
-            // skill == ""
         ) {
             message.error('Please fill the form completely');
-            // setDesign({ display: 'block' })
         }
-        // else if (skill == "") {
-        //     setDesign({ display: 'block' })
-        // }
         else {
             navigate('/account/external-bot');
         }
@@ -691,26 +524,12 @@ const InternalBot = () => {
                         <Card component={Stack} p={3} mt={3} spacing={2} elevation={3}>
                             <CardContent style={style}>
                                 <Typography variant="h4">Add Questions</Typography>
-                                <Stack spacing={2} mt={3} direction={{ xs: 'row', sm: 'row', md: "row" }}>
-                                    <Stack mb={1} sx={{ width: '100%' }}>
-                                        <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Question</InputLabel>
-                                    </Stack>
-                                    <Stack mb={1} sx={{ width: '100%' }}>
-                                        <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Media Context</InputLabel>
-                                    </Stack>
-                                    <Stack mb={1} sx={{ width: '100%' }}>
-                                        <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Hints/Description</InputLabel>
-                                    </Stack>
-                                    <Stack mb={1} sx={{ width: '100%' }}>
-                                        <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Ideal Answer</InputLabel>
-                                    </Stack>
-                                </Stack>
                                 {[...Array(noOfRows)].map((index) => {
                                     return (
                                         <Stack key={index} spacing={2} mt={1} direction={{ xs: 'row', sm: 'row', md: "row" }}>
                                             <Stack mb={1} sx={{ width: '100%' }}>
+                                                <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Question</InputLabel>
                                                 <TextField
-                                                    error={`${ques}`}
                                                     multiline
                                                     fullWidth
                                                     onChange={onChange}
@@ -718,12 +537,13 @@ const InternalBot = () => {
                                                     maxRows={3}
                                                     minRows={3}
                                                     placeholder="Add Question"
-                                                // {...getFieldProps('questions')}
-                                                // error={Boolean(touched.questions && errors.questions)}
-                                                // helperText={touched.questions && errors.questions}
+                                                    {...getFieldProps('questions')}
+                                                    error={Boolean(touched.questions && errors.questions)}
+                                                    helperText={touched.questions && errors.questions}
                                                 />
                                             </Stack>
                                             <Stack mb={1} sx={{ width: '100%' }}>
+                                                <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Media Context</InputLabel>
                                                 <TextField
                                                     multiline
                                                     fullWidth
@@ -737,6 +557,7 @@ const InternalBot = () => {
                                                 />
                                             </Stack>
                                             <Stack mb={1} sx={{ width: '100%' }}>
+                                                <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Hints/Description</InputLabel>
                                                 <TextField
                                                     multiline
                                                     fullWidth
@@ -750,6 +571,7 @@ const InternalBot = () => {
                                                 />
                                             </Stack>
                                             <Stack mb={1} sx={{ width: '100%' }}>
+                                                <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Ideal Answer</InputLabel>
                                                 <TextField
                                                     multiline
                                                     fullWidth
@@ -797,30 +619,31 @@ const InternalBot = () => {
                         <Card component={Stack} p={3} mt={3} spacing={2} elevation={3}>
                             <CardContent>
                                 <Typography mb={3} variant="h4">Add Skills</Typography>
-
-                                {/* <Box mb={2} sx={design}>
-                                    <Alert severity="error">Select Skills!, This is required</Alert>
-                                </Box> */}
                                 <Stack sx={{ width: '100%' }}>
-                                    {/* <FormControl> */}
-                                    {/* <InputLabel id="demo-multiple-chip-label">Skills *</InputLabel> */}
                                     <Autocomplete
+                                        disableClearable
+                                        disablePortal
+                                        filterSelectedOptions
                                         multiple
-                                        limitTags={2}
-                                        id="multiple-limit-tags"
-                                        options={top100Films}
+                                        limitTags={4}
+                                        id="skills-autocomplete"
+                                        getOptionDisabled={(option) => option.disabled}
                                         getOptionLabel={(option) => option.title}
-                                        // defaultValue={[top100Films[13], top100Films[12], top100Films[11]]}
+                                        options={skillsOption}
+                                        onChange={(e, newValue) => setFieldValue('sk', newValue)}
                                         renderInput={(params) => (
-                                            <TextField label="Skills *"
+                                            <TextField
+                                                required
+                                                id='sk'
+                                                label="Skills"
+                                                name='sk'
+                                                type='search'
                                                 {...params}
-                                                // {...getFieldProps('skill')}
                                                 error={Boolean(touched.sk && errors.sk)}
-                                                helperText={touched.sk && errors.sk} />
+                                                helperText={touched.sk && errors.sk}
+                                            />
                                         )}
-                                    // sx={{ width: '500px' }}
                                     />
-                                    {/* </FormControl> */}
                                 </Stack>
                             </CardContent>
                         </Card>
@@ -830,7 +653,7 @@ const InternalBot = () => {
                                 disabled={errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
                                     || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.description
                                     || errors.generalFeedback || errors.questions || errors.mediaContext || errors.hints
-                                    || errors.idealAnswer ? true : false
+                                    || errors.idealAnswer || errors.sk ? true : false
                                 }
                                 onClick={handleSubmitIb}
                                 variant='contained'
@@ -842,7 +665,7 @@ const InternalBot = () => {
                                 disabled={errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
                                     || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.description
                                     || errors.generalFeedback || errors.questions || errors.mediaContext || errors.hints
-                                    || errors.idealAnswer ? true : false
+                                    || errors.idealAnswer || errors.sk ? true : false
                                 }
                                 onClick={handleGoto}
                                 color="warning"
