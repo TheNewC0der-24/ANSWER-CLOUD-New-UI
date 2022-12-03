@@ -19,6 +19,7 @@ import BotThankYou from '../Components/BotThankYou';
 import Welcome from '../Components/Form/FormWelcome/index';
 import Start from '../Components/Form/FormStart/index';
 import ViewResponseAndReport from '../Components/ViewResponseandReport';
+import SummaryReport from '../Components/SummaryReport';
 
 const Router = () => {
 
@@ -74,6 +75,10 @@ const Router = () => {
         {
             path: "thank-you",
             element: <BotThankYou />
+        },
+        {
+            path: "/summaryReport",
+            element: <SummaryReport />
         },
         {
             path: "form",
