@@ -16,8 +16,8 @@ import InternalBot from '../Components/InternalBot';
 import ExternalBot from '../Components/ExternalBot';
 import PageNotFound from '../Components/PageNotFound';
 import BotThankYou from '../Components/BotThankYou';
-import Welcome from '../Components/FormWelcome/index';
-import Start from '../Components/FormStart/index';
+import Welcome from '../Components/Form/FormWelcome/index';
+import Start from '../Components/Form/FormStart/index';
 
 const Router = () => {
 
