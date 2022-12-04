@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import {
     Box,
     Typography,
+    Avatar,
     Divider,
     Button,
 } from "@mui/material";
@@ -13,11 +14,14 @@ import {
 // MUI Table
 import MaterialTable from "@material-table/core";
 
+// Icon
+import GradingIcon from '@mui/icons-material/Grading';
+
 // Loading Animation
 import LoadAnimation from '../LoadAnimation/index';
 
 
-const ViewResponseAndReport = () => {
+const ViewReport = () => {
 
     const [loading, setLoading] = useState(false);
     const [rowData, setRowData] = useState(null);
@@ -33,18 +37,6 @@ const ViewResponseAndReport = () => {
         { title: "Candidate ID", field: "candidateID", width: "10rem" },
         { title: "Name", field: "name", width: "10rem", cellStyle: { overflowWrap: "break-word" } },
         { title: "Interaction Id", field: "interactionID", width: "10rem" },
-        {
-            title: "Responses", width: "10rem",
-            render: (rowData) => (
-                <Button
-                    size='small'
-                    variant='contained'
-                    onClick={() => navigate("/responses")}
-                >
-                    View
-                </Button>
-            )
-        },
         {
             title: "Detailed Report", width: "12rem",
             render: (rowData) => (
@@ -96,14 +88,19 @@ const ViewResponseAndReport = () => {
 
     return (
         <>
-            <Typography mb={2} variant='h5'>View Response & Report</Typography>
+            <Typography mb={2} sx={{ display: "flex", alignItems: "center" }} variant="h5">
+                <Avatar variant="rounded" sx={{ marginRight: "0.5rem", backgroundColor: "#deebff" }}>
+                    <GradingIcon sx={{ color: "#1976d2" }} />
+                </Avatar>
+                View Reports & Certificates
+            </Typography>
             <Divider />
             {
                 loading ? (<LoadAnimation />) :
                     (
                         <Box sx={{ marginTop: "3rem" }}>
                             <MaterialTable
-                                title={<Typography variant='h5'>Responses & Reports</Typography>}
+                                title={<Typography variant='h6'>Reports & Certificates</Typography>}
                                 columns={columns}
                                 data={ViewResponseAndReportData}
                                 options={{
@@ -120,4 +117,4 @@ const ViewResponseAndReport = () => {
     )
 }
 
-export default ViewResponseAndReport;
+export default ViewReport;
