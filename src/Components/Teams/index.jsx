@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
     Box,
     Stack,
+    Avatar,
     Typography,
     Divider,
     IconButton,
@@ -19,6 +20,7 @@ import styles from './Teams.module.css';
 
 // Icons
 import CancelIcon from "@mui/icons-material/Cancel";
+import GroupIcon from '@mui/icons-material/Group';
 
 import LoadAnimation from '../LoadAnimation/index';
 
@@ -73,12 +75,14 @@ const Teams = () => {
         { sNo: "5", accessFor: "johndoe123456@gmail.com", status: "Pending" },
     ]
 
-
     return (
         <>
             <Box>
                 <Box className={styles.header} mb={2}>
-                    <Typography variant='h5'>
+                    <Typography sx={{ display: "flex", alignItems: "center" }} variant="h5">
+                        <Avatar variant="rounded" sx={{ marginRight: "0.5rem", backgroundColor: "#deebff" }}>
+                            <GroupIcon sx={{ color: "#1976d2" }} />
+                        </Avatar>
                         Teams
                     </Typography>
 
@@ -130,7 +134,7 @@ const Teams = () => {
                         <LoadAnimation />
                     ) : (
                         <MaterialTable
-                            title={<Typography variant='h5'>Requests Status</Typography>}
+                            title={<Typography variant='h6'>Requests Status</Typography>}
                             columns={columns}
                             data={teamData}
                             options={{
