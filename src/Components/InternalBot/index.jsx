@@ -50,7 +50,6 @@ const InternalBot = () => {
     const [mode, setMode] = useState('');
     const [certificate, setCertificate] = useState(false);
     const [name, setName] = useState(false);
-    // const [skill, setSkill] = useState([]);
     const [noOfRows, setNoOfRows] = useState(1);
     const [ques, setQues] = useState(false);
 
@@ -79,7 +78,7 @@ const InternalBot = () => {
         mediaContext: Yup.string().required('This is required'),
         hints: Yup.string().required('This is required'),
         idealAnswer: Yup.string().required('This is required'),
-        sk: Yup.array().min(1).required('Skills are required')
+        skills: Yup.array().min(1).required('Skills are required')
     });
 
     const formik = useFormik({
@@ -99,7 +98,7 @@ const InternalBot = () => {
             mediaContext: '',
             hints: '',
             idealAnswer: '',
-            sk: ''
+            skills: ''
         },
         validationSchema: internalBotSchema,
         onSubmit: async (values, { setErrors, resetForm }) => {
@@ -235,7 +234,7 @@ const InternalBot = () => {
             values.mediaContext === '' ||
             values.hints === '' ||
             values.idealAnswer === '' &&
-            values.sk === ""
+            values.skills === ""
         ) {
             return null;
         }
@@ -261,7 +260,7 @@ const InternalBot = () => {
             values.mediaContext === '' ||
             values.hints === '' ||
             values.idealAnswer === '' ||
-            values.sk === ''
+            values.skills === ''
         ) {
             message.error('Please fill the form completely');
         }
@@ -526,7 +525,7 @@ const InternalBot = () => {
                                             <Stack mb={1} sx={{ width: '100%' }}>
                                                 <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Question</InputLabel>
                                                 <TextField
-                                                    error={ques=="" ? false : true}
+                                                    error={ques == "" ? false : true}
                                                     multiline
                                                     fullWidth
                                                     onChange={onChange}
@@ -534,9 +533,9 @@ const InternalBot = () => {
                                                     maxRows={3}
                                                     minRows={3}
                                                     placeholder="Add Question"
-                                                    // {...getFieldProps('questions')}
-                                                    // error={Boolean(touched.questions && errors.questions)}
-                                                    // helperText={touched.questions && errors.questions}
+                                                // {...getFieldProps('questions')}
+                                                // error={Boolean(touched.questions && errors.questions)}
+                                                // helperText={touched.questions && errors.questions}
                                                 />
                                             </Stack>
                                             <Stack mb={1} sx={{ width: '100%' }}>
@@ -618,28 +617,23 @@ const InternalBot = () => {
                                 <Typography mb={3} variant="h4">Add Skills</Typography>
                                 <Stack sx={{ width: '100%' }}>
                                     <Autocomplete
-                                        // disableClearable
-                                        // disablePortal
-                                        // filterSelectedOptions
                                         multiple
                                         limitTags={4}
                                         id="skills-autocomplete"
-                                        // getOptionDisabled={(option) => option.disabled}
                                         getOptionLabel={(option) => option.title}
-                                        // getOptionSelected={(item,current) => item.value === current.value}
                                         options={skillsOption}
-                                        onChange={(e, newValue) => setFieldValue('sk', newValue)}
+                                        onChange={(e, newValue) => setFieldValue('skills', newValue)}
                                         renderInput={(params) => (
                                             <TextField
                                                 required
-                                                id='sk'
+                                                id='skills'
                                                 label="Skills"
-                                                name='sk'
+                                                name='skills'
                                                 type='search'
                                                 {...params}
-                                                {...getFieldProps('sk')}
-                                                error={Boolean(touched.sk && errors.sk)}
-                                                helperText={touched.sk && errors.sk}
+                                                {...getFieldProps('skills')}
+                                                error={Boolean(touched.skills && errors.skills)}
+                                                helperText={touched.skills && errors.skills}
                                             />
                                         )}
                                     />
@@ -652,7 +646,7 @@ const InternalBot = () => {
                                 disabled={errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
                                     || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.description
                                     || errors.generalFeedback || errors.questions || errors.mediaContext || errors.hints
-                                    || errors.idealAnswer || errors.sk ? true : false
+                                    || errors.idealAnswer || errors.skills ? true : false
                                 }
                                 onClick={handleSubmitIb}
                                 variant='contained'
@@ -664,7 +658,7 @@ const InternalBot = () => {
                                 disabled={errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
                                     || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.description
                                     || errors.generalFeedback || errors.questions || errors.mediaContext || errors.hints
-                                    || errors.idealAnswer || errors.sk ? true : false
+                                    || errors.idealAnswer || errors.skills ? true : false
                                 }
                                 onClick={handleGoto}
                                 color="warning"
