@@ -79,12 +79,7 @@ const InternalBot = () => {
         mediaContext: Yup.string().required('This is required'),
         hints: Yup.string().required('This is required'),
         idealAnswer: Yup.string().required('This is required'),
-        sk: Yup.array().of(
-            Yup.object().shape({
-                value: Yup.string(),
-                title: Yup.string(),
-            })
-        ).min(1, 'Skills are required')
+        sk: Yup.array().min(1).required('Skills are required')
     });
 
     const formik = useFormik({
@@ -265,7 +260,8 @@ const InternalBot = () => {
             values.questions === '' ||
             values.mediaContext === '' ||
             values.hints === '' ||
-            values.idealAnswer === ''
+            values.idealAnswer === '' ||
+            values.sk === ''
         ) {
             message.error('Please fill the form completely');
         }
@@ -530,6 +526,7 @@ const InternalBot = () => {
                                             <Stack mb={1} sx={{ width: '100%' }}>
                                                 <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Question</InputLabel>
                                                 <TextField
+                                                    error={ques=="" ? false : true}
                                                     multiline
                                                     fullWidth
                                                     onChange={onChange}
@@ -537,9 +534,9 @@ const InternalBot = () => {
                                                     maxRows={3}
                                                     minRows={3}
                                                     placeholder="Add Question"
-                                                    {...getFieldProps('questions')}
-                                                    error={Boolean(touched.questions && errors.questions)}
-                                                    helperText={touched.questions && errors.questions}
+                                                    // {...getFieldProps('questions')}
+                                                    // error={Boolean(touched.questions && errors.questions)}
+                                                    // helperText={touched.questions && errors.questions}
                                                 />
                                             </Stack>
                                             <Stack mb={1} sx={{ width: '100%' }}>
@@ -621,14 +618,15 @@ const InternalBot = () => {
                                 <Typography mb={3} variant="h4">Add Skills</Typography>
                                 <Stack sx={{ width: '100%' }}>
                                     <Autocomplete
-                                        disableClearable
-                                        disablePortal
-                                        filterSelectedOptions
+                                        // disableClearable
+                                        // disablePortal
+                                        // filterSelectedOptions
                                         multiple
                                         limitTags={4}
                                         id="skills-autocomplete"
-                                        getOptionDisabled={(option) => option.disabled}
+                                        // getOptionDisabled={(option) => option.disabled}
                                         getOptionLabel={(option) => option.title}
+                                        // getOptionSelected={(item,current) => item.value === current.value}
                                         options={skillsOption}
                                         onChange={(e, newValue) => setFieldValue('sk', newValue)}
                                         renderInput={(params) => (
@@ -639,6 +637,7 @@ const InternalBot = () => {
                                                 name='sk'
                                                 type='search'
                                                 {...params}
+                                                {...getFieldProps('sk')}
                                                 error={Boolean(touched.sk && errors.sk)}
                                                 helperText={touched.sk && errors.sk}
                                             />
