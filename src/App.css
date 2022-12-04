@@ -6,6 +6,12 @@
     margin: auto !important;
 }
 
+/* Data Grid Footer */
 .css-17jjc08-MuiDataGrid-footerContainer {
     background-color: #deebff;
+}
+
+/* Data Grid Row Selection */
+.css-1e2bxag-MuiDataGrid-root .MuiDataGrid-cell:focus-within {
+    outline: none !important;
 }
