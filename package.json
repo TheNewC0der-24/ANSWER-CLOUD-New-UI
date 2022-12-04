@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/runtime": "^7.20.6",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@iconify/icons-eva": "^1.2.3",
@@ -32,6 +33,7 @@
     "react-phone-input-2": "^2.15.1",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
+    "react-to-pdf": "^0.0.14",
     "react-to-print": "^2.14.10",
     "reset-css": "^5.0.1",
     "web-vitals": "^2.1.4",
