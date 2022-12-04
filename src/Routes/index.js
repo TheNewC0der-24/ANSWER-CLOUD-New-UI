@@ -18,7 +18,8 @@ import PageNotFound from '../Components/PageNotFound';
 import BotThankYou from '../Components/BotThankYou';
 import Welcome from '../Components/Form/FormWelcome/index';
 import Start from '../Components/Form/FormStart/index';
-import ViewResponseAndReport from '../Components/ViewResponseandReport';
+import ViewReport from '../Components/ViewReports';
+import ViewResponse from '../Components/ViewResponses';
 import SummaryReport from '../Components/SummaryReport';
 
 const Router = () => {
@@ -65,7 +66,8 @@ const Router = () => {
                 { path: "library", element: <Library /> },
                 { path: "teams", element: <Team /> },
                 { path: "profile", element: <Profile /> },
-                { path: "responses&reports", element: <ViewResponseAndReport /> },
+                { path: "reports", element: <ViewReport /> },
+                { path: "responses", element: <ViewResponse /> },
             ]
         },
         {
