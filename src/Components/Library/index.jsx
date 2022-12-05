@@ -17,6 +17,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 
 import LoadAnimation from '../LoadAnimation/index';
+import { message } from 'antd';
 
 const Library = () => {
 
@@ -31,6 +32,14 @@ const Library = () => {
             setLoading(false);
         }, 2000);
     }, []);
+
+    const handleCopy = () => {
+        message.success('Link Copied Successfully!!');
+    }
+
+    const handleReplicate = () => {
+        message.success('Cloned Successfully!!');
+    }
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 70 },
@@ -56,9 +65,24 @@ const Library = () => {
                 <Button
                     size='small'
                     variant='contained'
-                    color='error'
+                    color='secondary'
+                    onClick={handleCopy}
                 >
-                    Delete
+                    Copy Link
+                </Button>
+            ),
+            sortable: false,
+        },
+        {
+            field: 'clone', headerName: 'Clone', width: 120,
+            renderCell: (rowData) => (
+                <Button
+                    size='small'
+                    variant='contained'
+                    color='warning'
+                    onClick={handleReplicate}
+                >
+                    Replicate
                 </Button>
             ),
             sortable: false,
@@ -99,7 +123,79 @@ const Library = () => {
                     (
                         <Card sx={{ mt: 3 }}>
                             <CardContent>
-                                <Typography mb={2} variant="h5">Created Libraries</Typography>
+                                <Typography mb={2} variant="h5">Interview</Typography>
+                                <Box sx={{ width: "100%" }}>
+                                    <DataGrid
+                                        rows={libraryData}
+                                        columns={columns}
+                                        pageSize={5}
+                                        rowsPerPageOptions={[5]}
+                                        disableSelectionOnClick
+                                        // checkboxSelection
+                                        autoHeight
+                                    />
+                                </Box>
+                            </CardContent>
+                        </Card>
+                    )
+            }
+
+            {
+                loading ? (
+                    <LoadAnimation />
+                ) :
+                    (
+                        <Card sx={{ mt: 3 }}>
+                            <CardContent>
+                                <Typography mb={2} variant="h5">Role Play & Simulation</Typography>
+                                <Box sx={{ width: "100%" }}>
+                                    <DataGrid
+                                        rows={libraryData}
+                                        columns={columns}
+                                        pageSize={5}
+                                        rowsPerPageOptions={[5]}
+                                        disableSelectionOnClick
+                                        // checkboxSelection
+                                        autoHeight
+                                    />
+                                </Box>
+                            </CardContent>
+                        </Card>
+                    )
+            }
+
+            {
+                loading ? (
+                    <LoadAnimation />
+                ) :
+                    (
+                        <Card sx={{ mt: 3 }}>
+                            <CardContent>
+                                <Typography mb={2} variant="h5">Case Studies</Typography>
+                                <Box sx={{ width: "100%" }}>
+                                    <DataGrid
+                                        rows={libraryData}
+                                        columns={columns}
+                                        pageSize={5}
+                                        rowsPerPageOptions={[5]}
+                                        disableSelectionOnClick
+                                        // checkboxSelection
+                                        autoHeight
+                                    />
+                                </Box>
+                            </CardContent>
+                        </Card>
+                    )
+            }
+
+            {
+                loading ? (
+                    <LoadAnimation />
+                ) :
+                    (
+                        <Card sx={{ mt: 3 }}>
+                            <CardContent>
+                                <Typography mb={2} variant="h5">Lessons</Typography>
                                 <Box sx={{ width: "100%" }}>
                                     <DataGrid
                                         rows={libraryData}
