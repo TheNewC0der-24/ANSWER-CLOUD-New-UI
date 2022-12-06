@@ -230,7 +230,7 @@ const InternalBot = () => {
             values.timer === '' ||
             values.description === '' ||
             values.generalFeedback === '' ||
-            values.questions === '' ||
+            // values.questions === '' ||
             values.mediaContext === '' ||
             values.hints === '' ||
             values.idealAnswer === '' &&
@@ -645,7 +645,7 @@ const InternalBot = () => {
                             <Button
                                 disabled={errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
                                     || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.description
-                                    || errors.generalFeedback || errors.questions || errors.mediaContext || errors.hints
+                                    || errors.generalFeedback || errors.mediaContext || errors.hints
                                     || errors.idealAnswer || errors.skills ? true : false
                                 }
                                 onClick={handleSubmitIb}
