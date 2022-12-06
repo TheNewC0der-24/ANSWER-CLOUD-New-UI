@@ -19,7 +19,7 @@ import LoadingScreen from '../LoadingScreen';
 
 // Images
 import forgetPasswordImg from '../../assets/Images/forgotPassword.svg';
-import logo from '../../assets/Images/answerCloudLogo.png';
+import logo from '../../assets/Images/answerCloudLogo.svg';
 
 // Validation
 import { useFormik, FormikProvider, Form } from 'formik';

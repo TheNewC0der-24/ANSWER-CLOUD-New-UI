@@ -20,7 +20,8 @@ import Welcome from '../Components/Form/FormWelcome/index';
 import Start from '../Components/Form/FormStart/index';
 import ViewReport from '../Components/ViewReports';
 import ViewResponse from '../Components/ViewResponses';
-import SummaryReport from '../Components/SummaryReport';
+import DetailedReport from '../Components/Report/DetailedSummary';
+import SummaryReport from '../Components/Report/SummaryReport';
 
 const Router = () => {
 
@@ -81,6 +82,10 @@ const Router = () => {
         {
             path: "/summaryReport",
             element: <SummaryReport />
+        },
+        {
+            path: "/detailedReport",
+            element: <DetailedReport />
         },
         {
             path: "form",

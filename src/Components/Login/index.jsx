@@ -27,7 +27,7 @@ import LoadingScreen from '../LoadingScreen';
 
 // Images
 import loginImg from '../../assets/Images/login.svg';
-import logo from '../../assets/Images/answerCloudLogo.png';
+import logo from '../../assets/Images/answerCloudLogo.svg';
 
 // Validation
 import { useFormik, FormikProvider, Form } from 'formik';
