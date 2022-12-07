@@ -349,7 +349,9 @@ const InternalBot = () => {
                                             error={Boolean(touched.interactionMode && errors.interactionMode)}
                                             helperText={touched.interactionMode && errors.interactionMode}
                                         >
+                                            <MenuItem value="Video">Video</MenuItem>
                                             <MenuItem value="Audio">Audio</MenuItem>
+                                            <MenuItem value="MCQ">MCQ</MenuItem>
                                         </TextField>
                                     </Stack>
                                 </Stack>
