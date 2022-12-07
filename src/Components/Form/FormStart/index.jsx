@@ -203,7 +203,7 @@ const Start = () => {
                                             </ListItemButton>
                                         </ListItem>
                                     ))}
-                                    <Box mt={5}>
+                                    <Box mt={4}>
                                         <Button fullWidth variant="contained" onClick={handleClickOpen}>Start Test</Button>
                                     </Box>
                                 </CardContent>
