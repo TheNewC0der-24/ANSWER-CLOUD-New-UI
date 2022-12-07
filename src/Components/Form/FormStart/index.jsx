@@ -95,7 +95,7 @@ const Start = () => {
     };
 
     const handleNext = () => {
-        navigate('/welcomescreen')
+        navigate('/form/welcome')
     };
 
     const systemInstructionOptions = [

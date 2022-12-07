@@ -16,11 +16,11 @@ import InternalBot from '../Components/InternalBot';
 import ExternalBot from '../Components/ExternalBot';
 import PageNotFound from '../Components/PageNotFound';
 import BotThankYou from '../Components/BotThankYou';
-import Welcome from '../Components/Form/FormWelcome/index';
+import Invitation from '../Components/Form/FormInvitation/index';
 import Start from '../Components/Form/FormStart/index';
+import WelcomeScreen from '../Components/Form/FormWelcome/WelcomeScreen';
 import ViewReport from '../Components/ViewReports';
 import ViewResponse from '../Components/ViewResponses';
-import WelcomeScreen from '../Components/Form/FormStart/WelcomeScreen';
 import DetailedReport from '../Components/Report/DetailedSummary';
 import SummaryReport from '../Components/Report/SummaryReport';
 
@@ -93,25 +93,25 @@ const Router = () => {
             children: [
                 {
                     path: "",
-                    element: <Navigate to="/form/welcome" />
+                    element: <Navigate to="/form/invitation" />
                 },
                 {
-                    path: "welcome",
-                    element: <Welcome />
+                    path: "invitation",
+                    element: <Invitation />
                 },
                 {
                     path: "start",
                     element: <Start />
                 },
                 {
-                    path: "welcomescreen",
+                    path: "welcome",
                     element: <WelcomeScreen />
                 },
             ]
         },
         {
             path: 'form',
-            element: <Navigate to="/form/welcome" />
+            element: <Navigate to="/form/invitation" />
         },
         {
             path: '*',

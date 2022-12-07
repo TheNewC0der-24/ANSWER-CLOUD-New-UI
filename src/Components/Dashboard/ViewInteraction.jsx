@@ -38,7 +38,7 @@ const ViewInteraction = () => {
                 <Button
                     size='small'
                     variant='contained'
-                    onClick={() => navigate("/form/welcome")}
+                    onClick={() => navigate("/form/invitation")}
                 >
                     View Answer Bot
                 </Button>
