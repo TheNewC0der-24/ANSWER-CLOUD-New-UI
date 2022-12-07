@@ -23,6 +23,7 @@ import {
     TextField,
     Button
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 // Icon
 import FolderIcon from '@mui/icons-material/Folder';
@@ -36,6 +37,7 @@ function generate(element) {
 }
 
 const Start = () => {
+    const navigate = useNavigate();
     const [data, setData] = useState({
         // Initial Data
         name: "",
@@ -92,6 +94,10 @@ const Start = () => {
 
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const handleNext = () => {
+        navigate('/welcomescreen')
     };
 
     const [dense, setDense] = useState(false);
@@ -205,7 +211,7 @@ const Start = () => {
                                         </DialogContentText>
                                     </DialogContent>
                                     <DialogActions>
-                                        <Button onClick={handleClose} autoFocus>
+                                        <Button onClick={handleNext} autoFocus>
                                             Yes
                                         </Button>
                                         <Button onClick={handleClose}>No</Button>

@@ -20,6 +20,7 @@ import Welcome from '../Components/Form/FormWelcome/index';
 import Start from '../Components/Form/FormStart/index';
 import ViewReport from '../Components/ViewReports';
 import ViewResponse from '../Components/ViewResponses';
+import WelcomeScreen from '../Components/Form/FormStart/WelcomeScreen';
 import DetailedReport from '../Components/Report/DetailedSummary';
 import SummaryReport from '../Components/Report/SummaryReport';
 
@@ -101,6 +102,10 @@ const Router = () => {
                 {
                     path: "start",
                     element: <Start />
+                },
+                {
+                    path: "welcomescreen",
+                    element: <WelcomeScreen />
                 },
             ]
         },
