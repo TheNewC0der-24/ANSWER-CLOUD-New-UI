@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 
 import {
-    Paper,
+    Container,
+    // Paper,
     Stack,
     Box,
     Card,
     CardContent,
+    List,
+    ListItem,
+    ListItemText,
+    ListItemAvatar,
+    Avatar,
     Dialog,
     DialogTitle,
     DialogContent,
@@ -18,23 +24,33 @@ import {
     Button
 } from '@mui/material';
 
+// Icon
+import FolderIcon from '@mui/icons-material/Folder';
+
+function generate(element) {
+    return [0, 1, 2].map((value) =>
+        React.cloneElement(element, {
+            key: value,
+        }),
+    );
+}
+
 const Start = () => {
     const [data, setData] = useState({
-        // inital data
+        // Initial Data
         name: "",
         email: "",
         contact: "",
         access: "",
     });
-    const [show, setShow] = useState(false);
 
+    const [show, setShow] = useState(false);
     const [emptyFields, setEmptyFields] = useState([]);
     const [error, setError] = useState("");
     const [showError, setShowError] = useState(false);
 
     const handleSubmit = (e) => {
-        e.preventDefault(); //prevents refresing of page
-        console.log("hii");
+        e.preventDefault();
         const regEx = /^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/g;
 
         if (data?.name?.length < 5) {
@@ -45,32 +61,30 @@ const Start = () => {
         } else if (data?.email?.length <= 0) {
             //email
             setEmptyFields((emptyFields) => [...emptyFields, "email"]);
-            setError("Please enter email!");
+            setError("Please enter E-mail!");
             setShowError(true);
         } else if (!regEx.test(data?.email)) {
-            console.log(data?.email);
             setEmptyFields((emptyFields) => [...emptyFields, "email"]);
-            setError("Not valid Email");
+            setError("Not a valid Email");
             setShowError(true);
         } else if (data?.contact?.length !== 10) {
             // contact
             setEmptyFields((emptyFields) => [...emptyFields, "contact"]);
-            setError("Contact number must be at exacty 10 digits long!");
+            setError("Contact number must be exactly 10 digits long!");
             setShowError(true);
         } else if (data?.access?.length <= 0) {
-            //acess code
-            setError("Please enter Access Code!");
+            //access code
+            setError("Please enter 6 digit Access Code!");
             setShowError(true);
             setEmptyFields((emptyFields) => [...emptyFields, "access"]);
         } else {
             setError("");
             setShowError(false);
             setShow(true);
-            console.log(data);
         }
     };
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -80,18 +94,27 @@ const Start = () => {
         setOpen(false);
     };
 
+    const [dense, setDense] = useState(false);
+    const [secondary, setSecondary] = useState(false);
+
     return (
         <>
-            <Paper component={Stack} p={3}>
-                {/*************** Internal Bot ***************/}
-                <Card component={Stack} spacing={2} elevation={3}>
-                    <Box p={2} sx={{ backgroundColor: '#000', display: 'flex', justifyContent: 'center' }}>
+            <Container maxWidth="md">
+                <Card component={Stack} p={2} spacing={2} elevation={3} sx={{ backgroundColor: "#F7F8F9" }}>
+                    <Box p={2} sx={{ backgroundColor: '#1976d2', display: 'flex', justifyContent: 'center' }}>
                         <Typography variant="h4" sx={{ color: 'white' }}>Interaction Title</Typography>
                     </Box>
-                    <CardContent p={3}>
-                        <Typography variant="h5">Description</Typography>
-                        <Typography mb={2} variant="h6">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, quidem vero assumenda neque quibusdam sint ipsa voluptate voluptatum enim pariatur. Vel hic tempora omnis voluptas voluptatum, dolore enim fugit illo, ex earum in sapiente facilis?</Typography>
-                        <Stack mb={3} sx={{ width: '100%' }}>
+                    <CardContent>
+                        <Box mb={3} p={2} sx={{ backgroundColor: "#fff", border: "2px solid #1976d2" }}>
+                            <Typography mb={2} variant="h5">Description</Typography>
+                            <Typography variant="body1">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, quidem vero assumenda neque quibusdam sint ipsa voluptate voluptatum enim pariatur. Vel hic tempora omnis voluptas voluptatum, dolore enim fugit illo, ex earum in sapiente facilis?</Typography>
+                        </Box>
+
+                        {showError && (
+                            <Alert severity="error" mb={2}>{error}</Alert>
+                        )}
+
+                        <Stack mb={2} mt={3}>
                             <TextField
                                 fullWidth
                                 size='small'
@@ -102,7 +125,7 @@ const Start = () => {
                                 onChange={(e) => setData({ ...data, name: e.target.value })}
                             />
                         </Stack>
-                        <Stack mb={3} sx={{ width: '100%' }}>
+                        <Stack mb={2}>
                             <TextField
                                 fullWidth
                                 size='small'
@@ -113,7 +136,7 @@ const Start = () => {
                                 onChange={(e) => setData({ ...data, email: e.target.value })}
                             />
                         </Stack>
-                        <Stack mb={3} sx={{ width: '100%' }}>
+                        <Stack mb={2}>
                             <TextField
                                 fullWidth
                                 size='small'
@@ -124,7 +147,7 @@ const Start = () => {
                                 onChange={(e) => setData({ ...data, contact: e.target.value })}
                             />
                         </Stack>
-                        <Stack mb={3} sx={{ width: '100%' }}>
+                        <Stack mb={2}>
                             <TextField
                                 fullWidth
                                 size='small'
@@ -135,29 +158,33 @@ const Start = () => {
                                 onChange={(e) => setData({ ...data, access: e.target.value })}
                             />
                         </Stack>
-                        {showError && (
-                            <Alert severity="error" mb={2}>{error}</Alert>
-                        )}
-                        <Button variant="contained" my={2} onClick={handleSubmit}>Validate to Start</Button>
+
+                        <Button variant="contained" onClick={handleSubmit}>Validate</Button>
+
+                        <Box mt={4}>
+                            <Divider />
+                        </Box>
+
                         {show && (
-                            <Card component={Stack} my={2} spacing={2} elevation={3}>
-                                <Box p={1} align='center' sx={{ backgroundColor: '#000' }}>
+                            <Card component={Stack} mt={2} spacing={2} elevation={3}>
+                                <Box p={1} align='center' sx={{ backgroundColor: '#1976d2' }}>
                                     <Typography variant="h4" sx={{ color: 'white' }}>System Instruction </Typography>
                                 </Box>
-                                <Typography variant="h6" align='center'>Please make sure you are in center of camera</Typography>
-                                <Divider></Divider>
-                                <Typography variant="h6" align='center'>Make sure you have good lighting</Typography>
-                                <Divider></Divider>
-                                <Typography variant="h6" align='center'>Use professional dress while recording</Typography>
-                                <Divider></Divider>
-                                <Typography variant="h6" align='center'>Not ready for video yet? Toggle video off to record responses as audio</Typography>
-                                <Divider></Divider>
-                                <Typography variant="h6" align='center'>You will have a preview of video before you fiilize</Typography>
-                                <Divider></Divider>
-                                <Typography variant="h6" align='center'>Limit your answers to two minutes, timer will guide you</Typography>
-                                <Divider></Divider>
-                                <Typography variant="h6" align='center'>And lastly smile more, smile often. Good Luck!</Typography>
-                                <Divider></Divider>
+                                <CardContent>
+                                    <Typography variant="h6">Please make sure you are in center of camera</Typography>
+                                    <Divider />
+                                    <Typography variant="h6">Make sure you have good lighting</Typography>
+                                    <Divider />
+                                    <Typography variant="h6">Use professional dress while recording</Typography>
+                                    <Divider />
+                                    <Typography variant="h6">Not ready for video yet? Toggle video off to record responses as audio</Typography>
+                                    <Divider />
+                                    <Typography variant="h6">You will have a preview of video before you fiilize</Typography>
+                                    <Divider />
+                                    <Typography variant="h6">Limit your answers to two minutes, timer will guide you</Typography>
+                                    <Divider />
+                                    <Typography variant="h6">And lastly smile more, smile often. Good Luck!</Typography>
+                                </CardContent>
                             </Card>
                         )}
                         {show && (
@@ -188,7 +215,7 @@ const Start = () => {
                         )}
                     </CardContent>
                 </Card>
-            </Paper>
+            </Container >
         </>
     )
 }
