@@ -218,7 +218,7 @@ const Start = () => {
                                     aria-describedby="alert-dialog-description"
                                 >
                                     <DialogTitle id="alert-dialog-title">
-                                        {"Are you sure you want to start the test"}
+                                        Are you sure you want to start the test
                                     </DialogTitle>
                                     <DialogContent>
                                         <DialogContentText id="alert-dialog-description">
@@ -226,10 +226,10 @@ const Start = () => {
                                         </DialogContentText>
                                     </DialogContent>
                                     <DialogActions>
-                                        <Button onClick={handleNext} autoFocus>
+                                        <Button variant='outlined' onClick={handleClose}>No</Button>
+                                        <Button variant='contained' onClick={handleNext}>
                                             Yes
                                         </Button>
-                                        <Button onClick={handleClose}>No</Button>
                                     </DialogActions>
                                 </Dialog>
                             </>
