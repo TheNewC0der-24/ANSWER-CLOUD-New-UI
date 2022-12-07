@@ -7,11 +7,9 @@ import {
     Box,
     Card,
     CardContent,
-    List,
     ListItem,
     ListItemText,
-    ListItemAvatar,
-    Avatar,
+    ListItemButton,
     Dialog,
     DialogTitle,
     DialogContent,
@@ -100,8 +98,29 @@ const Start = () => {
         navigate('/welcomescreen')
     };
 
-    const [dense, setDense] = useState(false);
-    const [secondary, setSecondary] = useState(false);
+    const systemInstructionOptions = [
+        {
+            value: "1. Please make sure you are in center of camera.",
+        },
+        {
+            value: "2. Make sure you have good lighting.",
+        },
+        {
+            value: "3. Use professional dress while recording.",
+        },
+        {
+            value: "4. Not ready for video yet? Toggle video off to record responses as audio.",
+        },
+        {
+            value: "5. You will have a preview of video before you finalize.",
+        },
+        {
+            value: "6. Limit your answers to two minutes, timer will guide you.",
+        },
+        {
+            value: "7. And lastly smile more, smile often. Good Luck!",
+        },
+    ];
 
     return (
         <>
@@ -177,25 +196,21 @@ const Start = () => {
                                     <Typography variant="h4" sx={{ color: 'white' }}>System Instruction </Typography>
                                 </Box>
                                 <CardContent>
-                                    <Typography variant="h6">Please make sure you are in center of camera</Typography>
-                                    <Divider />
-                                    <Typography variant="h6">Make sure you have good lighting</Typography>
-                                    <Divider />
-                                    <Typography variant="h6">Use professional dress while recording</Typography>
-                                    <Divider />
-                                    <Typography variant="h6">Not ready for video yet? Toggle video off to record responses as audio</Typography>
-                                    <Divider />
-                                    <Typography variant="h6">You will have a preview of video before you fiilize</Typography>
-                                    <Divider />
-                                    <Typography variant="h6">Limit your answers to two minutes, timer will guide you</Typography>
-                                    <Divider />
-                                    <Typography variant="h6">And lastly smile more, smile often. Good Luck!</Typography>
+                                    {systemInstructionOptions.map((item) => (
+                                        <ListItem key={item.value} component="div" disablePadding>
+                                            <ListItemButton>
+                                                <ListItemText primary={item.value} />
+                                            </ListItemButton>
+                                        </ListItem>
+                                    ))}
+                                    <Box mt={5}>
+                                        <Button fullWidth variant="contained" onClick={handleClickOpen}>Start Test</Button>
+                                    </Box>
                                 </CardContent>
                             </Card>
                         )}
                         {show && (
                             <>
-                                <Button variant="contained" size='small' onClick={handleClickOpen}>Start Test</Button>
                                 <Dialog
                                     open={open}
                                     onClose={handleClose}
@@ -221,7 +236,7 @@ const Start = () => {
                         )}
                     </CardContent>
                 </Card>
-            </Container >
+            </Container>
         </>
     )
 }
