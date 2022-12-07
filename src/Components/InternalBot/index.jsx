@@ -52,6 +52,7 @@ const InternalBot = () => {
     const [name, setName] = useState(false);
     const [noOfRows, setNoOfRows] = useState(1);
     const [ques, setQues] = useState(false);
+    const [skills, setSkills] = useState('');
 
     const onChange = (event) => {
         if (event.target.value == "") {
@@ -78,7 +79,8 @@ const InternalBot = () => {
         mediaContext: Yup.string().required('This is required'),
         hints: Yup.string().required('This is required'),
         idealAnswer: Yup.string().required('This is required'),
-        skills: Yup.array().min(1).required('Skills are required')
+        // skills: Yup.array().min(1).required('Skills are required')
+        skills: Yup.string().required('Select Skill Format')
     });
 
     const formik = useFormik({
@@ -121,6 +123,7 @@ const InternalBot = () => {
         setTrack(event.target.value);
         setTimer(event.target.value);
         setMode(event.target.value);
+        setSkills(event.target.value);
     };
 
     const handleClick = (event) => {
@@ -151,16 +154,6 @@ const InternalBot = () => {
         setLoading(true);
         return <LoadingScreen />;
     }
-
-    const skillsOption = [
-        { title: 'The Shawshank Redemption', year: 1994 },
-        { title: 'The Godfather', year: 1972 },
-        { title: 'The Godfather: Part II', year: 1974 },
-        { title: 'The Dark Knight', year: 2008 },
-        { title: '12 Angry Men', year: 1957 },
-        { title: "Schindler's List", year: 1993 },
-        { title: 'Pulp Fiction', year: 1994 },
-    ];
 
     const trackDomainOptions = [
         {
@@ -212,6 +205,25 @@ const InternalBot = () => {
         }
     ];
 
+    const skillsOption = [
+        {
+            value: "Interview",
+            label: "Interview"
+        },
+        {
+            value: "Role Play & Simulation",
+            label: "Role Play & Simulation"
+        },
+        {
+            value: "Case Studies",
+            label: "Case Studies"
+        },
+        {
+            value: "Lesson",
+            label: "Lesson"
+        }
+    ];
+
     const style = {
         height: '215px',
         overflow: 'auto',
@@ -256,7 +268,7 @@ const InternalBot = () => {
             values.timer === '' ||
             values.description === '' ||
             values.generalFeedback === '' ||
-            values.questions === '' ||
+            // values.questions === '' ||
             values.mediaContext === '' ||
             values.hints === '' ||
             values.idealAnswer === '' ||
@@ -616,9 +628,9 @@ const InternalBot = () => {
                         {/*************** Add Skills ***************/}
                         <Card component={Stack} p={3} mt={3} spacing={2} elevation={3}>
                             <CardContent>
-                                <Typography mb={3} variant="h4">Add Skills</Typography>
+                                <Typography mb={3} variant="h4">Add Skill Format</Typography>
                                 <Stack sx={{ width: '100%' }}>
-                                    <Autocomplete
+                                    {/* <Autocomplete
                                         multiple
                                         limitTags={4}
                                         id="skills-autocomplete"
@@ -638,7 +650,23 @@ const InternalBot = () => {
                                                 helperText={touched.skills && errors.skills}
                                             />
                                         )}
-                                    />
+                                    /> */}
+
+                                    <TextField
+                                        select
+                                        value={skills}
+                                        size='small'
+                                        label="Skill Format"
+                                        required
+                                        onChange={handleChange}
+                                        {...getFieldProps('skills')}
+                                        error={Boolean(touched.skills && errors.skills)}
+                                        helperText={touched.skills && errors.skills}
+                                    >
+                                        {skillsOption.map(option => (
+                                            <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+                                        ))}
+                                    </TextField>
                                 </Stack>
                             </CardContent>
                         </Card>
@@ -657,11 +685,11 @@ const InternalBot = () => {
                                 Submit
                             </Button>
                             <Button
-                                disabled={errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
-                                    || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.description
-                                    || errors.generalFeedback || errors.questions || errors.mediaContext || errors.hints
-                                    || errors.idealAnswer || errors.skills ? true : false
-                                }
+                                // disabled={errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
+                                //     || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.description
+                                //     || errors.generalFeedback || errors.questions || errors.mediaContext || errors.hints
+                                //     || errors.idealAnswer || errors.skills ? true : false
+                                // }
                                 onClick={handleGoto}
                                 color="warning"
                                 variant='contained'
