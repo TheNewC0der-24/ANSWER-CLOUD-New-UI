@@ -75,7 +75,7 @@ function Sidebar({ handleDrawerToggle, mobileOpen }) {
     {
       label: 'View Responses',
       icon: <QuestionAnswerIcon />,
-      link: '/account/responses'
+      link: '/account/view-responses'
     },
     {
       label: 'View Reports',
