@@ -21,6 +21,11 @@ import Start from '../Components/Form/FormStart/index';
 import WelcomeScreen from '../Components/Form/FormWelcome/WelcomeScreen';
 import Work from '../Components/Form/FormWork/Work';
 import FormRecording from '../Components/Form/FormRecording/index';
+import FormConfirm from '../Components/Form/FormConfirm/index';
+import FormStartScreen from '../Components/Form/FormStartScreen/index';
+import FormTrouble from '../Components/Form/FormTrouble/index';
+import FormQuestion from '../Components/Form/FormQuestion/index';
+import FormAudioRecording from '../Components/Form/FormAudioRecording/index';
 import ViewReport from '../Components/ViewReports';
 import ViewResponse from '../Components/ViewResponses';
 import DetailedReport from '../Components/Report/DetailedSummary';
@@ -116,6 +121,26 @@ const Router = () => {
                 {
                     path: "recording",
                     element: <FormRecording />
+                },
+                {
+                    path: "confirm",
+                    element: <FormConfirm />
+                },
+                {
+                    path: "startscreen",
+                    element: <FormStartScreen />
+                },
+                {
+                    path: "trouble",
+                    element: <FormTrouble />
+                },
+                {
+                    path: "question",
+                    element: <FormQuestion />
+                },
+                {
+                    path: "audiorecording",
+                    element: <FormAudioRecording />
                 },
             ]
         },
