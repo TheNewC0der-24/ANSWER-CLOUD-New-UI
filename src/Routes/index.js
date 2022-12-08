@@ -8,7 +8,7 @@ import Login from '../Components/Login';
 import SignUp from '../Components/SignUp';
 import ForgetPassword from '../Components/ForgetPassword';
 import Dashboard from '../Components/Dashboard';
-import Workspace from '../Components/Workspace';
+import Workspace from '../Components/Workspace/WhenNoInteraction';
 import Library from '../Components/Library';
 import Team from '../Components/Teams';
 import Profile from '../Components/Profile';
