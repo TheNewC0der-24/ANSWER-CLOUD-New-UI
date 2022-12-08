@@ -76,7 +76,7 @@ const Router = () => {
                 { path: "library", element: <Library /> },
                 { path: "teams", element: <Team /> },
                 { path: "profile", element: <Profile /> },
-                { path: "reports", element: <ViewReport /> },
+                { path: "view-reports", element: <ViewReport /> },
                 { path: "view-responses", element: <ViewResponse /> },
             ]
         },

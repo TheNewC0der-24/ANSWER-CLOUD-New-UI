@@ -80,7 +80,7 @@ function Sidebar({ handleDrawerToggle, mobileOpen }) {
     {
       label: 'View Reports',
       icon: <GradingIcon />,
-      link: '/account/reports'
+      link: '/account/view-reports'
     }
   ]
   const drawer = (
