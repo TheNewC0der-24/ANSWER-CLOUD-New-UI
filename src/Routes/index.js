@@ -27,9 +27,10 @@ import FormTrouble from '../Components/Form/FormTrouble/index';
 import FormQuestion from '../Components/Form/FormQuestion/index';
 import FormAudioRecording from '../Components/Form/FormAudioRecording/index';
 import ViewReport from '../Components/ViewReports';
-import ViewResponse from '../Components/ViewResponses';
-import DetailedReport from '../Components/Report/DetailedSummary';
 import SummaryReport from '../Components/Report/SummaryReport';
+import DetailedReport from '../Components/Report/DetailedSummary';
+import ViewResponse from '../Components/ViewResponses/index';
+import Responses from '../Components/ViewResponses/Responses/index';
 
 const Router = () => {
 
@@ -94,6 +95,10 @@ const Router = () => {
         {
             path: "/detailedReport",
             element: <DetailedReport />
+        },
+        {
+            path: "/responses",
+            element: <Responses />
         },
         {
             path: "form",
