@@ -28,9 +28,6 @@ const WelcomeScreen = () => {
                     </CardContent>
                 </Card>
             </Container>
-
-            {/* <Paper component={Stack} p={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
-            </Paper> */}
         </>
     )
 }
