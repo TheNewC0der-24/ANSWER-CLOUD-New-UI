@@ -20,6 +20,7 @@ import Invitation from '../Components/Form/FormInvitation/index';
 import Start from '../Components/Form/FormStart/index';
 import WelcomeScreen from '../Components/Form/FormWelcome/WelcomeScreen';
 import Work from '../Components/Form/FormWork/Work';
+import FormRecording from '../Components/Form/FormRecording/index';
 import ViewReport from '../Components/ViewReports';
 import ViewResponse from '../Components/ViewResponses';
 import DetailedReport from '../Components/Report/DetailedSummary';
@@ -111,6 +112,10 @@ const Router = () => {
                 {
                     path: "work",
                     element: <Work />
+                },
+                {
+                    path: "recording",
+                    element: <FormRecording />
                 },
             ]
         },
