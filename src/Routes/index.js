@@ -30,7 +30,7 @@ import ViewReport from '../Components/ViewReports';
 import SummaryReport from '../Components/Report/SummaryReport';
 import DetailedReport from '../Components/Report/DetailedSummary';
 import ViewResponse from '../Components/ViewResponses/index';
-import Responses from '../Components/ViewResponses/index';
+import Responses from '../Components/ViewResponses/Responses/index';
 
 const Router = () => {
 
