@@ -447,13 +447,18 @@ const InternalBot = () => {
                                         </FormControl>
                                         {
                                             certificate &&
-                                            <TextField
-                                                fullWidth
-                                                size='small'
-                                                label="Certificate Name"
-                                                required
-                                                type='text'
-                                            />
+                                            <Box>
+                                                <TextField
+                                                    fullWidth
+                                                    size='small'
+                                                    label="Certificate Name"
+                                                    required
+                                                    type='text'
+                                                />
+                                                <FormGroup>
+                                                    <FormControlLabel control={<Checkbox />} label="Show company name in certificate" />
+                                                </FormGroup>
+                                            </Box>
                                         }
                                     </Stack>
                                     <Stack sx={{ width: '100%' }}>
