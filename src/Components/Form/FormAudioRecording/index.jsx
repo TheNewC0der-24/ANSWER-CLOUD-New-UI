@@ -3,6 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { Recorder } from "react-voice-recorder";
 import "react-voice-recorder/dist/index.css";
 
+import {
+  Container,
+  Card,
+  CardContent,
+  Box,
+  Typography,
+  Divider,
+  Button,
+  Stack
+} from '@mui/material';
+
 const FromAudioRecording = () => {
   const navigate = useNavigate();
 
@@ -129,13 +140,13 @@ const FromAudioRecording = () => {
               <Typography variant="h6">What is Axios ?</Typography>
               <Typography mb={2} variant="h6">Hint : react library</Typography>
               <Divider my={2}></Divider>
-              <Button my={2} onClick={handleStartRecording} variant="contained" size='small'>{isActive ? "Pause" : "Answer"}</Button>
-              {
+              {/* <Button my={2} onClick={handleStartRecording} variant="contained" size='small'>{isActive ? "Pause" : "Answer"}</Button> */}
+              {/* {
                 isActive && (
                   <Button my={2} onClick={handleStopRecording} variant="contained" size='small'>Save Answer</Button>
 
                 )
-              }
+              } */}
               <Button my={2} onClick={() => window.location.reload()} variant="contained" size='small'>Retake Answer</Button>
               <Divider my={2}></Divider>
               <Box my={2} sx={{ display: 'flex', justifyContent: 'space-between' }}>
