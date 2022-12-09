@@ -47,9 +47,9 @@ const FormRecording = () => {
                                         ) : (
                                             <video sx={{ width: '100%' }} src={mediaBlobUrl} autoPlay loop height={300} controls />
                                         )}
-                                        <Box mx={2} my={3} sx={{ display: 'flex', justifyContent: 'center' }}>
-                                            <button onClick={startRecording} className="btn btn-outline-light">Start Recording</button>
-                                            <button onClick={stopRecording} className="btn btn-outline-light">Stop Recording</button>
+                                        <Box mx={2} my={3} gap={2} sx={{ display: 'flex', justifyContent: 'center' }}>
+                                            <Button variant="contained" onClick={startRecording} size='small'>Start Recording</Button>
+                                            <Button variant="contained" onClick={stopRecording} size='small'>Stop Recording</Button>
                                         </Box>
                                     </Box>
                                 )}

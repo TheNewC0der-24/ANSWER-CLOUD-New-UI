@@ -23,7 +23,7 @@ const FormConfirm = () => {
                     <Stack p={6}><Typography variant="h4">Was the recording successful?</Typography>
                         <Typography mb={2} variant="h6">Do you see and hear yourself ? When recording for the first time on some devices,
                             there may be problems with video or sound, in which case, repeat the recording.</Typography>
-                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Box gap={2} sx={{ display: 'flex', justifyContent: 'center' }}>
                             <Button mx={3} variant="contained" size='small' onClick={() => navigate('/form/trouble')}>Having Trouble</Button>
                             <Button mx={3} variant="contained" size='small' onClick={() => navigate('/form/recording')}>Re-record</Button>
                         </Box>
