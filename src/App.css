@@ -15,3 +15,8 @@
 .css-1e2bxag-MuiDataGrid-root .MuiDataGrid-cell:focus-within {
     outline: none !important;
 }
+
+video {
+    width: 100%;
+    height: auto;
+}
