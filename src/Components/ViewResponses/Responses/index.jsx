@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Video, ReactAudio } from "reactjs-media";
+// import { Video, ReactAudio } from "reactjs-media";
 
 import {
     Container,
@@ -81,10 +81,10 @@ const Responses = () => {
                                         </DialogTitle>
                                         <DialogContent>
                                             <DialogContentText id="alert-dialog-description">
-                                                <Video
+                                                {/* <Video
                                                     src={video}
                                                     primaryColor="#1976d2"
-                                                />
+                                                /> */}
                                             </DialogContentText>
                                         </DialogContent>
                                         <DialogActions>
@@ -121,10 +121,10 @@ const Responses = () => {
                                         </DialogTitle>
                                         <DialogContent>
                                             <DialogContentText id="alert-dialog-description">
-                                                <ReactAudio
+                                                {/* <ReactAudio
                                                     src={audio}
                                                     poster="/poster.png"
-                                                />
+                                                /> */}
                                             </DialogContentText>
                                         </DialogContent>
                                         <DialogActions>
