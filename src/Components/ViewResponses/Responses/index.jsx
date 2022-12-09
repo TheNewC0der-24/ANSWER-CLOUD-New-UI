@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Video } from "reactjs-media";
+import { Video, ReactAudio } from "reactjs-media";
 
 import {
     Container,
@@ -83,16 +83,14 @@ const Responses = () => {
                                             <DialogContentText id="alert-dialog-description">
                                                 <Video
                                                     src={video}
-                                                    // poster="https://www.example.com/poster.png"
-                                                    primaryColor="red"
-                                                // other props
+                                                    primaryColor="#1976d2"
                                                 />
                                             </DialogContentText>
                                         </DialogContent>
                                         <DialogActions>
-                                            <Button onClick={handleClose}>Disagree</Button>
+                                            {/* <Button onClick={handleClose}>Disagree</Button> */}
                                             <Button onClick={handleClose} autoFocus>
-                                                Agree
+                                                Close
                                             </Button>
                                         </DialogActions>
                                     </Dialog>
@@ -123,13 +121,15 @@ const Responses = () => {
                                         </DialogTitle>
                                         <DialogContent>
                                             <DialogContentText id="alert-dialog-description">
-
+                                                <ReactAudio
+                                                    src={audio}
+                                                    poster="/poster.png"
+                                                />
                                             </DialogContentText>
                                         </DialogContent>
                                         <DialogActions>
-                                            <Button onClick={handleCloseAudio}>Disagree</Button>
                                             <Button onClick={handleCloseAudio} autoFocus>
-                                                Agree
+                                                Close
                                             </Button>
                                         </DialogActions>
                                     </Dialog>
@@ -139,7 +139,8 @@ const Responses = () => {
                         <Grid item xs={12} sm={12} md={6} lg={4}>
                             <Card sx={{ backgroundColor: "#f6f6f6", borderTop: '5px solid #1976d2' }}>
                                 <CardContent>
-                                    <Typography variant="h5">Question-1</Typography>
+                                    <Typography mb={2} variant="h5">Question-1</Typography>
+                                    <Divider />
                                 </CardContent>
                             </Card>
                         </Grid>
