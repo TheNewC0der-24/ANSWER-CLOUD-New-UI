@@ -32,6 +32,7 @@ import SummaryReport from '../Components/Report/SummaryReport';
 import DetailedReport from '../Components/Report/DetailedSummary';
 import ViewResponse from '../Components/ViewResponses/index';
 import Responses from '../Components/ViewResponses/Responses/index';
+import Certificate from '../Components/Certificate';
 
 const Router = () => {
 
@@ -100,6 +101,10 @@ const Router = () => {
         {
             path: "/responses",
             element: <Responses />
+        },
+        {
+            path: "/certificate",
+            element: <Certificate />
         },
         {
             path: "form",
