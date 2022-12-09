@@ -14,7 +14,6 @@ import styles from './Dashboard.module.css';
 
 // Icon
 import { Icon } from "@iconify/react";
-// import { RiNumber1, RiNumber2, RiNumber3, RiNumber4 } from "react-icons/ri";
 
 import Chart from './Chart';
 import ViewInteraction from './ViewInteraction';
@@ -39,7 +38,7 @@ function Dashboard() {
                             <CardActionArea>
                                 <CardContent>
                                     <Avatar sx={{ backgroundColor: "#8BDBE5" }}>
-                                        {/* <RiNumber1 /> */}
+                                        1
                                     </Avatar>
                                     <Typography variant="subtitle1" component="div">
                                         Create interactions via the dashboard and distribute it to your participants.
@@ -53,7 +52,7 @@ function Dashboard() {
                             <CardActionArea>
                                 <CardContent>
                                     <Avatar sx={{ backgroundColor: "#B8ACF6" }}>
-                                        {/* <RiNumber2 /> */}
+                                        2
                                     </Avatar>
                                     <Typography variant="subtitle1" component="div">
                                         Participants engage and complete the interactions as per their convenience.
@@ -67,7 +66,7 @@ function Dashboard() {
                             <CardActionArea>
                                 <CardContent>
                                     <Avatar sx={{ backgroundColor: "#FEC57B" }}>
-                                        {/* <RiNumber3 /> */}
+                                        3
                                     </Avatar>
                                     <Typography variant="subtitle1" component="div">
                                         View scores, reports and certificates of the candidates attempting the virtual interaction.
@@ -81,7 +80,7 @@ function Dashboard() {
                             <CardActionArea>
                                 <CardContent>
                                     <Avatar sx={{ backgroundColor: "#FF9C8F" }}>
-                                        {/* <RiNumber4 /> */}
+                                        4
                                     </Avatar>
                                     <Typography variant="subtitle1" component="div">
                                         Use our library or invite teammates to co-create learning interactions.
