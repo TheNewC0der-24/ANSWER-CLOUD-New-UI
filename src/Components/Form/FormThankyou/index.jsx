@@ -11,26 +11,26 @@ import {
     Typography,
 } from '@mui/material';
 
-import loginImg from '../../../assets/Images/login.svg';
+import thanksImg from '../../../assets/Images/thankForm.svg';
 
 
 const FormThankyou = () => {
     return (
         <>
-            <Container maxWidth="lg">
-                <Card component={Stack} p={2} sx={{ backgroundColor: "#ffc106" }}>
-                    <CardContent sx={{ display: 'flex', flexDirection:'column', justifyContent: 'center', alignItems: 'center' }}>
-                        <Box my={2} sx={{ width: "20%" }}>
-                            <img src={loginImg} alt="login" style={{ width: '100%', height: '100%' }} />
+            <Box p={3} sx={{ display: 'flex', justifyContent: 'center', margin: 'auto' }} maxWidth="lg">
+                <Card sx={{ backgroundColor: "#F7F8F9" }}>
+                    <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <Box my={2}>
+                            <img src={thanksImg} alt="ThankYou" width={200} />
                         </Box>
-                        <Typography variant='h1'>Thank You!</Typography>
-                        <Typography variant='h5'>The interaction is now complete. This will now be analyzed by our AI
+                        <Typography mb={3} align='center' variant='h2'>Thank You!</Typography>
+                        <Typography align='center' variant='h5'>The interaction is now complete. This will now be analyzed by our AI
                             models (and coaches/HR managers, if applicable). You or your administrator will receive a
                             detailed feedback on the same within next 72 hours.</Typography>
-                        <Typography variant='h6'>Now you can close this window!!</Typography>
+                        <Typography mt={3} variant='h6'>Now you can close this window!!</Typography>
                     </CardContent>
                 </Card>
-            </Container>
+            </Box>
 
         </>
     )
