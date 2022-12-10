@@ -21,6 +21,10 @@ video {
     height: auto;
 }
 
+audio {
+    width: 100%;
+}
+
 ._1ceqH ._1Yplu {
     display: none !important;
     margin: 0px 0px !important;
