@@ -20,7 +20,7 @@ import Invitation from '../Components/Form/FormInvitation/index';
 import Start from '../Components/Form/FormStart/index';
 import WelcomeScreen from '../Components/Form/FormWelcome/WelcomeScreen';
 import Work from '../Components/Form/FormWork/Work';
-import FormRecording from '../Components/Form/FormRecording/index';
+import FormCheck from '../Components/Form/FormCheck/index';
 import FormConfirm from '../Components/Form/FormConfirm/index';
 import FormStartScreen from '../Components/Form/FormStartScreen/index';
 import FormTrouble from '../Components/Form/FormTrouble/index';
@@ -132,7 +132,7 @@ const Router = () => {
                 },
                 {
                     path: "check",
-                    element: <FormRecording />
+                    element: <FormCheck />
                 },
                 {
                     path: "confirm",
