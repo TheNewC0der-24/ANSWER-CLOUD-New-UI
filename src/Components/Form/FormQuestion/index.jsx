@@ -113,7 +113,7 @@ const FormQuestion = () => {
                             <Divider my={2}></Divider>
                             <Box my={2} sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <Button variant="contained" size='small'>Back</Button>
-                                <Button onClick={() => navigate('/form/audiorecording')} variant="contained" size='small'>Next</Button>
+                                <Button onClick={() => navigate('/form/audio-question')} variant="contained" size='small'>Next</Button>
                             </Box>
                         </Stack>
                     </CardContent>
@@ -122,7 +122,7 @@ const FormQuestion = () => {
             <Box mb={3} sx={{ display: 'flex' }} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                 <Card my={2} component={Stack} p={1} sx={{ width: '100%' }}>
                     <CardContent sx={{ backgroundColor: "#ffc106" }}>
-                    <Typography variant="h4">Video Context</Typography>
+                        <Typography variant="h4">Video Context</Typography>
                         <video
                             // src={video1}
                             title="YouTube video"
@@ -131,8 +131,8 @@ const FormQuestion = () => {
                         ></video>
                     </CardContent>
                 </Card>
-                <Card my={2} component={Stack} p={1} sx={{ width:'100%' }}>
-                    <CardContent sx={{ backgroundColor: "#ffc106", display: 'flex' , height: '100%'}} direction={{ xs: 'column', sm: 'row', md: "row" }}>
+                <Card my={2} component={Stack} p={1} sx={{ width: '100%' }}>
+                    <CardContent sx={{ backgroundColor: "#ffc106", display: 'flex', height: '100%' }} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                         <Stack sx={{ width: '100%' }} p={6}><Typography variant="h4">Answer Box</Typography>
                             <Typography mb={2} variant="h6">time remaining for this question</Typography><Typography variant="h4">{time.m >= 10 ? time.m : "0" + time.m}&nbsp;:&nbsp;{time.s >= 10 ? time.s : "0" + time.s}</Typography>
                             <Alert severity="error">Answer recording starts after you hit "Answer" button above.</Alert>
