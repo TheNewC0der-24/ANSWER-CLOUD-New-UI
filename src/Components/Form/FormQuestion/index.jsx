@@ -97,7 +97,7 @@ const FormQuestion = () => {
             <Container maxWidth="lg">
                 <Card component={Stack} p={2} sx={{ backgroundColor: "#ffc106" }}>
                     <CardContent sx={{ display: 'flex' }} direction={{ xs: 'column', sm: 'row', md: "row" }}>
-                        <Stack p={2} sx={{ display: "block" }}>
+                        <Stack p={2} sx={{ display: "block", width: '100%' }}>
                             <Typography variant="h6">1/4</Typography>
                             <Typography variant="h6">Tell me about yourself ?</Typography>
                             <Typography mb={2} variant="h6">Hint : Speak about your educational background, skills, experience, etc.</Typography>
@@ -120,7 +120,7 @@ const FormQuestion = () => {
                 </Card>
             </Container>
             <Box mb={3} sx={{ display: 'flex' }} direction={{ xs: 'column', sm: 'row', md: "row" }}>
-                <Card my={2} component={Stack} p={2} sx={{ width: '100%' }}>
+                <Card my={2} component={Stack} p={1} sx={{ width: '100%' }}>
                     <CardContent sx={{ backgroundColor: "#ffc106" }}>
                     <Typography variant="h4">Video Context</Typography>
                         <video
@@ -131,9 +131,9 @@ const FormQuestion = () => {
                         ></video>
                     </CardContent>
                 </Card>
-                <Card my={2} component={Stack} p={2} sx={{ backgroundColor: "#ffc106", width:'100%' }}>
-                    <CardContent sx={{ backgroundColor: "#ffc106", display: 'flex' }} direction={{ xs: 'column', sm: 'row', md: "row" }}>
-                        <Stack p={6}><Typography variant="h4">Answer Box</Typography>
+                <Card my={2} component={Stack} p={1} sx={{ width:'100%' }}>
+                    <CardContent sx={{ backgroundColor: "#ffc106", display: 'flex' , height: '100%'}} direction={{ xs: 'column', sm: 'row', md: "row" }}>
+                        <Stack sx={{ width: '100%' }} p={6}><Typography variant="h4">Answer Box</Typography>
                             <Typography mb={2} variant="h6">time remaining for this question</Typography><Typography variant="h4">{time.m >= 10 ? time.m : "0" + time.m}&nbsp;:&nbsp;{time.s >= 10 ? time.s : "0" + time.s}</Typography>
                             <Alert severity="error">Answer recording starts after you hit "Answer" button above.</Alert>
                             {

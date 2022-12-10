@@ -27,6 +27,7 @@ import FormTrouble from '../Components/Form/FormTrouble/index';
 import FormQuestion from '../Components/Form/FormQuestion/index';
 import FormAudioRecording from '../Components/Form/FormAudioRecording/index';
 import FormMcq from '../Components/Form/FormMcq/index';
+import FormThankyou from '../Components/Form/FormThankyou/index';
 import ViewReport from '../Components/ViewReports';
 import SummaryReport from '../Components/Report/SummaryReport';
 import DetailedReport from '../Components/Report/DetailedSummary';
@@ -156,6 +157,14 @@ const Router = () => {
                 {
                     path: "mcq",
                     element: <FormMcq />
+                },
+                {
+                    path: "mcq",
+                    element: <FormMcq />
+                },
+                {
+                    path: "thankyou",
+                    element: <FormThankyou />
                 },
             ]
         },
