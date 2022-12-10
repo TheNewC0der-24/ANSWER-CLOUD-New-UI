@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Recorder } from "react-voice-recorder";
-// import "react-voice-recorder/dist/index.css";
+import "react-voice-recorder/dist/index.css";
+
+import styles from './Audio.module.css';
 
 import {
-  Container,
   Alert,
+  Grid,
   Card,
   CardContent,
   Box,
   Typography,
   Divider,
   Button,
-  Stack
+  Container
 } from '@mui/material';
 
 const FromAudioRecording = () => {
@@ -34,7 +36,6 @@ const FromAudioRecording = () => {
   });
 
   const handleAudioStop = (data) => {
-    // console.log(data);
     setState({ audioDetails: data });
   };
 
@@ -58,67 +59,79 @@ const FromAudioRecording = () => {
 
   return (
     <>
-      <Container mb={3} maxWidth="lg">
-        <Card component={Stack} p={2} sx={{ backgroundColor: "#ffc106" }}>
-          <CardContent sx={{ display: 'flex' }} direction={{ xs: 'column', sm: 'row', md: "row" }}>
-            <Stack p={2} sx={{ display: "block", width: '100%' }}>
-              <Typography variant="h6">1/4</Typography>
-              <Typography variant="h6">What is Axios ?</Typography>
-              <Typography mb={2} variant="h6">Hint : react library</Typography>
-              <Divider my={2}></Divider>
-              <Button variant="contained" size='small' onClick={() => setActive(!active)}>Answer</Button>
-              <Box my={2} sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Button variant="contained" size='small'>Back</Button>
-                <Button onClick={() => navigate('/form/mcq')} variant="contained" size='small'>Next</Button>
+      <Box p={3} sx={{ display: "flex", justifyContent: "center", margin: "auto" }} maxWidth="lg">
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={12} md={6}>
+            <Card sx={{ backgroundColor: "#F7F8F9" }}>
+              <CardContent>
+                <Typography variant="h4">1/4</Typography>
+                <Typography variant="h6">What is Axios ?</Typography>
+                <Typography mb={2} color='primary' variant="h6">Hint : react library</Typography>
+
+                <Box my={2} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <Button variant="outlined" size='small'>Back</Button>
+                  <Button onClick={() => navigate('/form/mcq')} variant="contained" size='small'>Next</Button>
+                </Box>
+                <Box mb={2}>
+                  <Divider />
+                </Box>
+
+                <Button variant="contained" color='success' size='small' onClick={() => setActive(!active)}>Answer</Button>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+            <Card sx={{ width: '100%', height: '100%', backgroundColor: "#F7F8F9" }}>
+              <CardContent>
+                <Typography mb={5} variant="h4">Audio Context</Typography>
+                <Box p={3} sx={{ backgroundColor: "#1976d2" }}>
+                  <audio className={styles.audio} controls preload="none">
+                    <source
+                      src="https://pwdown.com/10203/Yeh Ishq Hai - Rangoon (Arijit Singh) 320Kbps.mp3"
+                      type="audio/mpeg"
+                    />
+                  </audio>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      </Box>
+
+      <Container maxWidth="lg">
+        <Card sx={{ backgroundColor: "#F7F8F9" }}>
+          <CardContent>
+            <Typography mb={2} variant="h4">Answer Box</Typography>
+            {
+              !active && (
+                <Alert severity="info">Answer recording starts after you hit "Answer" button above.</Alert>
+              )
+            }
+
+            {active && (
+              <Box>
+                <Alert severity="info">
+                  Press the "Microphone" to record your audio
+                </Alert>
+                <Recorder
+                  record={true}
+                  hideHeader
+                  uploadButtonDisabled={true}
+                  clearButtonDisabled={true}
+                  audioURL={state.audioDetails.url}
+                  showUIAudio
+                  handleAudioStop={(data) => handleAudioStop(data)}
+                  handleCountDown={(data) => handleCountDown(data)}
+                  handleReset={() => handleReset()}
+                  mimeTypeToUseWhenRecording={`audio/webm`}
+                />
               </Box>
-            </Stack>
+            )}
           </CardContent>
         </Card>
       </Container>
-      <Box mt={3} sx={{ display: 'flex' }} direction={{ xs: 'column', sm: 'row', md: "row" }}>
-        <Card component={Stack} p={1} sx={{ width: '100%', height: '100%' }}>
-          <CardContent sx={{ backgroundColor: "#ffc106", display: 'flex' }} direction={{ xs: 'column', sm: 'row', md: "row" }}>
-            <Stack p={2} sx={{ display: "block", width: '100%' }}>
-              <Typography variant="h6">Audio Context</Typography>
-              <audio controls preload="none">
-                <source
-                  src="https://pwdown.com/10203/Yeh Ishq Hai - Rangoon (Arijit Singh) 320Kbps.mp3"
-                  type="audio/mpeg"
-                />
-              </audio>
-            </Stack>
-          </CardContent>
-        </Card>
-        <Card component={Stack} p={1} sx={{ width: '100%', height: '100%' }}>
-          <CardContent sx={{ backgroundColor: "#ffc106", display: 'flex' }} direction={{ xs: 'column', sm: 'row', md: "row" }}>
-            <Stack p={2} sx={{ display: "block", width: '100%' }}>
-              <Typography variant="h6">Answer Box</Typography>
-              <Alert severity="error">Answer recording starts after you hit "Answer" button above.</Alert>
-              {active && (
-                <div>
-                  <Recorder
-                    record={true}
-                    hideHeader
-                    uploadButtonDisabled={true}
-                    clearButtonDisabled={true}
-                    audioURL={state.audioDetails.url}
-                    showUIAudio
-                    handleAudioStop={(data) => handleAudioStop(data)}
-                    handleCountDown={(data) => handleCountDown(data)}
-                    handleReset={() => handleReset()}
-                    mimeTypeToUseWhenRecording={`audio/webm`}
-                  />
-                  <Typography align='center' variant="contained">
-                    Press the "Microphone" to record your audio
-                  </Typography>
-                </div>
-              )}
-            </Stack>
-          </CardContent>
-        </Card>
-      </Box>
     </>
   )
 }
 
-export default FromAudioRecording
+export default FromAudioRecording;
