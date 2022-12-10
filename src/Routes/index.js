@@ -131,7 +131,7 @@ const Router = () => {
                     element: <Work />
                 },
                 {
-                    path: "recording",
+                    path: "check",
                     element: <FormRecording />
                 },
                 {
@@ -139,7 +139,7 @@ const Router = () => {
                     element: <FormConfirm />
                 },
                 {
-                    path: "startscreen",
+                    path: "letStart",
                     element: <FormStartScreen />
                 },
                 {
@@ -147,11 +147,11 @@ const Router = () => {
                     element: <FormTrouble />
                 },
                 {
-                    path: "question",
+                    path: "video-question",
                     element: <FormQuestion />
                 },
                 {
-                    path: "audiorecording",
+                    path: "audio-question",
                     element: <FormAudioRecording />
                 },
                 {
