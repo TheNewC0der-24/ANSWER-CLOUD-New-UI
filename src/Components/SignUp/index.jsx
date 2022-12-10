@@ -117,7 +117,7 @@ const SignUp = () => {
 
                         {/********** Logo **********/}
                         <Stack alignItems='center' spacing={1}>
-                            <img src={logo} alt="aCLOUD" width={150} />
+                            <img src={logo} alt="Answer-Cloud" width={150} />
                             <Typography variant='h4' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Register</Typography>
                         </Stack>
 
