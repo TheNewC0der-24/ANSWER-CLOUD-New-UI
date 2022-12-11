@@ -155,7 +155,7 @@ const FormQuestion = () => {
                                     </Box> */}
                                 </Box>
 
-                                <Typography mb={3} variant="h6">Tell me about yourself ?</Typography>
+                                <Typography variant="h6">Tell me about yourself ?</Typography>
 
                                 {
                                     !isActive && (
