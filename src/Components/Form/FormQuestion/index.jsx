@@ -35,16 +35,18 @@ const VideoPreview = ({ stream }) => {
 
 const FormQuestion = () => {
     const [isActive, setIsActive] = useState(false);
-    const [videonotCaptured, setVideoNotCaptured] = useState(true);
-
-    // const [time, setTime] = useState({ s: 0, m: 2 });
-    // const [interv, setInterv] = useState();
+    // const [second, setSecond] = useState("00");
+    // const [minute, setMinute] = useState("00");
+    // const [counter, setCounter] = useState(0);
+    const [videoNotCaptured, setVideoNotCaptured] = useState(true);
 
     const {
         status,
         previewStream,
         startRecording,
         stopRecording,
+        resumeRecording,
+        clearBlobUrl,
         pauseRecording,
         mediaBlobUrl
     } = useReactMediaRecorder({
@@ -55,6 +57,33 @@ const FormQuestion = () => {
 
     const navigate = useNavigate();
 
+    // useEffect(() => {
+    //     let intervalId;
+
+    //     if (isActive) {
+    //         intervalId = setInterval(() => {
+    //             const secondCounter = counter % 60;
+    //             const minuteCounter = Math.floor(counter / 60);
+
+    //             let computedSecond =
+    //                 String(secondCounter).length === 1
+    //                     ? `0${secondCounter}`
+    //                     : secondCounter;
+    //             let computedMinute =
+    //                 String(minuteCounter).length === 1
+    //                     ? `0${minuteCounter}`
+    //                     : minuteCounter;
+
+    //             setSecond(computedSecond);
+    //             setMinute(computedMinute);
+
+    //             setCounter((counter) => counter + 1);
+    //         }, 1000);
+    //     }
+
+    //     return () => clearInterval(intervalId);
+    // }, [isActive, counter]);
+
     const handleStartRecording = () => {
         if (!isActive) {
             startRecording();
@@ -63,38 +92,23 @@ const FormQuestion = () => {
         }
 
         setIsActive(!isActive);
-        // run();
-        // setInterv(setInterval(run, 1000));
-        document.getElementById("instruction").innerHTML = isActive ? "Paused" : "Started";
     }
 
     const handleStopRecording = () => {
         stopRecording();
+        // setCounter(0);
+        // setSecond("00");
+        // setMinute("00");
         setIsActive(isActive);
         setVideoNotCaptured(false);
         pauseRecording();
-        // clearInterval(interv);
-        document.getElementById("instruction").innerHTML = "Saved";
-        document.getElementById("note").innerHTML = "Your answer is Saved";
-        // document.getElementById("instruction").innerHTML = "Stopped";
     }
 
-    // var updatedS = time.s, updatedM = time.m;
-
-    // const run = () => {
-    //     if (updatedM === 0 && updatedS === 0) {
-    //         // stopRecording();
-    //         handleStopRecording();
-    //         document.getElementById("instruction").innerHTML = "Saved";
-    //         return;
-    //     }
-    //     if (updatedS === 0) {
-    //         updatedM--;
-    //         updatedS = 60;
-    //     }
-    //     updatedS--;
-    //     return setTime({ m: updatedM, s: updatedS });
-    // }
+    const handleRetake = () => {
+        clearBlobUrl();
+        setVideoNotCaptured(true);
+        setIsActive(false);
+    }
 
     return (
         <>
@@ -104,24 +118,7 @@ const FormQuestion = () => {
                         <Card sx={{ backgroundColor: "#F7F8F9", marginBottom: "1rem" }}>
                             <CardContent>
                                 <Stack p={1} sx={{ display: "block", width: '100%' }}>
-
-                                    <Typography mb={2} variant="h6" color='primary'>Hint : Speak about your educational background, skills, experience, etc.</Typography>
-                                    <Box mb={1} sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                        <Button my={2} onClick={handleStartRecording} variant="contained" color={isActive ? 'warning' : 'success'} size='small'>{isActive ? "Pause" : "Answer"}</Button>
-                                        {
-                                            isActive && (
-                                                <Box sx={{ display: "flex", gap: "0.5rem" }}>
-                                                    <Button my={2} onClick={() => window.location.reload()} variant="outlined" color='secondary' size='small'>Retake Answer</Button>
-                                                    <Button my={2} onClick={handleStopRecording} variant="contained" color='secondary' size='small'>Save Answer</Button>
-                                                </Box>
-                                            )
-                                        }
-                                    </Box>
-                                    <Divider ></Divider>
-                                    <Box mt={2} sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                        <Button variant="outlined" size='small'>Back</Button>
-                                        <Button onClick={() => navigate('/form/audio-question')} variant="contained" size='small'>Next</Button>
-                                    </Box>
+                                    <Typography variant="h6" color='primary'>Hint : Speak about your educational background, skills, experience, etc.</Typography>
                                 </Stack>
                             </CardContent>
                         </Card>
@@ -151,11 +148,27 @@ const FormQuestion = () => {
                                     <Typography variant="h4">1/4</Typography>
                                     {/* <Box sx={{ display: "flex", gap: "0.5rem" }}>
                                         <Typography variant="subtitle1">time remaining for this question</Typography>
-                                        <Typography variant="subtitle1">{time.m >= 10 ? time.m : "0" + time.m}&nbsp;:&nbsp;{time.s >= 10 ? time.s : "0" + time.s}</Typography>
+                                        <Typography variant="subtitle1">{minute}:{second}</Typography>
                                     </Box> */}
                                 </Box>
 
-                                <Typography variant="h6">Tell me about yourself ?</Typography>
+                                <Typography mb={2} variant="h6">Tell me about yourself ?</Typography>
+                                <Box mb={1} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <Button my={2} onClick={handleStartRecording} variant="contained" color={isActive ? 'warning' : 'success'} size='small'>{isActive ? "Pause" : "Answer"}</Button>
+                                    {
+                                        isActive && (
+                                            <Box sx={{ display: "flex", gap: "0.5rem" }}>
+                                                <Button onClick={handleRetake} variant="outlined" color='secondary' size='small'>Retake Answer</Button>
+                                                <Button onClick={handleStopRecording} variant="contained" color='secondary' size='small'>Save Answer</Button>
+                                            </Box>
+                                        )
+                                    }
+                                </Box>
+                                <Divider ></Divider>
+                                <Box mt={2} mb={2} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <Button variant="outlined" size='small'>Back</Button>
+                                    <Button onClick={() => navigate('/form/audio-question')} variant="contained" size='small'>Next</Button>
+                                </Box>
 
                                 {
                                     !isActive && (
