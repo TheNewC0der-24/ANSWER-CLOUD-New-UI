@@ -35,10 +35,10 @@ const VideoPreview = ({ stream }) => {
 
 const FormQuestion = () => {
     const [isActive, setIsActive] = useState(false);
-    const [videonotcaptured, setVideoNotCaptured] = useState(true);
+    const [videonotCaptured, setVideoNotCaptured] = useState(true);
 
-    const [time, setTime] = useState({ s: 0, m: 2 });
-    const [interv, setInterv] = useState();
+    // const [time, setTime] = useState({ s: 0, m: 2 });
+    // const [interv, setInterv] = useState();
 
     const {
         status,
@@ -166,9 +166,13 @@ const FormQuestion = () => {
                                     isActive && (
                                         <Box>
                                             {status !== "stopped" ? (
-                                                <VideoPreview className={styles.video} stream={previewStream} />
+                                                <Box p={3} sx={{ backgroundColor: "#1976d2" }}>
+                                                    <VideoPreview className={styles.video} stream={previewStream} />
+                                                </Box>
                                             ) : (
-                                                <video className={styles.video} src={mediaBlobUrl} controls />
+                                                <Box p={3} sx={{ backgroundColor: "#1976d2" }}>
+                                                    <video className={styles.video} src={mediaBlobUrl} controls />
+                                                </Box>
                                             )}
                                         </Box>
                                     )
