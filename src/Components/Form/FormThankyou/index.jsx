@@ -1,70 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
 // import styles from './ThankYou.module.css';
 
 import {
     Box,
     Container,
     Card,
-    CardHeader,
     CardContent,
     Grid,
     Stack,
-    InputLabel,
     TextField,
-    // SentimentVeryDissatisfiedIcon,
-    // SentimentDissatisfiedIcon,
-    // SentimentSatisfiedIcon,
-    // SentimentVerySatisfiedIcon,
-    // SentimentSatisfiedAltIcon,
-    // StyledRating,
+    Button,
+    Rating,
     Typography,
 } from '@mui/material';
 
-import { useRef } from 'react';
 import { exportComponentAsPNG } from 'react-component-export-image';
+
 import thanksImg from '../../../assets/Images/thankForm.svg';
-// import confuse from "../../assets/Images/confuse.png"
-// import architect from "../../assets/Images/architect.jpg"
-// import advocate from "../../assets/Images/advocate.jpg"
-// import adventurer from "../../assets/Images/adventurer.jpg"
-// import campaigner from "../../assets/Images/campaigner.jpg"
-// import consul from "../../assets/Images/consul.jpg"
-// import entertainer from "../../assets/Images/entertainer.jpg"
-// import commander from "../../assets/Images/commander.jpg"
-// import logician from "../../assets/Images/logician.jpg"
-// import debater from "../../assets/Images/debater.jpg"
-// import mediater from "../../assets/Images/mediater.jpg"
-// import virtuoso from "../../assets/Images/virtuoso.jpg"
-// import logistician from "../../assets/Images/logistician.jpg"
-// import protagonist from "../../assets/Images/protagonist.jpg"
-// import executive from "../../assets/Images/executive.jpg"
-// import defender from "../../assets/Images/defender.jpg"
-// import debaterentrepreneur from "../../assets/Images/debaterentrepreneur.jpg"
+import architect from "../../../assets/Images/architect.jpg"
+import advocate from "../../../assets/Images/advocate.jpg"
+import adventurer from "../../../assets/Images/adventurer.jpg"
+import campaigner from "../../../assets/Images/campaigner.jpg"
+import consul from "../../../assets/Images/consul.jpg"
+import entertainer from "../../../assets/Images/entertainer.jpg"
+import commander from "../../../assets/Images/commander.jpg"
+import logician from "../../../assets/Images/logician.jpg"
+import debater from "../../../assets/Images/debater.jpg"
+import mediater from "../../../assets/Images/mediater.jpg"
+import virtuoso from "../../../assets/Images/virtuoso.jpg"
+import logistician from "../../../assets/Images/logistician.jpg"
+import protagonist from "../../../assets/Images/protagonist.jpg"
+import executive from "../../../assets/Images/executive.jpg"
+import defender from "../../../assets/Images/defender.jpg"
+import debaterentrepreneur from "../../../assets/Images/debaterentrepreneur.jpg"
 
 const FormThankyou = () => {
-    const navigate = useNavigate();
 
     const [rating, setRating] = useState(0);
-    const [hover, setHover] = useState(undefined);
+
     const [sentence, setSentence] = useState("");
     const [type, setType] = useState("");
-    const [time, setTime] = useState({ s: 59, m: 1 });
     const [image, setImage] = useState("");
-    const [create, setCreate] = useState([]);
-    const [data, setData] = useState([]);
-    const componentref = useRef();
-    const handleClick = (value) => {
-        setRating(value);
-    };
-
-    const handleMouseOver = (value) => {
-        setHover(value);
-    };
-
-    const handleMouseLeave = () => {
-        setHover(undefined);
-    };
 
     const arr = ["Congratulations you displayed a Planner personality type!  These detail-oriented strategists love perfection. Whether it's finding the perfect gift for a loved one or finishing a project at work, they allocate their time and energy to different aspects of their lives. However, their inner world is complex and often private.",
         "Congratulations you displayed a Rationalist personality type!The adaptable and open-minded type achiever has an ambition like no other personality types. They combine a willingness to adapt with creative intelligence, allowing them to see unconventional solutions to common issues.",
@@ -82,12 +58,12 @@ const FormThankyou = () => {
         "Congratulations, you displayed an Explorer personality type! They tend to have an open mindset. They are open-minded about new things, open to opportunities, but approach everything in life without judgement. Their positivity helps to uncover new opportunities and possibilities in the future.",
         "Congratulations you displayed a Tycoon personality type!  This type is creative, energetic, and insightful, often excelling in fields like engineering, geology, and editing. Drawing on powers of observation, they often exhibit curiosity and open-mindedness, making them able to perceive themselves and the world around them accurately.",
         " Congratulations you displayed an  Artist personality type! They long for new experiences.These people are never content with the status quo.They are very energetic, love to have a social life and can attract others into sharing activities."];
-    // eslint-disable-next-line react-hooks/exhaustive-deps
 
-    // const picture = [
-    //     architect, logician, commander, debater, advocate, mediater, protagonist, campaigner, logistician, defender, executive, consul, virtuoso,
-    //     adventurer, debaterentrepreneur, entertainer
-    // ];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const picture = [
+        architect, logician, commander, debater, advocate, mediater, protagonist, campaigner, logistician, defender, executive, consul, virtuoso,
+        adventurer, debaterentrepreneur, entertainer
+    ];
 
     const personality = [
         "Planner", "Rationalist", "Master", "Orator", "Exponent", "Arbitrator", "Supporter", "Crusader", "Signaller", "Protector", "Administrator", "Diplomat", "Genius",
@@ -97,120 +73,77 @@ const FormThankyou = () => {
     const a = Math.floor(Math.random() * 16);
     useEffect(() => {
         setSentence(arr[a]);
-        // setImage(picture[a]);
+        setImage(picture[a]);
         setType(personality[a]);
-    }, arr, personality);
-    // }, arr, picture, personality);
+        // }, arr, personality);
+    }, arr, picture, personality);
 
-    var updatedS = time.s, updatedM = time.m;
 
-    const run = () => {
-        if (updatedM === 0 && updatedS === 0) {
-            return;
-        }
-        if (updatedS === 0) {
-            updatedM--;
-            updatedS = 60;
-        }
-        updatedS--;
-        return setTime({ m: updatedM, s: updatedS });
-    };
-
-    setInterval(run, 1000);
-
-    //     const StyledRating = styled(Rating)(({ theme }) => ({
-    //   '& .MuiRating-iconEmpty .MuiSvgIcon-root': {
-    //     color: theme.palette.action.disabled,
-    //   },
-    // }));
-
-    // const customIcons = {
-    //     1: {
-    //         icon: <SentimentVeryDissatisfiedIcon color="error" />,
-    //         label: 'Very Dissatisfied',
-    //     },
-    //     2: {
-    //         icon: <SentimentDissatisfiedIcon color="error" />,
-    //         label: 'Dissatisfied',
-    //     },
-    //     3: {
-    //         icon: <SentimentSatisfiedIcon color="warning" />,
-    //         label: 'Neutral',
-    //     },
-    //     4: {
-    //         icon: <SentimentSatisfiedAltIcon color="success" />,
-    //         label: 'Satisfied',
-    //     },
-    //     5: {
-    //         icon: <SentimentVerySatisfiedIcon color="success" />,
-    //         label: 'Very Satisfied',
-    //     },
-    // };
-
-    // const IconContainer = (props) => {
-    //     const { value, ...other } = props;
-    //     return <span {...other}>{customIcons[value].icon}</span>;
-    // }
-
+    const cardRef = useRef();
 
     return (
         <>
-            <Box p={3} sx={{ display: 'flex', justifyContent: 'center', margin: 'auto' }} maxWidth="lg">
+            <Container sx={{ marginTop: "2rem" }} maxWidth="md">
                 <Card sx={{ backgroundColor: "#F7F8F9" }}>
                     <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                         <Box my={2}>
                             <img src={thanksImg} alt="ThankYou" width={200} />
                         </Box>
                         <Typography mb={3} align='center' variant='h4'>Great, your interaction is now complete!</Typography>
-                        <Typography color='primary' align='center' paragraph>This will now be analyzed by our AI
+                        <Typography color='red' align='center' paragraph>
+                            This will now be analyzed by our AI
                             models (and coaches/HR managers, if applicable). You or your administrator will receive a
-                            detailed feedback on the same within next 72 hours.</Typography>
-                        <Typography color='red' align='center' paragraph> Every human interaction is an opportunity to learn. It's also an opportunity to demonstrate your skills and
+                            detailed feedback on the same within next 72 hours.
+                        </Typography>
+                        <Typography align='center' paragraph>
+                            Every human interaction is an opportunity to learn. It's also an opportunity to demonstrate your skills and
                             expertise in a specific context and capacity. We view every professional interaction as a high-stakes game - whether you are
                             likely to save money, generate revenue, make a process more efficient or improve your performance. These virtual interactions act
                             as practice sessions where you can test drive real-world interactions. Experts in the world may differ on what skills matter - but
                             they all have a common point of view. Practice is the key to improvement - and specific feedback makes improvement faster.</Typography>
                     </CardContent>
                 </Card>
-            </Box>
-            <Box p={2} mb={2} maxWidth="lg">
-                <Card sx={{ backgroundColor: "#F7F8F9" }}>
-                    <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                                <CardHeader sx={{ backgroundColor: "#1976d2", width: '100%' }} align='center' title={`Congratulations ${localStorage.getItem('Name')}, you are a ${type}`} />
-                                <Grid sm={4} md={4} sx={{ display: 'flex', justifyContent: 'center' }} my={5}>
-                                    <img src={image} sx={{ display: 'flex', justifyContent: 'center' }} alt="personality" />
-                                </Grid>
-                                <Grid sm={8} md={8}>
-                                    <Typography mb={3} align='center' variant='h6'>{sentence}</Typography>
-                                </Grid>
-                                    {/* <div className='card-footer'>
-                                <div className='d-flex justify-content-center mx-auto gap-2'>
-                                <div className='d-grid col-md-6'>
-                                <button type="button" className="btn btn-dark" style={{ backgroundColor: "#282a2d", border: "#282a2d", borderRadius: "0" }} onClick={() => exportComponentAsPNG(componentref)}>Download Card!</button>
-                                    </div>
-                                    <div className='d-grid col-md-6'>
-                                        <button type="button" className="btn btn-dark" data-bs-toggle="modal" data-bs-target="#socialShareModal" style={{ backgroundColor: "#282a2d", border: "#282a2d", borderRadius: "0" }}>Share On Social Media</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> */}
-                                <CardHeader sx={{ backgroundColor: "#1976d2", width: '100%' }} align='center' title={`Congratulations ${localStorage.getItem('Name')}, you are a ${type}`} />
+            </Container>
+
+            <Container sx={{ marginTop: "2rem" }} maxWidth="md">
+                <Card>
+                    <CardContent ref={cardRef} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <Box mb={3} p={2} sx={{ backgroundColor: "#1976d2", width: '100%' }} align='center'>
+                            <Typography color='white' align='center' variant='h5'>{`Congratulations name, you are a ${type}`}</Typography>
+                        </Box>
+                        <Grid container>
+                            <Grid xs={12} sm={12} md={4} sx={{ display: 'flex', margin: 'auto', justifyContent: 'center', alignItems: 'center' }}>
+                                <img src={image} alt="personality" />
+                            </Grid>
+                            <Grid xs={12} sm={12} md={8} p={2} sx={{ margin: "auto", textAlign: { xs: "center", sm: "center", md: "justify", lg: "justify" } }}>
+                                <Typography variant='subtitle1'>{sentence}</Typography>
+                            </Grid>
+                        </Grid>
                     </CardContent>
+                    <Box sx={{ display: "flex", justifyContent: "center", margin: "auto" }}>
+                        <Button sx={{ marginBottom: "1rem" }} onClick={() => exportComponentAsPNG(cardRef)} variant='contained'>
+                            Download
+                        </Button>
+                    </Box>
                 </Card>
-            </Box>
-            <Box p={2} maxWidth="lg">
+            </Container>
+
+            <Container sx={{ marginTop: "2rem" }} maxWidth="md">
                 <Card sx={{ backgroundColor: "#F7F8F9" }}>
-                    <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                        <Typography mb={3} align='center' color='primary' variant='h6'>How was your test taking experience?</Typography>
-                        {/* <StyledRating
-                            name="highlight-selected-only"
-                            defaultValue={2}
-                            IconContainerComponent={IconContainer}
-                            getLabelText={(value) => customIcons[value].label}
-                            highlightSelectedOnly
-                        /> */}
-                        <Stack mb={1} sx={{ width: '100%' }}>
-                            <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Question</InputLabel>
+                    <CardContent>
+                        <Typography mb={3} align='center' variant='h6'>How was your test taking experience?</Typography>
+
+                        <Box sx={{ display: "flex", justifyContent: "center", margin: "auto" }}>
+                            <Rating
+                                name="simple-controlled"
+                                value={rating}
+                                size="large"
+                                onChange={(event, newValue) => {
+                                    setRating(newValue);
+                                }}
+                            />
+                        </Box>
+                        <Stack mt={3} mb={3} sx={{ width: '100%' }}>
                             <TextField
                                 multiline
                                 fullWidth
@@ -220,9 +153,12 @@ const FormThankyou = () => {
                                 placeholder="Your Feedback"
                             />
                         </Stack>
+                        <Box sx={{ display: "flex", justifyContent: "center", margin: "auto" }}>
+                            <Button variant='contained' color='primary'>Submit Feedback</Button>
+                        </Box>
                     </CardContent>
                 </Card>
-            </Box>
+            </Container>
         </>
     )
 }
