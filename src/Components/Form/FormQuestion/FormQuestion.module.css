@@ -9,3 +9,17 @@
 /* .grid {
     transform: translateY(50%);
 } */
+
+.color{
+    background-color: red;
+    animation: animate 2s linear infinite;  
+}
+
+@keyframes animate{
+    0%{
+        color: blue;
+    }
+    100%{
+        color: red;
+    }
+}

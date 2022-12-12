@@ -4,7 +4,10 @@ import { useReactMediaRecorder } from "react-media-recorder";
 
 import {
     Box,
+    Badge,
+    AppBar,
     Alert,
+    Avatar,
     Divider,
     Stack,
     Typography,
@@ -32,6 +35,11 @@ const VideoPreview = ({ stream }) => {
     return <video className={styles.video} ref={videoRef} height={300} autoPlay />;
 };
 
+const shapeStyles = { bgcolor: 'primary.main', width: '40', height: '40' };
+// const shapeCircleStyles = { borderRadius: '50%' };
+const circle = (
+    <Box component="span" sx={{ ...shapeStyles }} />
+);
 
 const FormQuestion = () => {
     const [isActive, setIsActive] = useState(false);
@@ -112,6 +120,15 @@ const FormQuestion = () => {
 
     return (
         <>
+            <AppBar position="static">
+                <Box p={2} sx={{ display: 'flex' }}>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        Photos
+                    </Typography>
+                    {/* <Avatar className={styles.box}></Avatar> */}
+                    <Badge color="secondary" className={styles.color} badgeContent="">{circle}</Badge>
+                </Box>
+            </AppBar>
             <Box p={2}>
                 {/* If all 3 cards */}
                 <Grid container spacing={1}>

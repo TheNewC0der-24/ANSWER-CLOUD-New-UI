@@ -535,99 +535,253 @@ const InternalBot = () => {
                         </Card>
 
                         {/*************** Add Questions ***************/}
-                        <Card component={Stack} p={3} mt={3} spacing={2} elevation={3}>
-                            <CardContent style={style}>
-                                <Typography variant="h4">Add Questions</Typography>
-                                {[...Array(noOfRows)].map((index) => {
-                                    return (
-                                        <Stack key={index} spacing={2} mt={1} direction={{ xs: 'row', sm: 'row', md: "row" }}>
-                                            <Stack mb={1} sx={{ width: '100%' }}>
-                                                <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Question</InputLabel>
+                        {mode === "MCQ" && (
+                            <Card component={Stack} p={3} mt={3} spacing={2} elevation={3}>
+                                <CardContent style={style}>
+                                    <Typography variant="h4">Add Questions</Typography>
+                                    {[...Array(noOfRows)].map((index) => {
+                                        return (
+                                            <Stack key={index} spacing={2} mt={1} direction={{ xs: 'row', sm: 'row', md: "row" }}>
+                                                <Stack mb={1} sx={{ width: '100%' }}>
+                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Question</InputLabel>
+                                                    <TextField
+                                                        error={ques == "" ? false : true}
+                                                        multiline
+                                                        fullWidth
+                                                        onChange={onChange}
+                                                        size='small'
+                                                        maxRows={3}
+                                                        minRows={3}
+                                                        placeholder="Add Question"
+                                                    // {...getFieldProps('questions')}
+                                                    // error={Boolean(touched.questions && errors.questions)}
+                                                    // helperText={touched.questions && errors.questions}
+                                                    />
+                                                </Stack>
+                                                <Stack mb={1} sx={{ width: '100%' }}>
+                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Media Context</InputLabel>
+                                                    <TextField
+                                                        multiline
+                                                        fullWidth
+                                                        size='small'
+                                                        maxRows={3}
+                                                        minRows={3}
+                                                        placeholder="Paste your media link here"
+                                                    // {...getFieldProps('mediaContext')}
+                                                    // error={Boolean(touched.mediaContext && errors.mediaContext)}
+                                                    // helperText={touched.mediaContext && errors.mediaContext}
+                                                    />
+                                                </Stack>
+                                                <Stack mb={1} sx={{ width: '100%' }}>
+                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Hints/Description</InputLabel>
+                                                    <TextField
+                                                        multiline
+                                                        fullWidth
+                                                        size='small'
+                                                        maxRows={3}
+                                                        minRows={3}
+                                                        placeholder="Add Hints/Description"
+                                                    // {...getFieldProps('hints')}
+                                                    // error={Boolean(touched.hints && errors.hints)}
+                                                    // helperText={touched.hints && errors.hints}
+                                                    />
+                                                </Stack>
+                                                <Stack mb={1} sx={{ width: '100%' }}>
+                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Option 1</InputLabel>
+                                                    <TextField
+                                                        multiline
+                                                        fullWidth
+                                                        size='small'
+                                                        maxRows={3}
+                                                        minRows={3}
+                                                        placeholder="Option1"
+                                                    // {...getFieldProps('idealAnswer')}
+                                                    // error={Boolean(touched.idealAnswer && errors.idealAnswer)}
+                                                    // helperText={touched.idealAnswer && errors.idealAnswer}
+                                                    />
+                                                </Stack>
+                                                <Stack mb={1} sx={{ width: '100%' }}>
+                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Option 2</InputLabel>
+                                                    <TextField
+                                                        multiline
+                                                        fullWidth
+                                                        size='small'
+                                                        maxRows={3}
+                                                        minRows={3}
+                                                        placeholder="Option2"
+                                                    // {...getFieldProps('idealAnswer')}
+                                                    // error={Boolean(touched.idealAnswer && errors.idealAnswer)}
+                                                    // helperText={touched.idealAnswer && errors.idealAnswer}
+                                                    />
+                                                </Stack>
+                                                <Stack mb={1} sx={{ width: '100%' }}>
+                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Option 3</InputLabel>
+                                                    <TextField
+                                                        multiline
+                                                        fullWidth
+                                                        size='small'
+                                                        maxRows={3}
+                                                        minRows={3}
+                                                        placeholder="Option3"
+                                                    // {...getFieldProps('idealAnswer')}
+                                                    // error={Boolean(touched.idealAnswer && errors.idealAnswer)}
+                                                    // helperText={touched.idealAnswer && errors.idealAnswer}
+                                                    />
+                                                </Stack>
+                                                <Stack mb={1} sx={{ width: '100%' }}>
+                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Option 4</InputLabel>
+                                                    <TextField
+                                                        multiline
+                                                        fullWidth
+                                                        size='small'
+                                                        maxRows={3}
+                                                        minRows={3}
+                                                        placeholder="Option4"
+                                                    // {...getFieldProps('idealAnswer')}
+                                                    // error={Boolean(touched.idealAnswer && errors.idealAnswer)}
+                                                    // helperText={touched.idealAnswer && errors.idealAnswer}
+                                                    />
+                                                </Stack>
+                                                <Stack mb={1} sx={{ width: '100%' }}>
+                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Right Option</InputLabel>
+                                                    <TextField
+                                                        multiline
+                                                        fullWidth
+                                                        size='small'
+                                                        maxRows={3}
+                                                        minRows={3}
+                                                        placeholder="rightoption"
+                                                    // {...getFieldProps('idealAnswer')}
+                                                    // error={Boolean(touched.idealAnswer && errors.idealAnswer)}
+                                                    // helperText={touched.idealAnswer && errors.idealAnswer}
+                                                    />
+                                                </Stack>
+                                            </Stack>
+                                        )
+                                    }
+                                    )}
+                                </CardContent>
+                                <CardActions sx={{ backgroundColor: "#fafafa" }}>
+                                    <Stack direction="row" sx={{ gap: "0.25rem" }}>
+                                        <Button sx={{ cursor: 'pointer' }} size='small' variant="contained" color='success' onClick={() => setNoOfRows(noOfRows + 1)}>Add</Button>
+                                        <Button sx={{ cursor: 'pointer' }} disabled={noOfRows <= 1} size='small' variant="contained" color='error' onClick={() => setNoOfRows(noOfRows - 1)}>Delete</Button>
+                                    </Stack>
+                                </CardActions>
+                                <CardContent>
+                                    <FormGroup>
+                                        <FormControlLabel control={<Checkbox onClick={handleCheck} />} label="Case-Study/Description Text :" />
+                                    </FormGroup>
+                                    {
+                                        checked && (
+                                            <Stack sx={{ width: '100%' }}>
                                                 <TextField
-                                                    error={ques == "" ? false : true}
                                                     multiline
                                                     fullWidth
-                                                    onChange={onChange}
-                                                    size='small'
-                                                    maxRows={3}
-                                                    minRows={3}
-                                                    placeholder="Add Question"
-                                                // {...getFieldProps('questions')}
-                                                // error={Boolean(touched.questions && errors.questions)}
-                                                // helperText={touched.questions && errors.questions}
+                                                    maxRows={7}
+                                                    minRows={7}
                                                 />
                                             </Stack>
-                                            <Stack mb={1} sx={{ width: '100%' }}>
-                                                <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Media Context</InputLabel>
+                                        )
+                                    }
+                                </CardContent>
+                            </Card>
+                        )}
+
+                        {mode !== "MCQ" && (
+                            <Card component={Stack} p={3} mt={3} spacing={2} elevation={3}>
+                                <CardContent style={style}>
+                                    <Typography variant="h4">Add Questions</Typography>
+                                    {[...Array(noOfRows)].map((index) => {
+                                        return (
+                                            <Stack key={index} spacing={2} mt={1} direction={{ xs: 'row', sm: 'row', md: "row" }}>
+                                                <Stack mb={1} sx={{ width: '100%' }}>
+                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Question</InputLabel>
+                                                    <TextField
+                                                        error={ques == "" ? false : true}
+                                                        multiline
+                                                        fullWidth
+                                                        onChange={onChange}
+                                                        size='small'
+                                                        maxRows={3}
+                                                        minRows={3}
+                                                        placeholder="Add Question"
+                                                    // {...getFieldProps('questions')}
+                                                    // error={Boolean(touched.questions && errors.questions)}
+                                                    // helperText={touched.questions && errors.questions}
+                                                    />
+                                                </Stack>
+                                                <Stack mb={1} sx={{ width: '100%' }}>
+                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Media Context</InputLabel>
+                                                    <TextField
+                                                        multiline
+                                                        fullWidth
+                                                        size='small'
+                                                        maxRows={3}
+                                                        minRows={3}
+                                                        placeholder="Paste your media link here"
+                                                    // {...getFieldProps('mediaContext')}
+                                                    // error={Boolean(touched.mediaContext && errors.mediaContext)}
+                                                    // helperText={touched.mediaContext && errors.mediaContext}
+                                                    />
+                                                </Stack>
+                                                <Stack mb={1} sx={{ width: '100%' }}>
+                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Hints/Description</InputLabel>
+                                                    <TextField
+                                                        multiline
+                                                        fullWidth
+                                                        size='small'
+                                                        maxRows={3}
+                                                        minRows={3}
+                                                        placeholder="Add Hints/Description"
+                                                    // {...getFieldProps('hints')}
+                                                    // error={Boolean(touched.hints && errors.hints)}
+                                                    // helperText={touched.hints && errors.hints}
+                                                    />
+                                                </Stack>
+                                                <Stack mb={1} sx={{ width: '100%' }}>
+                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Ideal Answer</InputLabel>
+                                                    <TextField
+                                                        multiline
+                                                        fullWidth
+                                                        size='small'
+                                                        maxRows={3}
+                                                        minRows={3}
+                                                        placeholder="Add Ideal Answer"
+                                                    // {...getFieldProps('idealAnswer')}
+                                                    // error={Boolean(touched.idealAnswer && errors.idealAnswer)}
+                                                    // helperText={touched.idealAnswer && errors.idealAnswer}
+                                                    />
+                                                </Stack>
+                                            </Stack>
+                                        )
+                                    }
+                                    )}
+                                </CardContent>
+                                <CardActions sx={{ backgroundColor: "#fafafa" }}>
+                                    <Stack direction="row" sx={{ gap: "0.25rem" }}>
+                                        <Button sx={{ cursor: 'pointer' }} size='small' variant="contained" color='success' onClick={() => setNoOfRows(noOfRows + 1)}>Add</Button>
+                                        <Button sx={{ cursor: 'pointer' }} disabled={noOfRows <= 1} size='small' variant="contained" color='error' onClick={() => setNoOfRows(noOfRows - 1)}>Delete</Button>
+                                    </Stack>
+                                </CardActions>
+                                <CardContent>
+                                    <FormGroup>
+                                        <FormControlLabel control={<Checkbox onClick={handleCheck} />} label="Case-Study/Description Text :" />
+                                    </FormGroup>
+                                    {
+                                        checked && (
+                                            <Stack sx={{ width: '100%' }}>
                                                 <TextField
                                                     multiline
                                                     fullWidth
-                                                    size='small'
-                                                    maxRows={3}
-                                                    minRows={3}
-                                                    placeholder="Paste your media link here"
-                                                // {...getFieldProps('mediaContext')}
-                                                // error={Boolean(touched.mediaContext && errors.mediaContext)}
-                                                // helperText={touched.mediaContext && errors.mediaContext}
+                                                    maxRows={7}
+                                                    minRows={7}
                                                 />
                                             </Stack>
-                                            <Stack mb={1} sx={{ width: '100%' }}>
-                                                <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Hints/Description</InputLabel>
-                                                <TextField
-                                                    multiline
-                                                    fullWidth
-                                                    size='small'
-                                                    maxRows={3}
-                                                    minRows={3}
-                                                    placeholder="Add Hints/Description"
-                                                // {...getFieldProps('hints')}
-                                                // error={Boolean(touched.hints && errors.hints)}
-                                                // helperText={touched.hints && errors.hints}
-                                                />
-                                            </Stack>
-                                            <Stack mb={1} sx={{ width: '100%' }}>
-                                                <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Ideal Answer</InputLabel>
-                                                <TextField
-                                                    multiline
-                                                    fullWidth
-                                                    size='small'
-                                                    maxRows={3}
-                                                    minRows={3}
-                                                    placeholder="Add Ideal Answer"
-                                                // {...getFieldProps('idealAnswer')}
-                                                // error={Boolean(touched.idealAnswer && errors.idealAnswer)}
-                                                // helperText={touched.idealAnswer && errors.idealAnswer}
-                                                />
-                                            </Stack>
-                                        </Stack>
-                                    )
-                                }
-                                )}
-                            </CardContent>
-                            <CardActions sx={{ backgroundColor: "#fafafa" }}>
-                                <Stack direction="row" sx={{ gap: "0.25rem" }}>
-                                    <Button sx={{ cursor: 'pointer' }} size='small' variant="contained" color='success' onClick={() => setNoOfRows(noOfRows + 1)}>Add</Button>
-                                    <Button sx={{ cursor: 'pointer' }} disabled={noOfRows <= 1} size='small' variant="contained" color='error' onClick={() => setNoOfRows(noOfRows - 1)}>Delete</Button>
-                                </Stack>
-                            </CardActions>
-                            <CardContent>
-                                <FormGroup>
-                                    <FormControlLabel control={<Checkbox onClick={handleCheck} />} label="Case-Study/Description Text :" />
-                                </FormGroup>
-                                {
-                                    checked && (
-                                        <Stack sx={{ width: '100%' }}>
-                                            <TextField
-                                                multiline
-                                                fullWidth
-                                                maxRows={7}
-                                                minRows={7}
-                                            />
-                                        </Stack>
-                                    )
-                                }
-                            </CardContent>
-                        </Card>
+                                        )
+                                    }
+                                </CardContent>
+                            </Card>
+                        )}
 
 
                         {/*************** Add Skills ***************/}
