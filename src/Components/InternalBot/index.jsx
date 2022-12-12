@@ -76,9 +76,9 @@ const InternalBot = () => {
         description: Yup.string().required('Description is required'),
         generalFeedback: Yup.string().min(400, 'Too Short!').max(615, 'Too Long!').required('Minimum 400 and Maximum 615 characters required'),
         questions: Yup.string().required('This is required'),
-        mediaContext: Yup.string().required('This is required'),
-        hints: Yup.string().required('This is required'),
-        idealAnswer: Yup.string().required('This is required'),
+        // mediaContext: Yup.string().required('This is required'),
+        // hints: Yup.string().required('This is required'),
+        // idealAnswer: Yup.string().required('This is required'),
         // skills: Yup.array().min(1).required('Skills are required')
         skills: Yup.string().required('Select Skill Format')
     });
@@ -97,9 +97,9 @@ const InternalBot = () => {
             description: '',
             generalFeedback: '',
             questions: '',
-            mediaContext: '',
-            hints: '',
-            idealAnswer: '',
+            // mediaContext: '',
+            // hints: '',
+            // idealAnswer: '',
             skills: ''
         },
         validationSchema: internalBotSchema,
@@ -566,9 +566,9 @@ const InternalBot = () => {
                                                     maxRows={3}
                                                     minRows={3}
                                                     placeholder="Paste your media link here"
-                                                    {...getFieldProps('mediaContext')}
-                                                    error={Boolean(touched.mediaContext && errors.mediaContext)}
-                                                    helperText={touched.mediaContext && errors.mediaContext}
+                                                // {...getFieldProps('mediaContext')}
+                                                // error={Boolean(touched.mediaContext && errors.mediaContext)}
+                                                // helperText={touched.mediaContext && errors.mediaContext}
                                                 />
                                             </Stack>
                                             <Stack mb={1} sx={{ width: '100%' }}>
@@ -580,9 +580,9 @@ const InternalBot = () => {
                                                     maxRows={3}
                                                     minRows={3}
                                                     placeholder="Add Hints/Description"
-                                                    {...getFieldProps('hints')}
-                                                    error={Boolean(touched.hints && errors.hints)}
-                                                    helperText={touched.hints && errors.hints}
+                                                // {...getFieldProps('hints')}
+                                                // error={Boolean(touched.hints && errors.hints)}
+                                                // helperText={touched.hints && errors.hints}
                                                 />
                                             </Stack>
                                             <Stack mb={1} sx={{ width: '100%' }}>
@@ -594,9 +594,9 @@ const InternalBot = () => {
                                                     maxRows={3}
                                                     minRows={3}
                                                     placeholder="Add Ideal Answer"
-                                                    {...getFieldProps('idealAnswer')}
-                                                    error={Boolean(touched.idealAnswer && errors.idealAnswer)}
-                                                    helperText={touched.idealAnswer && errors.idealAnswer}
+                                                // {...getFieldProps('idealAnswer')}
+                                                // error={Boolean(touched.idealAnswer && errors.idealAnswer)}
+                                                // helperText={touched.idealAnswer && errors.idealAnswer}
                                                 />
                                             </Stack>
                                         </Stack>
