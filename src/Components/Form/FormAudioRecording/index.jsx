@@ -9,6 +9,8 @@ import {
   Alert,
   Grid,
   Card,
+  AppBar,
+  Badge,
   CardContent,
   Box,
   Typography,
@@ -16,6 +18,12 @@ import {
   Button,
   Container
 } from '@mui/material';
+
+const shapeStyles = { bgcolor: 'primary.main', width: '40', height: '40' };
+// const shapeCircleStyles = { borderRadius: '50%' };
+const circle = (
+  <Box component="span" sx={{ ...shapeStyles }} />
+);
 
 const FromAudioRecording = () => {
   const navigate = useNavigate();
@@ -59,6 +67,14 @@ const FromAudioRecording = () => {
 
   return (
     <>
+      <AppBar position="static">
+        <Box p={2} sx={{ display: 'flex' }}>
+          <Typography color='white' variant="h5">
+            Live Session
+          </Typography>
+          <Badge color='error' className={styles.color} badgeContent="">{circle}</Badge>
+        </Box>
+      </AppBar>
       <Box p={3} sx={{ display: "flex", justifyContent: "center", margin: "auto" }} maxWidth="lg">
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={6}>

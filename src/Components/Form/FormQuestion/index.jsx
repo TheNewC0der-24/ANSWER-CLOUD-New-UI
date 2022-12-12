@@ -122,11 +122,10 @@ const FormQuestion = () => {
         <>
             <AppBar position="static">
                 <Box p={2} sx={{ display: 'flex' }}>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Photos
+                    <Typography color='white' variant="h5">
+                        Live Session
                     </Typography>
-                    {/* <Avatar className={styles.box}></Avatar> */}
-                    <Badge color="secondary" className={styles.color} badgeContent="">{circle}</Badge>
+                    <Badge color='error' className={styles.color} badgeContent="">{circle}</Badge>
                 </Box>
             </AppBar>
             <Box p={2}>

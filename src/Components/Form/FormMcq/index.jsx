@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 
+import styles from './FormMcq.module.css';
+
 import {
   Container,
   Grid,
@@ -10,6 +12,8 @@ import {
   Radio,
   RadioGroup,
   Card,
+  Badge,
+  AppBar,
   CardContent,
   Box,
   Typography,
@@ -18,6 +22,11 @@ import {
   Stack
 } from '@mui/material';
 
+const shapeStyles = { bgcolor: 'primary.main', width: '40', height: '40' };
+// const shapeCircleStyles = { borderRadius: '50%' };
+const circle = (
+  <Box component="span" sx={{ ...shapeStyles }} />
+);
 
 const FormMcq = () => {
 
@@ -25,6 +34,14 @@ const FormMcq = () => {
 
   return (
     <>
+      <AppBar position="static">
+        <Box p={2} sx={{ display: 'flex' }}>
+          <Typography color='white' variant="h5">
+            Live Session
+          </Typography>
+          <Badge color='error' className={styles.color} badgeContent="">{circle}</Badge>
+        </Box>
+      </AppBar>
       <Box p={3} sx={{ display: "flex", justifyContent: "center", margin: "auto" }} maxWidth="lg">
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={6}>

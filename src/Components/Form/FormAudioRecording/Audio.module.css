@@ -1,3 +1,14 @@
 .audio {
     width: 100%;
 }
+
+.color {
+    background-color: red !important;
+    animation: animate 1s step-start infinite;
+}
+
+@keyframes animate {
+    50% {
+        opacity: 0;
+    }
+}
