@@ -102,10 +102,10 @@ const FromAudioRecording = () => {
         <Card sx={{ backgroundColor: "#F7F8F9" }}>
           <CardContent>
             <Typography mb={2} variant="h4">Answer Box</Typography>
-            <Box p={1} mb={3} sx={{ border: "2px solid #000" }}>
-              <Typography mb={2} variant="h5">Description</Typography>
+            {/* <Box p={1} mb={3} sx={{ border: "2px solid #000" }}> */}
+            <Typography mb={2} variant="h5">Description</Typography>
 
-            </Box>
+            {/* </Box> */}
             {
               !active && (
                 <Alert severity="info">Answer recording starts after you hit "Answer" button above.</Alert>
