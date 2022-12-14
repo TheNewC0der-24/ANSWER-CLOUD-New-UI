@@ -24,6 +24,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import GradingIcon from '@mui/icons-material/Grading';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
 // Styles
 import { makeStyles } from '@mui/styles';
@@ -66,6 +67,11 @@ function Sidebar({ handleDrawerToggle, mobileOpen }) {
       label: 'Library',
       icon: <LocalLibraryIcon />,
       link: '/account/library'
+    },
+    {
+      label: 'Q & A Generator',
+      icon: <AppRegistrationIcon />,
+      link: '/account/playground'
     },
     {
       label: 'Teams',

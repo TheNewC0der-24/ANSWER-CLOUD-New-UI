@@ -34,6 +34,7 @@ import DetailedReport from '../Components/Report/DetailedSummary';
 import ViewResponse from '../Components/ViewResponses/index';
 import Responses from '../Components/ViewResponses/Responses/index';
 import Certificate from '../Components/Certificate';
+import QAGenerator from '../Components/Q&AGenerator';
 
 const Router = () => {
 
@@ -77,6 +78,7 @@ const Router = () => {
                 { path: "internal-bot", element: <InternalBot /> },
                 { path: "external-bot", element: <ExternalBot /> },
                 { path: "library", element: <Library /> },
+                { path: "playground", element: <QAGenerator /> },
                 { path: "teams", element: <Team /> },
                 { path: "profile", element: <Profile /> },
                 { path: "view-reports", element: <ViewReport /> },
