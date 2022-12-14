@@ -34,7 +34,7 @@ import executive from "../../../assets/Images/executive.jpg"
 import defender from "../../../assets/Images/defender.jpg"
 import debaterentrepreneur from "../../../assets/Images/debaterentrepreneur.jpg"
 
-const FormThankyou = () => {
+const FormThankyou = (props) => {
 
     const [rating, setRating] = useState(0);
 
@@ -81,6 +81,29 @@ const FormThankyou = () => {
 
     const cardRef = useRef();
 
+    const { initialMinute = 5, initialSeconds = 0 } = props;
+    const [minutes, setMinutes] = useState(initialMinute);
+    const [seconds, setSeconds] = useState(initialSeconds);
+
+    useEffect(() => {
+        let myInterval = setInterval(() => {
+            if (seconds > 0) {
+                setSeconds(seconds - 1);
+            }
+            if (seconds === 0) {
+                if (minutes === 0) {
+                    clearInterval(myInterval)
+                } else {
+                    setMinutes(minutes - 1);
+                    setSeconds(59);
+                }
+            }
+        }, 1000)
+        return () => {
+            clearInterval(myInterval);
+        };
+    });
+
     return (
         <>
             <Container sx={{ marginTop: "2rem" }} maxWidth="md">
@@ -100,7 +123,17 @@ const FormThankyou = () => {
                             expertise in a specific context and capacity. We view every professional interaction as a high-stakes game - whether you are
                             likely to save money, generate revenue, make a process more efficient or improve your performance. These virtual interactions act
                             as practice sessions where you can test drive real-world interactions. Experts in the world may differ on what skills matter - but
-                            they all have a common point of view. Practice is the key to improvement - and specific feedback makes improvement faster.</Typography>
+                            they all have a common point of view. Practice is the key to improvement - and specific feedback makes improvement faster.
+                        </Typography>
+
+                        <Box mb={2} sx={{ display: "flex", justifyContent: "center" }}>
+                            <Button variant='contained' disabled={seconds === 0 ? false : true}>View Your Response & Answers</Button>
+                        </Box>
+                        {
+                            minutes === 0 && seconds === 0
+                                ? null
+                                : <Typography color='error' variant='body2'>Available in {minutes}:{seconds < 10 ? `0${seconds}` : seconds} seconds</Typography>
+                        }
                     </CardContent>
                 </Card>
             </Container>
