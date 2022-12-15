@@ -43,9 +43,9 @@ const circle = (
 
 const FormQuestion = () => {
     const [isActive, setIsActive] = useState(false);
-    // const [second, setSecond] = useState("00");
-    // const [minute, setMinute] = useState("00");
-    // const [counter, setCounter] = useState(0);
+    const [second, setSecond] = useState("00");
+    const [minute, setMinute] = useState("00");
+    const [counter, setCounter] = useState(0);
     const [videoNotCaptured, setVideoNotCaptured] = useState(true);
 
     const {
@@ -65,32 +65,32 @@ const FormQuestion = () => {
 
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     let intervalId;
+    useEffect(() => {
+        let intervalId;
 
-    //     if (isActive) {
-    //         intervalId = setInterval(() => {
-    //             const secondCounter = counter % 60;
-    //             const minuteCounter = Math.floor(counter / 60);
+        if (isActive) {
+            intervalId = setInterval(() => {
+                const secondCounter = counter % 60;
+                const minuteCounter = Math.floor(counter / 60);
 
-    //             let computedSecond =
-    //                 String(secondCounter).length === 1
-    //                     ? `0${secondCounter}`
-    //                     : secondCounter;
-    //             let computedMinute =
-    //                 String(minuteCounter).length === 1
-    //                     ? `0${minuteCounter}`
-    //                     : minuteCounter;
+                let computedSecond =
+                    String(secondCounter).length === 1
+                        ? `0${secondCounter}`
+                        : secondCounter;
+                let computedMinute =
+                    String(minuteCounter).length === 1
+                        ? `0${minuteCounter}`
+                        : minuteCounter;
 
-    //             setSecond(computedSecond);
-    //             setMinute(computedMinute);
+                setSecond(computedSecond);
+                setMinute(computedMinute);
 
-    //             setCounter((counter) => counter + 1);
-    //         }, 1000);
-    //     }
+                setCounter((counter) => counter + 1);
+            }, 1000);
+        }
 
-    //     return () => clearInterval(intervalId);
-    // }, [isActive, counter]);
+        return () => clearInterval(intervalId);
+    }, [isActive, counter]);
 
     const handleStartRecording = () => {
         if (!isActive) {
@@ -104,9 +104,9 @@ const FormQuestion = () => {
 
     const handleStopRecording = () => {
         stopRecording();
-        // setCounter(0);
-        // setSecond("00");
-        // setMinute("00");
+        setCounter(0);
+        setSecond("00");
+        setMinute("00");
         setIsActive(isActive);
         setVideoNotCaptured(false);
         pauseRecording();
@@ -199,10 +199,10 @@ const FormQuestion = () => {
                         <CardContent>
                             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                                 <Typography variant="h4">1/4</Typography>
-                                {/* <Box sx={{ display: "flex", gap: "0.5rem" }}>
-                                        <Typography variant="subtitle1">time remaining for this question</Typography>
-                                        <Typography variant="subtitle1">{minute}:{second}</Typography>
-                                    </Box> */}
+                                <Box sx={{ display: "flex", gap: "0.5rem" }}>
+                                    <Typography variant="subtitle1">time remaining for this question</Typography>
+                                    <Typography variant="subtitle1">{minute}:{second}</Typography>
+                                </Box>
                             </Box>
 
                             <Typography mb={2} variant="h6">Tell me about yourself ?</Typography>
