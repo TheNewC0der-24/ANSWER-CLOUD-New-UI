@@ -49,19 +49,11 @@ const InternalBot = () => {
     const [timer, setTimer] = useState('');
     const [mode, setMode] = useState('');
     const [certificate, setCertificate] = useState(false);
+    const [reportSent, setReportSent] = useState(false);
     const [name, setName] = useState(false);
     const [noOfRows, setNoOfRows] = useState(1);
-    const [ques, setQues] = useState(false);
     const [skills, setSkills] = useState('');
 
-    const onChange = (event) => {
-        if (event.target.value == "") {
-            setQues(true);
-        }
-        else {
-            setQues(false);
-        }
-    }
 
     const internalBotSchema = Yup.object().shape({
         companyName: Yup.string().min(2).required('It must be least 2 characters'),
@@ -71,7 +63,7 @@ const InternalBot = () => {
         interactionMode: Yup.string().required('Select Interaction Mode'),
         accessCode: Yup.string().min(6, 'Too Short!').max(6, 'Too Long!').required('Access must be of exactly 6 numbers'),
         expiryDate: Yup.string().required('Expiry Date is required'),
-        emailOne: Yup.string().email('Invalid email').required('Email is required'),
+        emailOne: Yup.string().email('Invalid email'),
         timer: Yup.string().required('Select Timer'),
         description: Yup.string().required('Description is required'),
         generalFeedback: Yup.string().min(400, 'Too Short!').max(615, 'Too Long!').required('Minimum 400 and Maximum 615 characters required'),
@@ -126,7 +118,7 @@ const InternalBot = () => {
         setSkills(event.target.value);
     };
 
-    const handleClick = (event) => {
+    const handleCertificateName = (event) => {
         if (event.target.value === "No") {
             setCertificate(false);
         }
@@ -135,7 +127,7 @@ const InternalBot = () => {
         }
     };
 
-    const handleClicks = (event) => {
+    const handleCoachName = (event) => {
         if (event.target.value === "No") {
             setName(false);
         }
@@ -143,6 +135,15 @@ const InternalBot = () => {
             setName(true);
         }
     };
+
+    const handleReportSent = (event) => {
+        if (event.target.value === "No") {
+            setReportSent(false);
+        }
+        else {
+            setReportSent(true);
+        }
+    }
 
     const [checked, setChecked] = useState(false);
 
@@ -318,18 +319,6 @@ const InternalBot = () => {
                                             helperText={touched.interactionTitle && errors.interactionTitle}
                                         />
                                     </Stack>
-                                    <Stack sx={{ width: '100%' }}>
-                                        <TextField
-                                            fullWidth
-                                            size='small'
-                                            label="Test Id"
-                                            required
-                                            type='number'
-                                            {...getFieldProps('testId')}
-                                            error={Boolean(touched.testId && errors.testId)}
-                                            helperText={touched.testId && errors.testId}
-                                        />
-                                    </Stack>
                                 </Stack>
                                 <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                                     <Stack sx={{ width: '100%' }}>
@@ -372,6 +361,18 @@ const InternalBot = () => {
                                         <TextField
                                             fullWidth
                                             size='small'
+                                            label="Test Id"
+                                            required
+                                            type='number'
+                                            {...getFieldProps('testId')}
+                                            error={Boolean(touched.testId && errors.testId)}
+                                            helperText={touched.testId && errors.testId}
+                                        />
+                                    </Stack>
+                                    <Stack sx={{ width: '100%' }}>
+                                        <TextField
+                                            fullWidth
+                                            size='small'
                                             label="Access Code"
                                             required
                                             type='number'
@@ -380,6 +381,8 @@ const InternalBot = () => {
                                             helperText={touched.accessCode && errors.accessCode}
                                         />
                                     </Stack>
+                                </Stack>
+                                <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                                     <Stack sx={{ width: '100%' }}>
                                         <DatePicker
                                             inputFormat='dd/MM/yyyy'
@@ -397,20 +400,6 @@ const InternalBot = () => {
                                                 />
                                             )}
                                         ></DatePicker>
-                                    </Stack>
-                                </Stack>
-                                <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
-                                    <Stack sx={{ width: '100%' }}>
-                                        <TextField
-                                            fullWidth
-                                            size='small'
-                                            label="Report send to Email"
-                                            required
-                                            type='email'
-                                            {...getFieldProps('emailOne')}
-                                            error={Boolean(touched.emailOne && errors.emailOne)}
-                                            helperText={touched.emailOne && errors.emailOne}
-                                        />
                                     </Stack>
                                     <Stack sx={{ width: '100%' }}>
                                         <TextField
@@ -439,7 +428,7 @@ const InternalBot = () => {
                                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                                 defaultValue="No"
                                                 name="row-radio-buttons-group"
-                                                onClick={handleClick}
+                                                onClick={handleCertificateName}
                                             >
                                                 <FormControlLabel value="No" control={<Radio />} label="No" />
                                                 <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
@@ -463,13 +452,13 @@ const InternalBot = () => {
                                     </Stack>
                                     <Stack sx={{ width: '100%' }}>
                                         <FormControl>
-                                            <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Mentor Name(in Report)</FormLabel>
+                                            <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Coach Name(in Report)</FormLabel>
                                             <RadioGroup
                                                 row
                                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                                 defaultValue="No"
                                                 name="row-radio-buttons-group"
-                                                onClick={handleClicks}
+                                                onClick={handleCoachName}
                                             >
                                                 <FormControlLabel value="No" control={<Radio />} label="No" />
                                                 <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
@@ -480,7 +469,7 @@ const InternalBot = () => {
                                             <TextField
                                                 fullWidth
                                                 size='small'
-                                                label="Mentor name"
+                                                label="Coach name"
                                                 required
                                                 type='text'
                                             />
@@ -494,16 +483,33 @@ const InternalBot = () => {
                                                 aria-labelledby="demo-row-radio-buttons-group-label"
                                                 defaultValue="No"
                                                 name="row-radio-buttons-group"
+                                                onClick={handleReportSent}
                                             >
                                                 <FormControlLabel value="No" control={<Radio />} label="No" />
                                                 <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
                                             </RadioGroup>
                                         </FormControl>
+                                        {
+                                            reportSent && (
+                                                <Box>
+                                                    <TextField
+                                                        fullWidth
+                                                        size='small'
+                                                        label="Report send to Email"
+                                                        required
+                                                        type='email'
+                                                        {...getFieldProps('emailOne')}
+                                                        error={Boolean(touched.emailOne && errors.emailOne)}
+                                                        helperText={touched.emailOne && errors.emailOne}
+                                                    />
+                                                </Box>
+                                            )
+                                        }
                                     </Stack>
                                 </Stack>
                                 <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                                     <Stack sx={{ width: '100%' }}>
-                                        <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Your description *</InputLabel>
+                                        <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Interaction Objective *</InputLabel>
                                         <TextField
                                             fullWidth
                                             multiline
@@ -545,10 +551,8 @@ const InternalBot = () => {
                                                 <Stack mb={1} sx={{ width: '100%' }}>
                                                     <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Question</InputLabel>
                                                     <TextField
-                                                        error={ques == "" ? false : true}
                                                         multiline
                                                         fullWidth
-                                                        onChange={onChange}
                                                         size='small'
                                                         maxRows={3}
                                                         minRows={3}
@@ -573,14 +577,14 @@ const InternalBot = () => {
                                                     />
                                                 </Stack>
                                                 <Stack mb={1} sx={{ width: '100%' }}>
-                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Hints/Description</InputLabel>
+                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Hints</InputLabel>
                                                     <TextField
                                                         multiline
                                                         fullWidth
                                                         size='small'
                                                         maxRows={3}
                                                         minRows={3}
-                                                        placeholder="Add Hints/Description"
+                                                        placeholder="Add Hints"
                                                     // {...getFieldProps('hints')}
                                                     // error={Boolean(touched.hints && errors.hints)}
                                                     // helperText={touched.hints && errors.hints}
@@ -669,7 +673,7 @@ const InternalBot = () => {
                                 </CardActions>
                                 <CardContent>
                                     <FormGroup>
-                                        <FormControlLabel control={<Checkbox onClick={handleCheck} />} label="Case-Study/Description Text :" />
+                                        <FormControlLabel control={<Checkbox onClick={handleCheck} />} label="Case-Study:" />
                                     </FormGroup>
                                     {
                                         checked && (
@@ -697,10 +701,8 @@ const InternalBot = () => {
                                                 <Stack mb={1} sx={{ width: '100%' }}>
                                                     <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Question</InputLabel>
                                                     <TextField
-                                                        error={ques == "" ? false : true}
                                                         multiline
                                                         fullWidth
-                                                        onChange={onChange}
                                                         size='small'
                                                         maxRows={3}
                                                         minRows={3}
@@ -725,14 +727,14 @@ const InternalBot = () => {
                                                     />
                                                 </Stack>
                                                 <Stack mb={1} sx={{ width: '100%' }}>
-                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Hints/Description</InputLabel>
+                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Hints</InputLabel>
                                                     <TextField
                                                         multiline
                                                         fullWidth
                                                         size='small'
                                                         maxRows={3}
                                                         minRows={3}
-                                                        placeholder="Add Hints/Description"
+                                                        placeholder="Add Hints"
                                                     // {...getFieldProps('hints')}
                                                     // error={Boolean(touched.hints && errors.hints)}
                                                     // helperText={touched.hints && errors.hints}
@@ -765,7 +767,7 @@ const InternalBot = () => {
                                 </CardActions>
                                 <CardContent>
                                     <FormGroup>
-                                        <FormControlLabel control={<Checkbox onClick={handleCheck} />} label="Case-Study/Description Text :" />
+                                        <FormControlLabel control={<Checkbox onClick={handleCheck} />} label="Case-Study:" />
                                     </FormGroup>
                                     {
                                         checked && (
@@ -787,7 +789,7 @@ const InternalBot = () => {
                         {/*************** Add Skills ***************/}
                         <Card component={Stack} p={3} mt={3} spacing={2} elevation={3}>
                             <CardContent>
-                                <Typography mb={3} variant="h4">Add Skill Format</Typography>
+                                <Typography mb={3} variant="h4">Skill Format</Typography>
                                 <Stack sx={{ width: '100%' }}>
                                     {/* <Autocomplete
                                         multiple
