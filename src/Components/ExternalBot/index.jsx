@@ -210,7 +210,7 @@ const ExternalBot = () => {
                                             <FormControlLabel disabled control={<Checkbox />} label="Telegram" />
                                             <FormControlLabel disabled control={<Checkbox />} label="Whatsapp" />
                                             <FormControlLabel disabled control={<Checkbox />} label="Slack" />
-                                            <FormControlLabel control={<Checkbox defaultChecked />} label="Form" />
+                                            <FormControlLabel disabled control={<Checkbox defaultChecked />} label="Form" />
                                         </FormGroup>
                                     </Stack>
                                     <Stack sx={{ width: '100%' }}>
@@ -326,6 +326,7 @@ const ExternalBot = () => {
                         </Grid>
                         <Box mt={3} display="flex" justifyContent="center" sx={{ gap: "0.5rem" }}>
                             <Button
+                                fullWidth
                                 disabled={
                                     errors.initiate ||
                                         errors.phoneNumberList ||
@@ -341,13 +342,6 @@ const ExternalBot = () => {
                                 onClick={handleSubmitExternalBot}
                             >
                                 Submit
-                            </Button>
-                            <Button
-                                color="warning"
-                                variant='contained'
-                                onClick={() => navigate('/account/internal-bot')}
-                            >
-                                Go to Internal Bot
                             </Button>
                         </Box>
                     </Paper>
