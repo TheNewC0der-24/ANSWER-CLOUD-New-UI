@@ -161,10 +161,6 @@ const Router = () => {
                     element: <FormMcq />
                 },
                 {
-                    path: "mcq",
-                    element: <FormMcq />
-                },
-                {
                     path: "thankyou",
                     element: <FormThankyou />
                 },
