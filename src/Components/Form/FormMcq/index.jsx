@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import styles from './FormMcq.module.css';
 
 import {
-  Container,
   Grid,
   FormControl,
   FormLabel,
@@ -17,9 +16,7 @@ import {
   CardContent,
   Box,
   Typography,
-  Divider,
   Button,
-  Stack
 } from '@mui/material';
 
 const shapeStyles = { bgcolor: 'primary.main', width: '40', height: '40' };
@@ -35,11 +32,16 @@ const FormMcq = () => {
   return (
     <>
       <AppBar position="static">
-        <Box p={2} sx={{ display: 'flex' }}>
-          <Typography color='white' variant="h5">
-            Live Session
-          </Typography>
-          <Badge color='error' className={styles.color} badgeContent="">{circle}</Badge>
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box p={2} sx={{ display: 'flex' }}>
+            <Typography color='white' variant="h5">
+              Live Session
+            </Typography>
+            <Badge color='error' className={styles.color} badgeContent="">{circle}</Badge>
+          </Box>
+          <Box p={1} sx={{ display: "flex", gap: "0.5rem", alignItems: "center", marginRight: "1rem", bgcolor: "white" }}>
+            <Typography color='primary' variant="h4">00:00</Typography>
+          </Box>
         </Box>
       </AppBar>
       <Box p={3} sx={{ display: "flex", justifyContent: "center", margin: "auto" }} maxWidth="lg">
