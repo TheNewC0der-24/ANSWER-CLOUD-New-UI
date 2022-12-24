@@ -8,6 +8,7 @@ import {
     Divider,
     Card,
     CardContent,
+    IconButton,
     Button,
 } from '@mui/material';
 
@@ -15,6 +16,7 @@ import { DataGrid } from '@mui/x-data-grid';
 
 // Icon
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 import LoadAnimation from '../LoadAnimation/index';
 import { message } from 'antd';
@@ -38,7 +40,7 @@ const Library = () => {
     }
 
     const handleReplicate = () => {
-        message.success('Cloned Successfully!!');
+        message.success('Interaction move to your Workspace Successfully!!');
     }
 
     const columns = [
@@ -46,35 +48,35 @@ const Library = () => {
         { field: 'interactionTitle', headerName: 'Interaction Title', width: 200 },
         { field: 'trackDomain', headerName: 'Track / Domain', width: 150 },
         { field: 'interactionMode', headerName: 'Interaction Mode', width: 150 },
-        { field: 'questions', headerName: 'Questions', type: "number", width: 150 },
+        // { field: 'questions', headerName: 'Questions', type: "number", width: 150 },
         {
-            field: 'responses', headerName: 'Responses', width: 120,
+            field: 'viewInteractions', headerName: 'View Interactions', width: 150,
             renderCell: (rowData) => (
                 <Button
                     size='small'
                     variant='contained'
-                    onClick={() => navigate("/responses")}
+                    onClick={() => navigate("/questions")}
                 >
                     View
                 </Button>
             )
         },
         {
-            field: 'action', headerName: 'Action', width: 120,
+            field: 'action', headerName: 'Copy', width: 100,
             renderCell: (rowData) => (
-                <Button
+                <IconButton
                     size='small'
                     variant='contained'
                     color='secondary'
                     onClick={handleCopy}
                 >
-                    Copy Link
-                </Button>
+                    <ContentCopyIcon />
+                </IconButton>
             ),
             sortable: false,
         },
         {
-            field: 'clone', headerName: 'Clone', width: 120,
+            field: 'clone', headerName: 'Move to Workspace', width: 180,
             renderCell: (rowData) => (
                 <Button
                     size='small'
@@ -82,7 +84,7 @@ const Library = () => {
                     color='warning'
                     onClick={handleReplicate}
                 >
-                    Replicate
+                    Clone
                 </Button>
             ),
             sortable: false,
@@ -99,10 +101,22 @@ const Library = () => {
     ];
 
     const libraryData = [
-        { id: 1, interactionTitle: "Marketing", trackDomain: 'Sales', interactionMode: "Audio", questions: 10 },
-        { id: 2, interactionTitle: "Frontend Development", trackDomain: 'New Grad.', interactionMode: "Audio", questions: 25 },
-        { id: 3, interactionTitle: "Backend Development", trackDomain: 'HR', interactionMode: "Audio", questions: 30 },
-        { id: 4, interactionTitle: "Data Analyst", trackDomain: 'Service', interactionMode: "Audio", questions: 50 },
+        {
+            id: 1, interactionTitle: "Marketing", trackDomain: 'Sales', interactionMode: "Audio",
+            // questions: 10
+        },
+        {
+            id: 2, interactionTitle: "Frontend Development", trackDomain: 'New Grad.', interactionMode: "Audio",
+            // questions: 25
+        },
+        {
+            id: 3, interactionTitle: "Backend Development", trackDomain: 'HR', interactionMode: "Audio",
+            // questions: 30
+        },
+        {
+            id: 4, interactionTitle: "Data Analyst", trackDomain: 'Service', interactionMode: "Audio",
+            // questions: 50
+        },
     ];
 
     return (
