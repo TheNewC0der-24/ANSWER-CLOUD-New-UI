@@ -117,21 +117,21 @@ const DetailedReport = () => {
                     <Typography mb={1} variant='body1'>The table below illustrates the content ratings for each answer, in percentage terms. The 80% or a rating of 8 out of 10, demonstrates great authority on the content by the candidate.</Typography>
                     <table className={styles.table}>
                         <tr>
-                            <td className={styles.td}>1</td>
-                            <td className={styles.td}>2</td>
-                            <td className={styles.td}>3</td>
-                            <td className={styles.td}>4</td>
-                            <td className={styles.td}>5</td>
-                            <td className={styles.td}>6</td>
-                            <td className={styles.td}>7</td>
-                            <td className={styles.td}>8</td>
-                            <td className={styles.td}>9</td>
-                            <td className={styles.td}>10</td>
+                            <td className={styles.td}>Ques-1</td>
+                            <td className={styles.td}>Ques-2</td>
+                            <td className={styles.td}>Ques-3</td>
+                            <td className={styles.td}>Ques-4</td>
+                            <td className={styles.td}>Ques-5</td>
+                            <td className={styles.td}>Ques-6</td>
+                            <td className={styles.td}>Ques-7</td>
+                            <td className={styles.td}>Ques-8</td>
+                            <td className={styles.td}>Ques-9</td>
+                            <td className={styles.td}>Ques-10</td>
                         </tr>
                         <tr>
-                            <td className={styles.td}></td>
-                            <td className={styles.td}></td>
-                            <td className={styles.td}></td>
+                            <td className={styles.td}>7</td>
+                            <td className={styles.td}>8</td>
+                            <td className={styles.td}>10</td>
                             <td className={styles.td}></td>
                             <td className={styles.td}></td>
                             <td className={styles.td}></td>
@@ -147,15 +147,44 @@ const DetailedReport = () => {
                     <Box sx={{ marginTop: "7rem" }}>
                         <Typography mb={3} sx={{ fontWeight: "bold" }} variant='subtitle1'>Transcript & Detailed Feedback:</Typography>
                         <Typography mb={1} sx={{ fontWeight: "bold" }} variant='subtitle1'>Mentor Feedback: <span style={{ color: "#1976d2" }}>NA</span></Typography>
+                        {/* Question One */}
                         <Box p={1} sx={{ border: "1px solid #000", backgroundColor: "#fff" }}>
                             <Chip label="#1" sx={{ borderRadius: "0" }} />
-                            <Typography mt={1} variant='body2'>Oues:</Typography>
+                            <Typography mt={1} variant='body2'>Oues-1: What is the tenure of health insurance plans?</Typography>
                         </Box>
                         <Box p={1} sx={{ border: "1px solid #000", backgroundColor: "#fff" }}>
-                            <Typography variant='body2'>Ans:</Typography>
+                            <Typography variant='body2'>Ans: Typically, the term of health insurance plans is one year. However, health insurance plans offered by life insurance companies can be for 5 years.</Typography>
                         </Box>
                         <Box p={1} mb={3} sx={{ border: "1px solid #000", backgroundColor: "#fff" }}>
-                            <Typography variant='body2'>Model Feedback:</Typography>
+                            <Typography variant='body2'>Model Feedback: Your answer is appropriate and correct. A persuasive, engaging speaker when well-prepared, but uncomfortable and less effective when asked to speak off-the-cuff.</Typography>
+                        </Box>
+
+                        {/* Question Two */}
+                        <Box p={1} sx={{ border: "1px solid #000", backgroundColor: "#fff" }}>
+                            <Chip label="#2" sx={{ borderRadius: "0" }} />
+                            <Typography mt={1} variant='body2'>Oues-2: What is the frequency of premium payment for health insurance?</Typography>
+                        </Box>
+                        <Box p={1} sx={{ border: "1px solid #000", backgroundColor: "#fff" }}>
+                            <Typography variant='body2'>Ans: The premium payment frequency is of health insurance plans is typically of one year though some life insurance companies allow a one-time premium payment too.</Typography>
+                        </Box>
+                        <Box p={1} mb={3} sx={{ border: "1px solid #000", backgroundColor: "#fff" }}>
+                            <Typography variant='body2'>Model Feedback: You explained it well. You give the brief explanation for this answer.
+                                You presented work properly checked and completely free of error. From a set of data, you are able to establish a principle, or work out a rule, or suggest a reason for failure or success. His analysis is usually accurate but not original. Bhavya has outstanding artistic or craft skills, bringing creativity and originality to the task. Easy-going, relaxed, always welcome in a group – though not the strongest personality.
+                            </Typography>
+                        </Box>
+
+                        {/* Question Three */}
+                        <Box p={1} sx={{ border: "1px solid #000", backgroundColor: "#fff" }}>
+                            <Chip label="#3" sx={{ borderRadius: "0" }} />
+                            <Typography mt={1} variant='body2'>Oues-3: When does one get the critical illness benefit from health insurance plans?</Typography>
+                        </Box>
+                        <Box p={1} sx={{ border: "1px solid #000", backgroundColor: "#fff" }}>
+                            <Typography variant='body2'>Ans: In case of life insurance companies, this benefit is typically paid in full, on the diagnosis of the critical illnesses. Of course, the critical illness needs to be present in the list of critical illnesses covered by health insurance plans.</Typography>
+                        </Box>
+                        <Box p={1} mb={3} sx={{ border: "1px solid #000", backgroundColor: "#fff" }}>
+                            <Typography variant='body2'>Model Feedback: Great!!, your answer is correct.
+                                A persuasive, engaging speaker when well-prepared, but uncomfortable and less effective when asked to speak off-the-cuff. Has proven ability to produce creative, original ideas, plans, products or methods, even if they're not always practical, in line with organization needs, or successful.
+                            </Typography>
                         </Box>
                     </Box>
                 </Box>
