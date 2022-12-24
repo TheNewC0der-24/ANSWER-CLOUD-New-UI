@@ -79,12 +79,12 @@ function Sidebar({ handleDrawerToggle, mobileOpen }) {
       link: '/account/teams'
     },
     {
-      label: 'View Responses',
+      label: 'Responses',
       icon: <QuestionAnswerIcon />,
       link: '/account/view-responses'
     },
     {
-      label: 'View Reports',
+      label: 'Reports',
       icon: <GradingIcon />,
       link: '/account/view-reports'
     }
