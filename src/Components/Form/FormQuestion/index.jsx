@@ -143,7 +143,8 @@ const FormQuestion = () => {
                         <Card sx={{ backgroundColor: "#F7F8F9", marginBottom: "1rem", height: "100%" }}>
                             <CardContent>
                                 <Stack p={1} sx={{ display: "block", width: '100%' }}>
-                                    <Typography variant="h6" color='primary'>Hint : Speak about your educational background, skills, experience, etc.</Typography>
+                                    <Typography variant="h4">Hint</Typography>
+                                    <Typography variant="subtitle1">Hint Speak about your educational background, skills, experience, etc.</Typography>
                                 </Stack>
                             </CardContent>
                         </Card>
@@ -176,7 +177,8 @@ const FormQuestion = () => {
                         <Card sx={{ backgroundColor: "#F7F8F9", marginBottom: "1rem", height: "100%" }}>
                             <CardContent>
                                 <Stack p={1} sx={{ display: "block", width: '100%' }}>
-                                    <Typography variant="h6" color='primary'>Hint : Speak about your educational background, skills, experience, etc.</Typography>
+                                    <Typography variant="h4">Hint</Typography>
+                                    <Typography variant="subtitle1">Speak about your educational background, skills, experience, etc.</Typography>
                                 </Stack>
                             </CardContent>
                         </Card>
