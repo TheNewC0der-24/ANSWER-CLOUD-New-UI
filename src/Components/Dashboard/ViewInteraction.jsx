@@ -59,8 +59,8 @@ const ViewInteraction = () => {
     return (
         <>
             <Box>
-                <Grid container spacing={1}>
-                    <Grid item xs={12} sm={6} md={3} lg={3}>
+                {/* <Grid container spacing={1}> */}
+                {/* <Grid item xs={12} sm={6} md={3} lg={3}>
                         <Card sx={{ backgroundColor: "#DFFCF0", marginBottom: "1rem" }}>
                             <CardContent sx={{ color: "#1F845A" }}>
                                 <Typography variant="h5" component="div">
@@ -82,27 +82,27 @@ const ViewInteraction = () => {
                                 </Typography>
                             </CardContent>
                         </Card>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={9} lg={9}>
-                        <Box xs={12} sm={12} md={12} lg={12}>
-                            {loading ? (
-                                <LoadAnimation />
-                            ) : (
-                                <MaterialTable
-                                    title={<Typography variant='h5'>Interactions</Typography>}
-                                    columns={columns}
-                                    data={interactionData}
-                                    options={{
-                                        actionsColumnIndex: -1,
-                                        addRowPosition: "first",
-                                        tableLayout: "fixed",
-                                        headerStyle: { fontWeight: "bold", fontSize: "1rem" },
-                                    }}
-                                />
-                            )}
-                        </Box>
-                    </Grid>
-                </Grid>
+                    </Grid> */}
+                {/* <Grid item xs={12} sm={6} md={9} lg={9}> */}
+                <Box xs={12} sm={12} md={12} lg={12}>
+                    {loading ? (
+                        <LoadAnimation />
+                    ) : (
+                        <MaterialTable
+                            title={<Typography variant='h5'>Interactions</Typography>}
+                            columns={columns}
+                            data={interactionData}
+                            options={{
+                                actionsColumnIndex: -1,
+                                addRowPosition: "first",
+                                tableLayout: "fixed",
+                                headerStyle: { fontWeight: "bold", fontSize: "1rem" },
+                            }}
+                        />
+                    )}
+                </Box>
+                {/* </Grid> */}
+                {/* </Grid> */}
             </Box>
         </>
     )
