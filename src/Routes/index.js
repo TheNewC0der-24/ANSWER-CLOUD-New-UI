@@ -35,6 +35,7 @@ import ViewResponse from '../Components/ViewResponses/index';
 import Responses from '../Components/ViewResponses/Responses/index';
 import Certificate from '../Components/Certificate';
 import QAGenerator from '../Components/Q&AGenerator';
+import Questions from '../Components/Questions';
 
 const Router = () => {
 
@@ -92,6 +93,10 @@ const Router = () => {
         {
             path: "thank-you",
             element: <BotThankYou />
+        },
+        {
+            path: "/questions",
+            element: <Questions />
         },
         {
             path: "/summaryReport",
