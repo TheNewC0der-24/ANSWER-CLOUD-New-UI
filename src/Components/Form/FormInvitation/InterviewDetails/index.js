@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import {
+  Box,
   Card,
   CardContent,
   Typography,
@@ -54,16 +55,30 @@ const InterviewDetails = () => {
           <Typography sx={{ mb: 3 }}><b>Due by: </b>Saturday,November 5,2022 at 11:00 PM GMT+5:30</Typography>
           <Typography sx={{ mb: 3 }}><b>Job Title: </b>Frontend</Typography>
           <Typography sx={{ mb: 3 }}><b>Location: </b>Remote</Typography>
-          <Button color="secondary" variant='contained'
-            onClick={() => navigate('/form/start')}
-            sx={{
-              py: 2, px: 5,
-              borderRadius: 0,
-              mb: 3,
-              textTransform: 'none',
-            }}>
-            Go to your interview
-          </Button>
+          <Box sx={{ display: "flex", gap: "0.5rem" }}>
+            <Button color="warning" variant='contained'
+              onClick={() => navigate('/form/welcome')}
+              sx={{
+                py: 2, px: 5,
+                borderRadius: 0,
+                mb: 3,
+                textTransform: 'none',
+              }}>
+              Check System
+            </Button>
+
+            <Button color="secondary" variant='contained'
+              onClick={() => navigate('/form/start')}
+              sx={{
+                py: 2, px: 5,
+                borderRadius: 0,
+                mb: 3,
+                textTransform: 'none',
+              }}>
+              Go to your interview
+            </Button>
+          </Box>
+
           <Typography sx={{ mb: 5, fontStyle: 'italic' }} variant='subtitle2' gutterBottom>This interview will take approximately 12 minutes and will not start until you are completely ready.</Typography>
           <Typography
             variant="h6"
