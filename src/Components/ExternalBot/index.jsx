@@ -176,20 +176,6 @@ const ExternalBot = () => {
                                     </Stack>
                                     <Stack sx={{ width: '100%' }}>
                                         <FormControl>
-                                            <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Collect Resume</FormLabel>
-                                            <RadioGroup
-                                                row
-                                                aria-labelledby="demo-row-radio-buttons-group-label"
-                                                defaultValue="No"
-                                                name="row-radio-buttons-group"
-                                            >
-                                                <FormControlLabel value="No" control={<Radio />} label="No" />
-                                                <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-                                            </RadioGroup>
-                                        </FormControl>
-                                    </Stack>
-                                    <Stack sx={{ width: '100%' }}>
-                                        <FormControl>
                                             <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Candidate Feedback Message</FormLabel>
                                             <RadioGroup
                                                 row
@@ -212,20 +198,6 @@ const ExternalBot = () => {
                                             <FormControlLabel disabled control={<Checkbox />} label="Slack" />
                                             <FormControlLabel disabled control={<Checkbox defaultChecked />} label="Form" />
                                         </FormGroup>
-                                    </Stack>
-                                    <Stack sx={{ width: '100%' }}>
-                                        <FormControl>
-                                            <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Collect Candidate ID</FormLabel>
-                                            <RadioGroup
-                                                row
-                                                aria-labelledby="demo-row-radio-buttons-group-label"
-                                                defaultValue="No"
-                                                name="row-radio-buttons-group"
-                                            >
-                                                <FormControlLabel value="No" control={<Radio />} label="No" />
-                                                <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-                                            </RadioGroup>
-                                        </FormControl>
                                     </Stack>
                                 </Stack>
                             </CardContent>
