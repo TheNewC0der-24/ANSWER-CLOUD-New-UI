@@ -4,7 +4,7 @@ import styles from '../WhenNoInteraction/Workspace.module.css'
 import {
     Box,
     Typography,
-    Avatar,
+    IconButton,
     Divider,
     Card,
     CardContent,
@@ -19,6 +19,7 @@ import LoadAnimation from '../../LoadAnimation/index';
 
 // Icons
 import AddIcon from '@mui/icons-material/Add';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 import Moment from 'moment';
 
@@ -68,16 +69,16 @@ const WorkspaceWhenInteraction = () => {
             )
         },
         {
-            field: 'action', headerName: 'Action', width: 120,
+            field: 'action', headerName: 'Copy Link', width: 120,
             renderCell: (rowData) => (
-                <Button
+                <IconButton
                     size='small'
                     variant='contained'
                     color='secondary'
                     onClick={handleCopy}
                 >
-                    Copy Link
-                </Button>
+                    <ContentCopyIcon />
+                </IconButton>
             ),
             sortable: false,
         },

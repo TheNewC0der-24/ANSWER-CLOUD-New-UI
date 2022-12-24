@@ -17,7 +17,7 @@ import Moment from 'moment';
 
 import { useNavigate } from 'react-router-dom';
 
-// import WorkspaceWhenInteraction from '../WhenInteraction';
+import WorkspaceWhenInteraction from '../WhenInteraction';
 
 const Workspace = () => {
 
@@ -28,7 +28,7 @@ const Workspace = () => {
 
     return (
         <>
-            <Box>
+            {/* <Box>
                 <Box className={styles.header}>
                     <Typography variant='h5'>
                         My Workspace
@@ -51,10 +51,10 @@ const Workspace = () => {
                     <Typography mb={2} variant='subtitle1'>to create something special.</Typography>
                     <Button size='small' variant="contained" className={styles.createButton} onClick={() => navigate('/account/internal-bot')}><AddIcon /> Create interaction</Button>
                 </Box>
-            </Box>
+            </Box> */}
 
 
-            {/* <WorkspaceWhenInteraction /> */}
+            <WorkspaceWhenInteraction />
         </>
     )
 }
