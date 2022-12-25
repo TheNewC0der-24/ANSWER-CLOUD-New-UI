@@ -48,13 +48,12 @@ const InterviewDetails = () => {
             variant="h6"
             gutterBottom
           >
-            Interview Details
+            Interaction Details
           </Typography>
           <Divider sx={{ mb: 3 }} />
-          <Typography sx={{ mb: 3 }}><b>Interview Type: </b>One-Way Interview</Typography>
-          <Typography sx={{ mb: 3 }}><b>Due by: </b>Saturday,November 5,2022 at 11:00 PM GMT+5:30</Typography>
-          <Typography sx={{ mb: 3 }}><b>Job Title: </b>Frontend</Typography>
-          <Typography sx={{ mb: 3 }}><b>Location: </b>Remote</Typography>
+          <Typography sx={{ mb: 3 }}><b>Interaction Type: </b>Audio/Video</Typography>
+          <Typography sx={{ mb: 3 }}><b>Expiration (if any): </b>NA</Typography>
+          <Typography sx={{ mb: 3 }}><b>Title: </b>Frontend</Typography>
           <Box sx={{ display: "flex", gap: "0.5rem" }}>
             <Button color="warning" variant='contained'
               onClick={() => navigate('/form/welcome')}
@@ -75,11 +74,11 @@ const InterviewDetails = () => {
                 mb: 3,
                 textTransform: 'none',
               }}>
-              Go to your interview
+              Launch Interaction
             </Button>
           </Box>
 
-          <Typography sx={{ mb: 5, fontStyle: 'italic' }} variant='subtitle2' gutterBottom>This interview will take approximately 12 minutes and will not start until you are completely ready.</Typography>
+          {/* <Typography sx={{ mb: 5, fontStyle: 'italic' }} variant='subtitle2' gutterBottom>This interview will take approximately 12 minutes and will not start until you are completely ready.</Typography>
           <Typography
             variant="h6"
             gutterBottom
@@ -87,7 +86,7 @@ const InterviewDetails = () => {
             Job Description
           </Typography>
           <Divider sx={{ mb: 3 }} />
-          <Typography>Abc</Typography>
+          <Typography>Abc</Typography> */}
         </CardContent>
       </Card>
     </ThemeProvider>
