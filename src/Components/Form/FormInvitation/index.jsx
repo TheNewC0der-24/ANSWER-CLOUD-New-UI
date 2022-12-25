@@ -15,10 +15,10 @@ const Welcome = () => {
             <InterviewNotice />
             <Container maxWidth='lg'>
                 <Grid container sx={{ mb: 2 }}>
-                    <Grid item sm={12} md={7}>
+                    <Grid item sm={12} md={5}>
                         <InterviewDetails />
                     </Grid>
-                    <Grid item sm={12} md={5}>
+                    <Grid item sm={12} md={7}>
                         <InterviewPreparation />
                     </Grid>
                 </Grid>
