@@ -214,12 +214,9 @@ const Start = () => {
                                     aria-describedby="alert-dialog-description"
                                 >
                                     <DialogTitle id="alert-dialog-title">
-                                        Are you sure you want to start the test
+                                        Are you sure you want to start?
                                     </DialogTitle>
                                     <DialogContent>
-                                        <DialogContentText id="alert-dialog-description">
-                                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt minus in eius soluta earum repudiandae recusandae molestias, corrupti quam beatae ab laudantium architecto, molestiae ipsum vitae, eveniet ullam voluptates autem.
-                                        </DialogContentText>
                                     </DialogContent>
                                     <DialogActions>
                                         <Button variant='outlined' onClick={handleClose}>No</Button>

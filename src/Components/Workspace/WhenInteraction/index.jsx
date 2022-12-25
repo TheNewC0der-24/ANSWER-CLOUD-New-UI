@@ -55,14 +55,14 @@ const WorkspaceWhenInteraction = () => {
         { field: 'interactionTitle', headerName: 'Interaction Title', width: 200 },
         { field: 'trackDomain', headerName: 'Track / Domain', width: 150 },
         { field: 'interactionMode', headerName: 'Interaction Mode', width: 150 },
-        { field: 'questions', headerName: 'Questions', type: "number", width: 150 },
+        // { field: 'questions', headerName: 'Questions', type: "number", width: 150 },
         {
-            field: 'responses', headerName: 'Responses', width: 120,
+            field: 'viewInteractions', headerName: 'View Interactions', width: 150,
             renderCell: (rowData) => (
                 <Button
                     size='small'
                     variant='contained'
-                    onClick={() => navigate("/responses")}
+                    onClick={() => navigate("/questions")}
                 >
                     View
                 </Button>
@@ -99,10 +99,22 @@ const WorkspaceWhenInteraction = () => {
     ];
 
     const workspaceData = [
-        { id: 1, interactionTitle: "Marketing", trackDomain: 'Sales', interactionMode: "Audio", questions: 10 },
-        { id: 2, interactionTitle: "Frontend Development", trackDomain: 'New Grad.', interactionMode: "Audio", questions: 25 },
-        { id: 3, interactionTitle: "Backend Development", trackDomain: 'HR', interactionMode: "Audio", questions: 30 },
-        { id: 4, interactionTitle: "Data Analyst", trackDomain: 'Service', interactionMode: "Audio", questions: 50 },
+        {
+            id: 1, interactionTitle: "Marketing", trackDomain: 'Sales', interactionMode: "Audio",
+            // questions: 10
+        },
+        {
+            id: 2, interactionTitle: "Frontend Development", trackDomain: 'New Grad.', interactionMode: "MCQ",
+            // questions: 25
+        },
+        {
+            id: 3, interactionTitle: "Backend Development", trackDomain: 'HR', interactionMode: "Video",
+            // questions: 30
+        },
+        {
+            id: 4, interactionTitle: "Data Analyst", trackDomain: 'Service', interactionMode: "Audio",
+            // questions: 50
+        },
     ];
 
 
