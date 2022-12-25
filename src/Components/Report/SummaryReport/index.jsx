@@ -54,14 +54,23 @@ const SummaryReport = () => {
                         <Link variant='subtitle1' href="https://www.talentsumo.co/feedback" target="_blank">Feedback Rubric</Link>
                     </Box>
                     <Typography sx={{ fontWeight: "bold" }} variant='subtitle1'>Date: <span style={{ color: "#1976d2" }}>04-12-2022</span></Typography>
-                    <Typography sx={{ fontWeight: "bold" }} mb={3} variant='subtitle1'>Title: <span style={{ color: "#1976d2" }}>Sample title (via company)</span></Typography>
-                    <Typography sx={{ fontWeight: "bold" }} mb={3} variant='subtitle1'>Coach Name: <span style={{ color: "#1976d2" }}>Deb Ghosh</span></Typography>
-                    <Typography mb={1} sx={{ fontWeight: "bold" }} variant='subtitle1'>Overall Ratings: <span style={{ color: "#1976d2" }}>Cohort B</span>
-                        <Rating name="size-small" defaultValue={4} readOnly size="small" />
-                    </Typography>
-                    <Box p={1} mb={3} sx={{ border: "1px solid #000", backgroundColor: "#fff" }}>
-                        <Typography variant='body2'>Overall rating of the interaction including content. Score used for any leaderboard but screening may be based on any parameter listed in the report.</Typography>
-                    </Box>
+                    <Typography sx={{ fontWeight: "bold" }} variant='subtitle1'>Title: <span style={{ color: "#1976d2" }}>Sample title (via company)</span></Typography>
+                    <Typography sx={{ fontWeight: "bold" }} mb={1} variant='subtitle1'>Coach Name: <span style={{ color: "#1976d2" }}>Deb Ghosh</span></Typography>
+                    <table className={styles.table}>
+                        <tr>
+                            <th className={styles.th}>Overall Ratings</th>
+                            <th className={styles.th}>
+                                <Rating name="size-small" defaultValue={4} readOnly size="small" />
+                            </th>
+                            <th className={styles.th}>
+                                <Typography color='primary'>Cohort B
+                                </Typography>
+                            </th>
+                        </tr>
+                    </table>
+
+                    <Typography sx={{ color: "#ED6C02" }} mt={1} mb={3} variant='body1'>Overall rating of the interaction including content. Score used for any leaderboard but screening may be based on any parameter listed in the report.</Typography>
+
                     <Typography mb={1} sx={{ fontWeight: "bold" }} variant='subtitle1'>Rating Snapshot:</Typography>
                     <table className={styles.table}>
                         <tr>
@@ -131,7 +140,7 @@ const SummaryReport = () => {
                         </tr>
                     </table>
 
-                    <Typography mt={3} mb={1} sx={{ fontWeight: "bold" }} variant='subtitle1'>Content Rating:</Typography>
+                    <Typography mt={3} sx={{ fontWeight: "bold" }} variant='subtitle1'>Content Rating:</Typography>
                     <Typography mb={1} variant='body1'>The table below illustrates the content ratings for each answer, in percentage terms. The 80% or a rating of 8 out of 10, demonstrates great authority on the content by the candidate.</Typography>
                     <table className={styles.table}>
                         <tr>
