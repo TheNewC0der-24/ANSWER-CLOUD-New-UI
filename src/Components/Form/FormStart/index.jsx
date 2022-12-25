@@ -112,7 +112,7 @@ const Start = () => {
 
     return (
         <>
-            <Container maxWidth="md">
+            <Container maxWidth="lg" sx={{ marginTop: "1rem" }}>
                 <Card component={Stack} p={2} spacing={2} elevation={3} sx={{ backgroundColor: "#F7F8F9" }}>
                     <Box p={2} sx={{ backgroundColor: '#1976d2', display: 'flex', justifyContent: 'center' }}>
                         <Typography variant="h4" sx={{ color: 'white' }}>Interaction Title</Typography>
