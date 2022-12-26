@@ -33,25 +33,25 @@ const ViewInteraction = () => {
         { title: "Interaction Title", field: "interactionTitle", width: "12rem" },
         { title: "Track", field: "track", width: "10rem" },
         {
-            title: "Answer Bot", width: "12rem",
+            title: "Interaction Bot", width: "12rem",
             render: (row) => (
                 <Button
                     size='small'
                     variant='contained'
                     onClick={() => navigate("/form/invitation")}
                 >
-                    View Answer Bot
+                    View
                 </Button>
             )
         },
     ];
 
     const interactionData = [
-        { testID: "1", interactionTitle: "Interaction 1", track: "Track 1" },
-        { testID: "2", interactionTitle: "Interaction 2", track: "Track 2" },
-        { testID: "3", interactionTitle: "Interaction 3", track: "Track 3" },
-        { testID: "4", interactionTitle: "Interaction 4", track: "Track 4" },
-        { testID: "5", interactionTitle: "Interaction 5", track: "Track 5" },
+        { testID: "753984", interactionTitle: "Frontend Developer", track: "New Grad." },
+        { testID: "289423", interactionTitle: "Sales Executive", track: "Sales" },
+        { testID: "428964", interactionTitle: "Backend Developer", track: "Service" },
+        { testID: "775698", interactionTitle: "Android Developer", track: "New Grad." },
+        { testID: "587123", interactionTitle: "Fullstack Developer", track: "Others" },
     ]
 
     const navigate = useNavigate();

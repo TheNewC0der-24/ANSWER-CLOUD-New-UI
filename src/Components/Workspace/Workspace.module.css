@@ -1,0 +1,29 @@
+.header {
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 5rem !important;
+}
+
+.createButton {
+    background-color: #262627 !important;
+}
+
+.container {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+.noPreviewImg {
+    width: auto !important;
+    max-width: 300px !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+.name {
+    font-weight: bold;
+    color: #1976d2;
+}

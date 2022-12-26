@@ -3,7 +3,7 @@ import styles from './Certificate.module.css';
 
 import { exportComponentAsPNG } from "react-component-export-image";
 
-import brandLogo from '../../assets/Images/answerCloudLogo.svg';
+import brandLogo from '../../assets/Images/coachCloud.svg';
 
 import {
     Container,

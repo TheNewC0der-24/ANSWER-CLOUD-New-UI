@@ -127,8 +127,8 @@ const FormQuestion = () => {
                         </Typography>
                         <Badge color='error' className={styles.color} badgeContent="">{circle}</Badge>
                     </Box>
-                    <Box p={1} sx={{ display: "flex", gap: "0.5rem", alignItems: "center", marginRight: "1rem", bgcolor: "white" }}>
-                        <Typography color='primary' variant="h4">00:00</Typography>
+                    <Box p={1} sx={{ display: "flex", gap: "0.5rem", alignItems: "center", marginRight: "1rem" }}>
+                        <Typography color='white' variant="h4">00:00</Typography>
                     </Box>
                 </Box>
             </AppBar>

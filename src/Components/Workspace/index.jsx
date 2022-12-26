@@ -2,6 +2,13 @@ import React from 'react';
 import {
     Box,
     Typography,
+    // Avatar,
+    // Grid,
+    // Card,
+    // CardActionArea,
+    // CardContent,
+    // CardMedia,
+    // CardActions,
     Button,
     Divider
 } from '@mui/material';
@@ -11,13 +18,12 @@ import styles from './Workspace.module.css';
 // Icons
 import AddIcon from '@mui/icons-material/Add';
 
-import noPreview from '../../../assets/Images/NoPreview.svg';
+
+import noPreview from '../../assets/Images/NoPreview.svg';
 
 import Moment from 'moment';
 
 import { useNavigate } from 'react-router-dom';
-
-// import WorkspaceWhenInteraction from '../WhenInteraction';
 
 const Workspace = () => {
 
@@ -52,9 +58,6 @@ const Workspace = () => {
                     <Button size='small' variant="contained" className={styles.createButton} onClick={() => navigate('/account/internal-bot')}><AddIcon /> Create interaction</Button>
                 </Box>
             </Box>
-
-
-            {/* <WorkspaceWhenInteraction /> */}
         </>
     )
 }

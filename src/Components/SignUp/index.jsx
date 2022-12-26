@@ -26,7 +26,7 @@ import LoadingScreen from '../LoadingScreen';
 
 // Images
 import signUpImg from '../../assets/Images/signup.svg';
-import logo from '../../assets/Images/answerCloudLogo.svg';
+import logo from '../../assets/Images/coachCloud.svg';
 
 // Validation
 import { useFormik, FormikProvider, Form } from 'formik';
@@ -117,7 +117,7 @@ const SignUp = () => {
 
                         {/********** Logo **********/}
                         <Stack alignItems='center' spacing={1}>
-                            <img src={logo} alt="Answer-Cloud" width={150} />
+                            <img src={logo} alt="coach-cloud" width={150} />
                             <Typography variant='h4' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b' }}>Register</Typography>
                         </Stack>
 

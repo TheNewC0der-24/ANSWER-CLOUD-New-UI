@@ -23,7 +23,7 @@ const BotThankYou = () => {
                 <Typography variant='h5'>The interaction response link is below.</Typography>
                 <Box mt={3} sx={{ display: "flex", justifyContent: "center", gap: '0.5rem' }}>
                     <Button color='secondary' variant='outlined'>Link</Button>
-                    <Button color='secondary' variant='contained'>Check Answer Bot</Button>
+                    <Button color='secondary' variant='contained'>Check Interaction Bot</Button>
                 </Box>
             </Box>
         </>

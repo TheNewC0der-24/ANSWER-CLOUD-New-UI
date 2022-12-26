@@ -19,7 +19,7 @@ import LoadingScreen from '../LoadingScreen';
 
 // Images
 import forgetPasswordImg from '../../assets/Images/forgotPassword.svg';
-import logo from '../../assets/Images/answerCloudLogo.svg';
+import logo from '../../assets/Images/coachCloud.svg';
 
 // Validation
 import { useFormik, FormikProvider, Form } from 'formik';
@@ -96,7 +96,7 @@ const ForgetPassword = () => {
                         </Stack>
                         {/***************************** Lock Icon *****************************/}
                         <Stack alignItems='center' spacing={1}>
-                            <img src={logo} alt="Answer-Cloud" style={{ width: '50%' }} />
+                            <img src={logo} alt="coach-cloud" style={{ width: '50%' }} />
                             <Typography variant='h4' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b', textAlign: "center" }}>Forget Password</Typography>
                         </Stack>
 
