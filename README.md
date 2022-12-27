@@ -1,4 +1,4 @@
-<h1 align="center">Answer-Cloud New UI</h1>
+<h1 align="center">Cloud-Coach New UI</h1>
 The product is an AI bot for automatic assessment and feedback that can be used for interviews, training like sales or leadership, course testing, screening, job simulation etc.
 
 
