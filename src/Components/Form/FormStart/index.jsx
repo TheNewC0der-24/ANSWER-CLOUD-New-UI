@@ -12,7 +12,7 @@ import {
     Dialog,
     DialogTitle,
     DialogContent,
-    DialogContentText,
+    // DialogContentText,
     DialogActions,
     Divider,
     Alert,
@@ -26,6 +26,7 @@ const Start = () => {
     const navigate = useNavigate();
     const [data, setData] = useState({
         // Initial Data
+        teamName: "",
         name: "",
         email: "",
         contact: "",
@@ -41,9 +42,14 @@ const Start = () => {
         e.preventDefault();
         const regEx = /^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$/g;
 
-        if (data?.name?.length < 5) {
+        if (data?.teamName?.length < 5) {
+            //team name
+            setError("Team Name must be at least 5 characters long!");
+            setShowError(true);
+            setEmptyFields([...emptyFields, "teamName"]);
+        } else if (data?.name?.length < 5) {
             //name
-            setError("Name must be at least 5 characters long!");
+            setError("Participant name must be at least 5 characters long!");
             setShowError(true);
             setEmptyFields([...emptyFields, "name"]);
         } else if (data?.email?.length <= 0) {
@@ -112,7 +118,7 @@ const Start = () => {
 
     return (
         <>
-            <Container maxWidth="lg" sx={{ marginTop: "1rem" }}>
+            <Container maxWidth="xl" sx={{ marginTop: "1rem" }}>
                 <Card component={Stack} p={2} spacing={2} elevation={3} sx={{ backgroundColor: "#F7F8F9" }}>
                     <Box p={2} sx={{ backgroundColor: '#1976d2', display: 'flex', justifyContent: 'center' }}>
                         <Typography variant="h4" sx={{ color: 'white' }}>Interaction Title</Typography>
@@ -126,39 +132,52 @@ const Start = () => {
                         {showError && (
                             <Alert severity="error" mb={2}>{error}</Alert>
                         )}
-
                         <Stack mb={2} mt={3}>
                             <TextField
                                 fullWidth
                                 size='small'
-                                label="Name"
-                                name="name"
+                                label="Team Name"
+                                name="teamName"
                                 required
                                 type='text'
-                                onChange={(e) => setData({ ...data, name: e.target.value })}
+                                onChange={(e) => setData({ ...data, teamName: e.target.value })}
                             />
                         </Stack>
-                        <Stack mb={2}>
-                            <TextField
-                                fullWidth
-                                size='small'
-                                label="Email"
-                                name="email"
-                                required
-                                type='text'
-                                onChange={(e) => setData({ ...data, email: e.target.value })}
-                            />
-                        </Stack>
-                        <Stack mb={2}>
-                            <TextField
-                                fullWidth
-                                size='small'
-                                label="Phone Number"
-                                name="contact"
-                                required
-                                type='number'
-                                onChange={(e) => setData({ ...data, contact: e.target.value })}
-                            />
+
+                        <Stack spacing={2} mb={2} mt={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
+                            <Stack sx={{ width: '100%' }}>
+                                <TextField
+                                    fullWidth
+                                    size='small'
+                                    label="Participant Name"
+                                    name="name"
+                                    required
+                                    type='text'
+                                    onChange={(e) => setData({ ...data, name: e.target.value })}
+                                />
+                            </Stack>
+                            <Stack sx={{ width: '100%' }}>
+                                <TextField
+                                    fullWidth
+                                    size='small'
+                                    label="Email"
+                                    name="email"
+                                    required
+                                    type='text'
+                                    onChange={(e) => setData({ ...data, email: e.target.value })}
+                                />
+                            </Stack>
+                            <Stack sx={{ width: '100%' }}>
+                                <TextField
+                                    fullWidth
+                                    size='small'
+                                    label="Phone Number"
+                                    name="contact"
+                                    required
+                                    type='number'
+                                    onChange={(e) => setData({ ...data, contact: e.target.value })}
+                                />
+                            </Stack>
                         </Stack>
                         <Stack mb={2}>
                             <TextField
