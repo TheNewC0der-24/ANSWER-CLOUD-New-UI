@@ -81,12 +81,12 @@ const DetailedReport = () => {
                                 <th className={styles.th}>Indicator/How to Improve</th>
                             </tr>
                             <tr>
-                                <td className={styles.td}>Likeability & Trust (Video Only)</td>
+                                <td className={styles.td}>Trust (Video Only)</td>
                                 <td className={styles.td}>
                                     <Rating name="size-small" defaultValue={0} readOnly size="small" />
                                 </td>
                                 <td className={styles.td}>NA</td>
-                                <td className={styles.td}>A mix of smile and composure enhances likeability. Improve by being intentional.</td>
+                                <td className={styles.td}>Improve by being intentional.</td>
                             </tr>
                             <tr>
                                 <td className={styles.td}>Clarity</td>
@@ -158,9 +158,9 @@ const DetailedReport = () => {
                                 <td className={styles.td}>Ques-10</td>
                             </tr>
                             <tr>
-                                <td className={styles.td}>7</td>
-                                <td className={styles.td}>8</td>
-                                <td className={styles.td}>10</td>
+                                <td className={styles.td}>70%</td>
+                                <td className={styles.td}>65%</td>
+                                <td className={styles.td}>100%</td>
                                 <td className={styles.td}></td>
                                 <td className={styles.td}></td>
                                 <td className={styles.td}></td>
