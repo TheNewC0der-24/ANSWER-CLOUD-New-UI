@@ -132,13 +132,14 @@ const FormQuestion = () => {
                     </Box>
                 </Box>
             </AppBar>
+
             <Box p={2}>
                 {/* If all 3 cards */}
                 <Grid container spacing={1}>
                     <Grid item xs={12} sm={12} md={4} lg={4}>
                         <Card sx={{ backgroundColor: "#F7F8F9", marginBottom: "1rem", height: "100%" }}>
                             <CardContent>
-                                <Typography variant="h4">Description</Typography>
+                                <Typography variant="h4">Case Study</Typography>
                                 <Typography variant="subtitle1">This is a video question. You will be asked to record a video of yourself answering the question.</Typography>
                             </CardContent>
                         </Card>
@@ -146,22 +147,22 @@ const FormQuestion = () => {
                     <Grid item xs={12} sm={12} md={4} lg={4}>
                         <Card sx={{ backgroundColor: "#F7F8F9", marginBottom: "1rem", height: "100%" }}>
                             <CardContent>
-                                <Stack p={1} sx={{ display: "block", width: '100%' }}>
-                                    <Typography variant="h4">Hint</Typography>
-                                    <Typography variant="subtitle1">Hint Speak about your educational background, skills, experience, etc.</Typography>
-                                </Stack>
+                                <Typography variant="h4">Hint</Typography>
+                                <Typography variant="subtitle1">Hint Speak about your educational background, skills, experience, etc.</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
                     <Grid item xs={12} sm={12} md={4} lg={4}>
                         <Card sx={{ backgroundColor: "#F7F8F9", height: "100%" }}>
                             <CardContent>
-                                <Typography variant="h4">Video Context</Typography>
-                                <video
-                                    src={video}
-                                    controls
-                                // autoPlay
-                                ></video>
+                                <Typography variant="h4">Media Context</Typography>
+                                <Box p={2} sx={{ backgroundColor: "#1976d2" }}>
+                                    <video
+                                        src={video}
+                                        controls
+                                    // autoPlay
+                                    ></video>
+                                </Box>
                             </CardContent>
                         </Card>
                     </Grid>
@@ -172,7 +173,7 @@ const FormQuestion = () => {
                     <Grid item xs={12} sm={12} md={6} lg={6}>
                         <Card sx={{ backgroundColor: "#F7F8F9", marginBottom: "1rem", height: "100%" }}>
                             <CardContent>
-                                <Typography variant="h4">Description</Typography>
+                                <Typography variant="h4">Case Study</Typography>
                                 <Typography variant="subtitle1">This is a video question. You will be asked to record a video of yourself answering the question.</Typography>
                             </CardContent>
                         </Card>
@@ -180,10 +181,8 @@ const FormQuestion = () => {
                     <Grid item xs={12} sm={12} md={6} lg={6}>
                         <Card sx={{ backgroundColor: "#F7F8F9", marginBottom: "1rem", height: "100%" }}>
                             <CardContent>
-                                <Stack p={1} sx={{ display: "block", width: '100%' }}>
                                     <Typography variant="h4">Hint</Typography>
                                     <Typography variant="subtitle1">Speak about your educational background, skills, experience, etc.</Typography>
-                                </Stack>
                             </CardContent>
                         </Card>
                     </Grid>
@@ -193,7 +192,7 @@ const FormQuestion = () => {
                 {/* If only 1 card */}
                 {/* <Card sx={{ backgroundColor: "#F7F8F9", marginBottom: "1rem", height: "100%" }}>
                     <CardContent>
-                        <Typography variant="h4">Description</Typography>
+                        <Typography variant="h4">Case Study</Typography>
                         <Typography variant="subtitle1">This is a video question. You will be asked to record a video of yourself answering the question.</Typography>
                     </CardContent>
                 </Card> */}
@@ -213,12 +212,12 @@ const FormQuestion = () => {
 
                             <Typography mb={2} variant="h6">Tell me about yourself ?</Typography>
                             <Box mb={1} sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <Button my={2} onClick={handleStartRecording} variant="contained" color={isActive ? 'warning' : 'success'} size='small'>{isActive ? "Pause" : "Answer"}</Button>
+                                <Button my={2} onClick={handleStartRecording} variant="contained" color={isActive ? 'warning' : 'success'} size='small'>{isActive ? "Pause" : "Record"}</Button>
                                 {
                                     isActive && (
                                         <Box sx={{ display: "flex", gap: "0.5rem" }}>
-                                            <Button onClick={handleRetake} variant="outlined" color='secondary' size='small'>Retake Answer</Button>
-                                            <Button onClick={handleStopRecording} variant="contained" color='secondary' size='small'>Save Answer</Button>
+                                            <Button onClick={handleRetake} variant="outlined" color='secondary' size='small'>Re-Record</Button>
+                                            <Button onClick={handleStopRecording} variant="contained" color='secondary' size='small'>Save Recording</Button>
                                         </Box>
                                     )
                                 }
@@ -231,7 +230,7 @@ const FormQuestion = () => {
 
                             {
                                 !isActive && (
-                                    <Alert severity="info">Answer recording starts after you hit "Answer" button above.</Alert>
+                                    <Alert severity="info">Answer recording starts after you hit "Record" button above.</Alert>
                                 )
                             }
                             {

@@ -20,7 +20,7 @@ import {
 } from '@mui/material';
 
 const shapeStyles = { bgcolor: 'primary.main', width: '40', height: '40' };
-// const shapeCircleStyles = { borderRadius: '50%' };
+
 const circle = (
   <Box component="span" sx={{ ...shapeStyles }} />
 );
@@ -80,11 +80,16 @@ const FromAudioRecording = () => {
           </Box>
         </Box>
       </AppBar>
-      <Box p={3} sx={{ display: "flex", justifyContent: "center", margin: "auto" }} maxWidth="lg">
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={12} md={6}>
-            <Card sx={{ backgroundColor: "#F7F8F9" }}>
+
+      <Box p={2}>
+        <Grid container spacing={1}>
+          <Grid item xs={12} sm={12} md={4} lg={4}>
+            <Card sx={{ backgroundColor: "#F7F8F9", height: "100%" }}>
               <CardContent>
+                <Typography variant="h4">Case Study</Typography>
+                <Typography variant="subtitle1">This is a audio question. You will be asked to record a audio of yourself answering the question.</Typography>
+              </CardContent>
+              {/* <CardContent>
                 <Typography variant="h4">1/4</Typography>
                 <Typography variant="h6">What is Axios ?</Typography>
                 <Typography mb={2} color='primary' variant="h6">Hint : react library</Typography>
@@ -97,15 +102,23 @@ const FromAudioRecording = () => {
                   <Divider />
                 </Box>
 
-                <Button variant="contained" color='success' size='small' onClick={() => setActive(!active)}>Answer</Button>
+                <Button variant="contained" color='success' size='small' onClick={() => setActive(!active)}>Record</Button>
+              </CardContent> */}
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={12} md={4} lg={4}>
+            <Card sx={{ backgroundColor: "#F7F8F9", height: "100%" }}>
+              <CardContent>
+                <Typography variant="h4">Hint</Typography>
+                <Typography variant="subtitle1">Hint Speak about your educational background, skills, experience, etc.</Typography>
               </CardContent>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={12} md={6}>
-            <Card sx={{ width: '100%', height: '100%', backgroundColor: "#F7F8F9" }}>
+          <Grid item xs={12} sm={12} md={4} lg={4}>
+            <Card sx={{ height: '100%', backgroundColor: "#F7F8F9" }}>
               <CardContent>
-                <Typography mb={5} variant="h4">Audio Context</Typography>
-                <Box p={3} sx={{ backgroundColor: "#1976d2" }}>
+                <Typography mb={3} variant="h4">Media Context</Typography>
+                <Box p={2} sx={{ backgroundColor: "#1976d2" }}>
                   <audio className={styles.audio} controls preload="none">
                     <source
                       src="https://pwdown.com/10203/Yeh Ishq Hai - Rangoon (Arijit Singh) 320Kbps.mp3"
@@ -119,17 +132,57 @@ const FromAudioRecording = () => {
         </Grid>
       </Box>
 
-      <Container maxWidth="lg">
+      {/* If any of 2 cards */}
+      {/* <Box p={2}>
+        <Grid container spacing={1}>
+          <Grid item xs={12} sm={12} md={6} lg={6}>
+            <Card sx={{ backgroundColor: "#F7F8F9", marginBottom: "1rem", height: "100%" }}>
+              <CardContent>
+                <Typography variant="h4">Case Study</Typography>
+                <Typography variant="subtitle1">This is a video question. You will be asked to record a video of yourself answering the question.</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={6}>
+            <Card sx={{ backgroundColor: "#F7F8F9", marginBottom: "1rem", height: "100%" }}>
+              <CardContent>
+                <Typography variant="h4">Hint</Typography>
+                <Typography variant="subtitle1">Speak about your educational background, skills, experience, etc.</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      </Box> */}
+
+
+      {/* If only 1 card */}
+      {/* <Box p={2}>
+        <Card sx={{ backgroundColor: "#F7F8F9", marginBottom: "1rem", height: "100%" }}>
+          <CardContent>
+            <Typography variant="h4">Case Study</Typography>
+            <Typography variant="subtitle1">This is a video question. You will be asked to record a video of yourself answering the question.</Typography>
+          </CardContent>
+        </Card>
+      </Box> */}
+
+      <Box p={2}>
         <Card sx={{ backgroundColor: "#F7F8F9" }}>
           <CardContent>
-            <Typography mb={2} variant="h4">Answer Box</Typography>
-            {/* <Box p={1} mb={3} sx={{ border: "2px solid #000" }}> */}
-            <Typography mb={2} variant="h5">Description</Typography>
+            <Typography variant="h4">1/4</Typography>
+            <Typography mb={2} variant="h6">What is Axios ?</Typography>
 
-            {/* </Box> */}
+            <Button variant="contained" color='success' size='small' onClick={() => setActive(!active)}>Record</Button>
+            <Box mt={1} mb={2}>
+              <Divider />
+            </Box>
+            <Box my={2} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Button variant="outlined" size='small'>Back</Button>
+              <Button onClick={() => navigate('/form/mcq')} variant="contained" size='small'>Next</Button>
+            </Box>
+
             {
               !active && (
-                <Alert severity="info">Answer recording starts after you hit "Answer" button above.</Alert>
+                <Alert severity="info">Answer recording starts after you hit "Record" button above.</Alert>
               )
             }
 
@@ -154,7 +207,7 @@ const FromAudioRecording = () => {
             )}
           </CardContent>
         </Card>
-      </Container>
+      </Box>
     </>
   )
 }
