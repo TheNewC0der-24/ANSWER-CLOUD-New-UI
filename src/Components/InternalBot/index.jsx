@@ -16,7 +16,7 @@ import {
     FormLabel,
     InputLabel,
     Checkbox,
-    Autocomplete,
+    // Autocomplete,
     MenuItem,
     RadioGroup,
     Radio,
@@ -25,10 +25,8 @@ import {
 
 import { DatePicker } from "@mui/x-date-pickers";
 
-
 // Routing
 import { useNavigate } from 'react-router-dom';
-
 
 // Components
 import LoadingScreen from '../LoadingScreen';
@@ -88,7 +86,7 @@ const InternalBot = () => {
             timer: '',
             description: '',
             generalFeedback: '',
-            questions: '',
+            // questions: '',
             // mediaContext: '',
             // hints: '',
             // idealAnswer: '',
@@ -222,6 +220,10 @@ const InternalBot = () => {
         {
             value: "Lesson",
             label: "Lesson"
+        },
+        {
+            value: "Group Discussion",
+            label: "Group Discussion"
         }
     ];
 
@@ -244,9 +246,9 @@ const InternalBot = () => {
             values.description === '' ||
             values.generalFeedback === '' ||
             // values.questions === '' ||
-            values.mediaContext === '' ||
-            values.hints === '' ||
-            values.idealAnswer === '' &&
+            // values.mediaContext === '' ||
+            // values.hints === '' ||
+            // values.idealAnswer === '' &&
             values.skills === ""
         ) {
             return null;
@@ -270,9 +272,9 @@ const InternalBot = () => {
             values.description === '' ||
             values.generalFeedback === '' ||
             // values.questions === '' ||
-            values.mediaContext === '' ||
-            values.hints === '' ||
-            values.idealAnswer === '' ||
+            // values.mediaContext === '' ||
+            // values.hints === '' ||
+            // values.idealAnswer === '' ||
             values.skills === ''
         ) {
             message.error('Please fill the form completely');
@@ -293,7 +295,7 @@ const InternalBot = () => {
                             <CardContent>
                                 <Typography variant="h4" mb={3}>Internal Bot</Typography>
                                 {errors.afterSubmit && <Alert severity="error">{errors.afterSubmit}</Alert>}
-                                <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
+                                <Stack spacing={2} mb={5} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                                     <Stack sx={{ width: '100%' }}>
                                         <TextField
                                             fullWidth
@@ -320,7 +322,7 @@ const InternalBot = () => {
                                         />
                                     </Stack>
                                 </Stack>
-                                <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
+                                <Stack spacing={2} mb={5} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                                     <Stack sx={{ width: '100%' }}>
                                         <TextField
                                             select
@@ -356,7 +358,7 @@ const InternalBot = () => {
                                         </TextField>
                                     </Stack>
                                 </Stack>
-                                <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
+                                <Stack spacing={2} mb={1} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                                     <Stack sx={{ width: '100%' }}>
                                         <TextField
                                             fullWidth
@@ -380,6 +382,9 @@ const InternalBot = () => {
                                             error={Boolean(touched.accessCode && errors.accessCode)}
                                             helperText={touched.accessCode && errors.accessCode}
                                         />
+                                        <FormGroup>
+                                            <FormControlLabel control={<Checkbox />} label="One time use only" />
+                                        </FormGroup>
                                     </Stack>
                                 </Stack>
                                 <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
@@ -521,6 +526,9 @@ const InternalBot = () => {
                                             error={Boolean(touched.description && errors.description)}
                                             helperText={touched.description && errors.description}
                                         />
+                                        <FormGroup>
+                                            <FormControlLabel control={<Checkbox onClick={handleCheck} />} label="This is a group activity" />
+                                        </FormGroup>
                                     </Stack>
                                     <Stack sx={{ width: '100%' }}>
                                         <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Add Insights *</InputLabel>
@@ -536,6 +544,52 @@ const InternalBot = () => {
                                             helperText={touched.generalFeedback && errors.generalFeedback}
                                         />
                                     </Stack>
+                                </Stack>
+                            </CardContent>
+                        </Card>
+
+                        {/*************** Add Skills ***************/}
+                        <Card component={Stack} p={3} mt={3} spacing={2} elevation={3}>
+                            <CardContent>
+                                <Typography mb={3} variant="h4">Skill Format</Typography>
+                                <Stack sx={{ width: '100%' }}>
+                                    {/* <Autocomplete
+                                        multiple
+                                        limitTags={4}
+                                        id="skills-autocomplete"
+                                        getOptionLabel={(option) => option.title}
+                                        options={skillsOption}
+                                        onChange={(e, newValue) => setFieldValue('skills', newValue)}
+                                        renderInput={(params) => (
+                                            <TextField
+                                                required
+                                                id='skills'
+                                                label="Skills"
+                                                name='skills'
+                                                type='search'
+                                                {...params}
+                                                {...getFieldProps('skills')}
+                                                error={Boolean(touched.skills && errors.skills)}
+                                                helperText={touched.skills && errors.skills}
+                                            />
+                                        )}
+                                    /> */}
+
+                                    <TextField
+                                        select
+                                        value={skills}
+                                        size='small'
+                                        label="Skill Format"
+                                        required
+                                        onChange={handleChange}
+                                        {...getFieldProps('skills')}
+                                        error={Boolean(touched.skills && errors.skills)}
+                                        helperText={touched.skills && errors.skills}
+                                    >
+                                        {skillsOption.map(option => (
+                                            <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+                                        ))}
+                                    </TextField>
                                 </Stack>
                             </CardContent>
                         </Card>
@@ -598,10 +652,7 @@ const InternalBot = () => {
                                                         size='small'
                                                         maxRows={3}
                                                         minRows={3}
-                                                        placeholder="Option1"
-                                                    // {...getFieldProps('idealAnswer')}
-                                                    // error={Boolean(touched.idealAnswer && errors.idealAnswer)}
-                                                    // helperText={touched.idealAnswer && errors.idealAnswer}
+                                                        placeholder="Option-1"
                                                     />
                                                 </Stack>
                                                 <Stack mb={1} sx={{ width: '100%' }}>
@@ -612,10 +663,7 @@ const InternalBot = () => {
                                                         size='small'
                                                         maxRows={3}
                                                         minRows={3}
-                                                        placeholder="Option2"
-                                                    // {...getFieldProps('idealAnswer')}
-                                                    // error={Boolean(touched.idealAnswer && errors.idealAnswer)}
-                                                    // helperText={touched.idealAnswer && errors.idealAnswer}
+                                                        placeholder="Option-2"
                                                     />
                                                 </Stack>
                                                 <Stack mb={1} sx={{ width: '100%' }}>
@@ -626,10 +674,7 @@ const InternalBot = () => {
                                                         size='small'
                                                         maxRows={3}
                                                         minRows={3}
-                                                        placeholder="Option3"
-                                                    // {...getFieldProps('idealAnswer')}
-                                                    // error={Boolean(touched.idealAnswer && errors.idealAnswer)}
-                                                    // helperText={touched.idealAnswer && errors.idealAnswer}
+                                                        placeholder="Option-3"
                                                     />
                                                 </Stack>
                                                 <Stack mb={1} sx={{ width: '100%' }}>
@@ -640,10 +685,7 @@ const InternalBot = () => {
                                                         size='small'
                                                         maxRows={3}
                                                         minRows={3}
-                                                        placeholder="Option4"
-                                                    // {...getFieldProps('idealAnswer')}
-                                                    // error={Boolean(touched.idealAnswer && errors.idealAnswer)}
-                                                    // helperText={touched.idealAnswer && errors.idealAnswer}
+                                                        placeholder="Option-4"
                                                     />
                                                 </Stack>
                                                 <Stack mb={1} sx={{ width: '100%' }}>
@@ -654,10 +696,7 @@ const InternalBot = () => {
                                                         size='small'
                                                         maxRows={3}
                                                         minRows={3}
-                                                        placeholder="rightoption"
-                                                    // {...getFieldProps('idealAnswer')}
-                                                    // error={Boolean(touched.idealAnswer && errors.idealAnswer)}
-                                                    // helperText={touched.idealAnswer && errors.idealAnswer}
+                                                        placeholder="Right Option"
                                                     />
                                                 </Stack>
                                             </Stack>
@@ -741,14 +780,14 @@ const InternalBot = () => {
                                                     />
                                                 </Stack>
                                                 <Stack mb={1} sx={{ width: '100%' }}>
-                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Ideal Answer</InputLabel>
+                                                    <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Ideal Response</InputLabel>
                                                     <TextField
                                                         multiline
                                                         fullWidth
                                                         size='small'
                                                         maxRows={3}
                                                         minRows={3}
-                                                        placeholder="Add Ideal Answer"
+                                                        placeholder="Add Ideal Response"
                                                     // {...getFieldProps('idealAnswer')}
                                                     // error={Boolean(touched.idealAnswer && errors.idealAnswer)}
                                                     // helperText={touched.idealAnswer && errors.idealAnswer}
@@ -786,52 +825,6 @@ const InternalBot = () => {
                         )}
 
 
-                        {/*************** Add Skills ***************/}
-                        <Card component={Stack} p={3} mt={3} spacing={2} elevation={3}>
-                            <CardContent>
-                                <Typography mb={3} variant="h4">Skill Format</Typography>
-                                <Stack sx={{ width: '100%' }}>
-                                    {/* <Autocomplete
-                                        multiple
-                                        limitTags={4}
-                                        id="skills-autocomplete"
-                                        getOptionLabel={(option) => option.title}
-                                        options={skillsOption}
-                                        onChange={(e, newValue) => setFieldValue('skills', newValue)}
-                                        renderInput={(params) => (
-                                            <TextField
-                                                required
-                                                id='skills'
-                                                label="Skills"
-                                                name='skills'
-                                                type='search'
-                                                {...params}
-                                                {...getFieldProps('skills')}
-                                                error={Boolean(touched.skills && errors.skills)}
-                                                helperText={touched.skills && errors.skills}
-                                            />
-                                        )}
-                                    /> */}
-
-                                    <TextField
-                                        select
-                                        value={skills}
-                                        size='small'
-                                        label="Skill Format"
-                                        required
-                                        onChange={handleChange}
-                                        {...getFieldProps('skills')}
-                                        error={Boolean(touched.skills && errors.skills)}
-                                        helperText={touched.skills && errors.skills}
-                                    >
-                                        {skillsOption.map(option => (
-                                            <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
-                                        ))}
-                                    </TextField>
-                                </Stack>
-                            </CardContent>
-                        </Card>
-
                         <Box mt={3} display="flex" justifyContent="center" sx={{ gap: "0.5rem" }}>
                             <Button
                                 disabled={errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
@@ -846,11 +839,6 @@ const InternalBot = () => {
                                 Submit
                             </Button>
                             <Button
-                                // disabled={errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
-                                //     || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.description
-                                //     || errors.generalFeedback || errors.questions || errors.mediaContext || errors.hints
-                                //     || errors.idealAnswer || errors.skills ? true : false
-                                // }
                                 onClick={handleGoto}
                                 color="warning"
                                 variant='contained'
