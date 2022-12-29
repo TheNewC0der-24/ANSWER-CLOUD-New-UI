@@ -89,20 +89,11 @@ const Library = () => {
             ),
             sortable: false,
         }
-        // {
-        //     field: 'fullName',
-        //     headerName: 'Full name',
-        //     description: 'This column has a value getter and is not sortable.',
-        //     sortable: false,
-        //     width: 160,
-        //     valueGetter: (params) =>
-        //         `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-        // },
     ];
 
     const libraryData = [
         {
-            id: 1, interactionTitle: "Marketing", trackDomain: 'Sales', interactionMode: "Audio",
+            id: 1, interactionTitle: "Marketing", trackDomain: 'Sales', interactionMode: "Video",
             // questions: 10
         },
         {
@@ -110,7 +101,7 @@ const Library = () => {
             // questions: 25
         },
         {
-            id: 3, interactionTitle: "Backend Development", trackDomain: 'HR', interactionMode: "Audio",
+            id: 3, interactionTitle: "Backend Development", trackDomain: 'HR', interactionMode: "MCQ",
             // questions: 30
         },
         {
@@ -210,6 +201,30 @@ const Library = () => {
                         <Card sx={{ mt: 3 }}>
                             <CardContent>
                                 <Typography mb={2} variant="h5">Lessons</Typography>
+                                <Box sx={{ width: "100%" }}>
+                                    <DataGrid
+                                        rows={libraryData}
+                                        columns={columns}
+                                        pageSize={5}
+                                        rowsPerPageOptions={[5]}
+                                        disableSelectionOnClick
+                                        // checkboxSelection
+                                        autoHeight
+                                    />
+                                </Box>
+                            </CardContent>
+                        </Card>
+                    )
+            }
+
+            {
+                loading ? (
+                    <LoadAnimation />
+                ) :
+                    (
+                        <Card sx={{ mt: 3 }}>
+                            <CardContent>
+                                <Typography mb={2} variant="h5">Group Discussion</Typography>
                                 <Box sx={{ width: "100%" }}>
                                     <DataGrid
                                         rows={libraryData}
