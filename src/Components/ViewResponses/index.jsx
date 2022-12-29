@@ -52,12 +52,12 @@ const ViewResponse = () => {
     ];
 
     const ViewResponseData = [
-        { candidateID: "1", name: "Bhavya", interactionID: "123456" },
-        { candidateID: "2", name: "Varun", interactionID: "678945" },
-        { candidateID: "3", name: "Ayush", interactionID: "123456" },
-        { candidateID: "4", name: "Ram", interactionID: "123456" },
-        { candidateID: "5", name: "John", interactionID: "123456" },
-        { candidateID: "6", name: "Rahul", interactionID: "123456" },
+        { candidateID: "185235", name: "Bhavya", interactionID: "789156" },
+        { candidateID: "289123", name: "Varun", interactionID: "678945" },
+        { candidateID: "789523", name: "Ayush", interactionID: "312368" },
+        { candidateID: "436589", name: "Ram", interactionID: "159876" },
+        { candidateID: "562895", name: "John", interactionID: "248963" },
+        { candidateID: "654636", name: "Rahul", interactionID: "476589" },
     ]
 
     const navigate = useNavigate();

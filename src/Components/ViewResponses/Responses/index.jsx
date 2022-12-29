@@ -50,8 +50,8 @@ const Responses = () => {
                     <Card sx={{ backgroundColor: "#f6f6f6", borderTop: '5px solid #1976d2' }}>
                         <CardContent>
                             <Typography mt={2} mb={3} variant="h5">Interaction Title : <span style={{ color: "#1976d2" }}>Frontend Development</span></Typography>
-                            <Typography mb={3} variant="h5">Candidate Name : <span style={{ color: "#1976d2" }}>Talent Sumo</span></Typography>
-                            <Typography variant="h5">Candidate Id : <span style={{ color: "#1976d2" }}>Id-2235</span></Typography>
+                            <Typography mb={3} variant="h5">Candidate Name : <span style={{ color: "#1976d2" }}>Bhavya Khurana</span></Typography>
+                            <Typography variant="h5">Candidate Id : <span style={{ color: "#1976d2" }}>223571</span></Typography>
                         </CardContent>
                     </Card>
                 </Box>
