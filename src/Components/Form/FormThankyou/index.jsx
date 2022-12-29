@@ -16,6 +16,8 @@ import {
 
 import { exportComponentAsPNG } from 'react-component-export-image';
 
+import { useNavigate } from 'react-router-dom';
+
 import thanksImg from '../../../assets/Images/thankForm.svg';
 import architect from "../../../assets/Images/architect.jpg"
 import advocate from "../../../assets/Images/advocate.jpg"
@@ -35,6 +37,8 @@ import defender from "../../../assets/Images/defender.jpg"
 import debaterentrepreneur from "../../../assets/Images/debaterentrepreneur.jpg"
 
 const FormThankyou = (props) => {
+
+    const navigate = useNavigate();
 
     const [rating, setRating] = useState(0);
 
@@ -126,8 +130,9 @@ const FormThankyou = (props) => {
                             they all have a common point of view. Practice is the key to improvement - and specific feedback makes improvement faster.
                         </Typography> */}
 
-                        <Box mb={2} sx={{ display: "flex", justifyContent: "center" }}>
-                            <Button variant='contained' disabled={seconds === 0 ? false : true}>View Report</Button>
+                        <Box mb={2} gap={1} sx={{ display: "flex", justifyContent: "space-between" }}>
+                            <Button variant='outlined' onClick={() => navigate('/detailedReport')} disabled={seconds === 0 && minutes === 0 ? false : true}>View Report</Button>
+                            <Button variant='contained' onClick={() => navigate('/responses')} disabled={seconds === 0 && minutes === 0 ? false : true}>View Response</Button>
                         </Box>
                         {
                             minutes === 0 && seconds === 0
