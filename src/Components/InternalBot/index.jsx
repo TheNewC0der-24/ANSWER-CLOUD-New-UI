@@ -61,11 +61,10 @@ const InternalBot = () => {
         interactionMode: Yup.string().required('Select Interaction Mode'),
         accessCode: Yup.string().min(6, 'Too Short!').max(6, 'Too Long!').required('Access must be of exactly 6 numbers'),
         expiryDate: Yup.string().required('Expiry Date is required'),
-        emailOne: Yup.string().email('Invalid email'),
         timer: Yup.string().required('Select Timer'),
         description: Yup.string().required('Description is required'),
-        generalFeedback: Yup.string().min(400, 'Too Short!').max(615, 'Too Long!').required('Minimum 400 and Maximum 615 characters required'),
-        questions: Yup.string().required('This is required'),
+        generalFeedback: Yup.string().max(615, 'Too Long!').required('Maximum 615 characters required'),
+        // questions: Yup.string().required('This is required'),
         // mediaContext: Yup.string().required('This is required'),
         // hints: Yup.string().required('This is required'),
         // idealAnswer: Yup.string().required('This is required'),
@@ -82,7 +81,6 @@ const InternalBot = () => {
             interactionMode: '',
             accessCode: '',
             expiryDate: '',
-            emailOne: '',
             timer: '',
             description: '',
             generalFeedback: '',
@@ -241,7 +239,6 @@ const InternalBot = () => {
             values.interactionMode === '' ||
             values.accessCode === '' ||
             values.expiryDate === '' ||
-            values.emailOne === '' ||
             values.timer === '' ||
             values.description === '' ||
             values.generalFeedback === '' ||
@@ -267,7 +264,6 @@ const InternalBot = () => {
             values.interactionMode === '' ||
             values.accessCode === '' ||
             values.expiryDate === '' ||
-            values.emailOne === '' ||
             values.timer === '' ||
             values.description === '' ||
             values.generalFeedback === '' ||
@@ -607,6 +603,7 @@ const InternalBot = () => {
                                                     <TextField
                                                         multiline
                                                         fullWidth
+                                                        // required
                                                         size='small'
                                                         maxRows={3}
                                                         minRows={3}
@@ -742,6 +739,7 @@ const InternalBot = () => {
                                                     <TextField
                                                         multiline
                                                         fullWidth
+                                                        // required
                                                         size='small'
                                                         maxRows={3}
                                                         minRows={3}
@@ -829,8 +827,7 @@ const InternalBot = () => {
                             <Button
                                 disabled={errors.companyName || errors.interactionTitle || errors.testId || errors.track || errors.interactionMode
                                     || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.description
-                                    || errors.generalFeedback || errors.mediaContext || errors.hints
-                                    || errors.idealAnswer || errors.skills ? true : false
+                                    || errors.generalFeedback || errors.skills
                                 }
                                 onClick={handleSubmitIb}
                                 variant='contained'
