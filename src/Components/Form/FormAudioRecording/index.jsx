@@ -182,7 +182,7 @@ const FromAudioRecording = () => {
 
             {
               !active && (
-                <Alert severity="info">Answer recording starts after you hit "Record" button above.</Alert>
+                <Alert severity="info">The recording starts after you hit the "Record" button above.</Alert>
               )
             }
 

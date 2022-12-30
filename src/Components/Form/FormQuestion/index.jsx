@@ -35,7 +35,7 @@ const VideoPreview = ({ stream }) => {
 };
 
 const shapeStyles = { bgcolor: 'primary.main', width: '40', height: '40' };
-// const shapeCircleStyles = { borderRadius: '50%' };
+
 const circle = (
     <Box component="span" sx={{ ...shapeStyles }} />
 );
@@ -52,7 +52,6 @@ const FormQuestion = () => {
         previewStream,
         startRecording,
         stopRecording,
-        resumeRecording,
         clearBlobUrl,
         pauseRecording,
         mediaBlobUrl
@@ -230,7 +229,7 @@ const FormQuestion = () => {
 
                             {
                                 !isActive && (
-                                    <Alert severity="info">Answer recording starts after you hit "Record" button above.</Alert>
+                                    <Alert severity="info">The recording starts after you hit the "Record" button above.</Alert>
                                 )
                             }
                             {
