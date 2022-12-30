@@ -36,7 +36,7 @@ const FormStartScreen = () => {
                                     <Typography mb={2} variant="h6">Best of Luck!</Typography>
                                     <Box sx={{ display: 'flex', justifyContent: 'space-between', flexWrap: "wrap" }}>
                                         <Button variant="outlined" size='small' onClick={() => navigate('/form/check')}>&#60; STEP 1: Let's check your device</Button>
-                                        <Button variant="contained" size='small' onClick={() => navigate('/form/video-question')}>Start</Button>
+                                        <Button variant="contained" size='small' onClick={() => navigate('/form/invitation')}>Start</Button>
                                     </Box>
                                 </Stack>
                             </Grid>
