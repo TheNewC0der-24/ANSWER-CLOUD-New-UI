@@ -50,7 +50,8 @@ const SummaryReport = () => {
             <Container maxWidth='xl'>
                 <Box ref={summaryReportRef} mt={3} mb={3} p={2} className={styles.a4}>
                     <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                        <Typography sx={{ fontWeight: "bold" }} variant='subtitle1'>Name: <span style={{ color: "#1976d2" }}>Bhavya Khurana</span></Typography>
+                        {/* <Typography sx={{ fontWeight: "bold" }} variant='subtitle1'>Name: <span style={{ color: "#1976d2" }}>Bhavya Khurana</span></Typography> */}
+                        <Typography sx={{ fontWeight: "bold" }} variant='subtitle1'>Team Name: <span style={{ color: "#1976d2" }}>Frontenders</span></Typography>
                         <Link variant='subtitle1' href="https://www.talentsumo.co/feedback" target="_blank">Feedback Rubric</Link>
                     </Box>
                     <Typography sx={{ fontWeight: "bold" }} variant='subtitle1'>Date: <span style={{ color: "#1976d2" }}>04-12-2022</span></Typography>
@@ -79,14 +80,14 @@ const SummaryReport = () => {
                             <th className={styles.th}>Cohort Rating</th>
                             <th className={styles.th}>Indicator/How to Improve</th>
                         </tr>
-                        <tr>
+                        {/* <tr>
                             <td className={styles.td}>Trust (Video Only)</td>
                             <td className={styles.td}>
                                 <Rating name="size-small" defaultValue={0} readOnly size="small" />
                             </td>
                             <td className={styles.td}>NA</td>
                             <td className={styles.td}>Improve by being intentional.</td>
-                        </tr>
+                        </tr> */}
                         <tr>
                             <td className={styles.td}>Clarity</td>
                             <td className={styles.td}>
