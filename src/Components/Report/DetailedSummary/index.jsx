@@ -51,7 +51,7 @@ const DetailedReport = () => {
             <Container maxWidth='xl'>
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
                     <Box ref={detailedReportRefOne} mt={3} mb={3} p={2} className={styles.a4}>
-                        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                        <Box mt={5} sx={{ display: "flex", justifyContent: "space-between" }}>
                             <Typography sx={{ fontWeight: "bold" }} variant='subtitle1'>Name: <span style={{ color: "#1976d2" }}>Bhavya Khurana</span></Typography>
                             {/* <Typography sx={{ fontWeight: "bold" }} variant='subtitle1'>Team Name: <span style={{ color: "#1976d2" }}>Frontenders</span></Typography> */}
                             <Link variant='subtitle1' href="https://www.talentsumo.co/feedback" target="_blank">Feedback Rubric</Link>
@@ -174,7 +174,7 @@ const DetailedReport = () => {
                         <Box mt={5}>
                             <Divider />
                         </Box>
-                        <Box sx={{ marginTop: "7rem" }}>
+                        <Box sx={{ marginTop: "3rem" }}>
                             <Typography mb={3} sx={{ fontWeight: "bold" }} variant='subtitle1'>Transcript & Detailed Feedback</Typography>
                             <Typography mb={1} sx={{ fontWeight: "bold" }} variant='subtitle1'>Coach Feedback: <span style={{ color: "#1976d2" }}>NA</span></Typography>
                             {/* Question One */}
