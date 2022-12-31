@@ -4,13 +4,13 @@ import styles from './ForgetPassword.module.css';
 import {
     Stack,
     Paper,
-    IconButton,
+    // IconButton,
     Box,
     Alert,
     Typography,
     TextField,
     LinearProgress,
-    InputAdornment,
+    // InputAdornment,
     Button,
 } from '@mui/material';
 
@@ -26,25 +26,27 @@ import { useFormik, FormikProvider, Form } from 'formik';
 import * as Yup from 'yup';
 
 // Icons
-import { Icon } from '@iconify/react';
-import eyeFill from '@iconify/icons-eva/eye-fill';
-import eyeOffFill from '@iconify/icons-eva/eye-off-fill';
+// import { Icon } from '@iconify/react';
+// import eyeFill from '@iconify/icons-eva/eye-fill';
+// import eyeOffFill from '@iconify/icons-eva/eye-off-fill';
 
 const ForgetPassword = () => {
 
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    // const [showPassword, setShowPassword] = useState(false);
+    // const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const forgetPasswordSchema = Yup.object().shape({
-        password: Yup.string().required('Password is required'),
-        confirmPassword: Yup.string().required('Confirm Password is required')
+        email: Yup.string().email('Invalid email').required('Email is required'),
+        // password: Yup.string().required('Password is required'),
+        // confirmPassword: Yup.string().required('Confirm Password is required')
     });
 
     const formik = useFormik({
         initialValues: {
-            password: '',
-            confirmPassword: ''
+            email: '',
+            // password: '',
+            // confirmPassword: ''
         },
         validationSchema: forgetPasswordSchema,
         onSubmit: async (values, { setErrors, resetForm }) => {
@@ -60,13 +62,13 @@ const ForgetPassword = () => {
         }
     });
 
-    const handleShowPassword = () => {
-        setShowPassword((show) => !show);
-    };
+    // const handleShowPassword = () => {
+    //     setShowPassword((show) => !show);
+    // };
 
-    const handleShowConfirmPassword = () => {
-        setShowConfirmPassword((show) => !show);
-    };
+    // const handleShowConfirmPassword = () => {
+    //     setShowConfirmPassword((show) => !show);
+    // };
 
     const { errors, touched, values, handleSubmit, getFieldProps } = formik;
 
@@ -108,6 +110,18 @@ const ForgetPassword = () => {
                         <Stack direction='row'>
                             <TextField
                                 fullWidth
+                                label="Email"
+                                required
+                                type='email'
+                                {...getFieldProps('email')}
+                                error={Boolean(touched.email && errors.email)}
+                                helperText={touched.email && errors.email}
+                            />
+                        </Stack>
+
+                        {/* <Stack direction='row'>
+                            <TextField
+                                fullWidth
                                 type={showPassword ? 'text' : 'password'}
                                 label='Password'
                                 required
@@ -124,9 +138,9 @@ const ForgetPassword = () => {
                                 error={Boolean(touched.password && errors.password)}
                                 helperText={touched.password && errors.password}
                             />
-                        </Stack>
+                        </Stack> */}
 
-                        <Stack direction='row'>
+                        {/* <Stack direction='row'>
                             <TextField
                                 fullWidth
                                 type={showConfirmPassword ? 'text' : 'password'}
@@ -145,7 +159,7 @@ const ForgetPassword = () => {
                                 error={Boolean(touched.confirmPassword && errors.confirmPassword)}
                                 helperText={touched.confirmPassword && errors.confirmPassword}
                             />
-                        </Stack>
+                        </Stack> */}
 
                         <Stack direction='row' pb={3} pt={2}>
                             <Button
@@ -153,9 +167,9 @@ const ForgetPassword = () => {
                                 type='submit'
                                 fullWidth
                                 sx={{ height: '2.5rem' }}
-                                disabled={errors.email || errors.password || loading}
+                                disabled={errors.email}
                             >
-                                Reset Password
+                                Send
                             </Button>
                         </Stack>
                     </Paper>
