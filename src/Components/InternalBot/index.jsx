@@ -438,6 +438,14 @@ const InternalBot = () => {
                                         {
                                             certificate &&
                                             <Box>
+                                                <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Upload Logo</Typography>
+                                                <Box mb={1}>
+                                                    <TextField
+                                                        fullWidth
+                                                        size='small'
+                                                        type='file'
+                                                    />
+                                                </Box>
                                                 <TextField
                                                     fullWidth
                                                     size='small'
