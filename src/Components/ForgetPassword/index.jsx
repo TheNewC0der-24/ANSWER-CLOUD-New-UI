@@ -4,13 +4,13 @@ import styles from './ForgetPassword.module.css';
 import {
     Stack,
     Paper,
-    // IconButton,
+    IconButton,
     Box,
     Alert,
     Typography,
     TextField,
     LinearProgress,
-    // InputAdornment,
+    InputAdornment,
     Button,
 } from '@mui/material';
 
