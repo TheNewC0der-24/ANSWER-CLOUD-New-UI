@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import {
     Box,
     Typography,
-    Grid,
-    Card,
-    CardContent,
     Button,
 } from "@mui/material";
 
@@ -12,9 +11,7 @@ import LoadAnimation from '../LoadAnimation/index';
 
 import MaterialTable from "@material-table/core";
 
-import { useNavigate } from 'react-router-dom';
-
-import CountUp from "react-countup";
+// import CountUp from "react-countup";
 
 const ViewInteraction = () => {
 
