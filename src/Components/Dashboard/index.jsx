@@ -17,6 +17,7 @@ import { Icon } from "@iconify/react";
 
 import Chart from './Chart';
 import ViewInteraction from './ViewInteraction';
+// import StudentDashboard from '../StudentDashboard';
 
 function Dashboard() {
     return (
@@ -98,6 +99,8 @@ function Dashboard() {
                 <Box mt={2}>
                     <ViewInteraction />
                 </Box>
+
+                {/* <StudentDashboard /> */}
             </Box>
         </>
     )
