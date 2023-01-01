@@ -52,7 +52,8 @@ const DetailedReport = () => {
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
                     <Box ref={detailedReportRefOne} mt={3} mb={3} p={2} className={styles.a4}>
                         <Box mt={5} sx={{ display: "flex", justifyContent: "space-between" }}>
-                            <Typography sx={{ fontWeight: "bold" }} variant='subtitle1'>Name: <span style={{ color: "#1976d2" }}>Bhavya Khurana</span></Typography>
+                            <Typography sx={{ fontWeight: "bold" }} variant='subtitle1'>Name: <span style={{ color: "#1976d2" }}>Bhavya Khurana</span>
+                            </Typography>
                             {/* <Typography sx={{ fontWeight: "bold" }} variant='subtitle1'>Team Name: <span style={{ color: "#1976d2" }}>Frontenders</span></Typography> */}
                             <Link variant='subtitle1' href="https://www.talentsumo.co/feedback" target="_blank">Feedback Rubric</Link>
                         </Box>
@@ -183,10 +184,10 @@ const DetailedReport = () => {
                                 <Typography mt={1} variant='body2'>Oues-1 What is the tenure of health insurance plans?</Typography>
                             </Box>
                             <Box p={1} sx={{ border: "1px solid #dddddd" }}>
-                                <Typography variant='body2' sx={{ color: "#1976d2" }}>Ans: Typically, the term of health insurance plans is one year. However, health insurance plans offered by life insurance companies can be for 5 years.</Typography>
+                                <Typography variant='body2' sx={{ color: "#1976d2" }}>Ans: The tenure of our health insurance plans in between 1 to 5 years. You can select any duration depending upon your needs. </Typography>
                             </Box>
                             <Box p={1} mb={3} sx={{ border: "1px solid #dddddd" }}>
-                                <Typography sx={{ color: "#E34935" }} variant='body2'>Model Feedback: Your answer is appropriate and correct. A persuasive, engaging speaker when well-prepared, but uncomfortable and less effective when asked to speak off-the-cuff.</Typography>
+                                <Typography sx={{ color: "#E34935" }} variant='body2'>Model Feedback: The response is accurate and to the point. In the context of sales, you may want to keep discovering the needs and ask questions on what levels of the tenure is desired and why. </Typography>
                             </Box>
 
                             {/* Question Two */}
@@ -195,12 +196,10 @@ const DetailedReport = () => {
                                 <Typography mt={1} variant='body2'>Oues-2: What is the frequency of premium payment for health insurance?</Typography>
                             </Box>
                             <Box p={1} sx={{ border: "1px solid #dddddd" }}>
-                                <Typography sx={{ color: "#1976d2" }} variant='body2'>Ans: The premium payment frequency is of health insurance plans is typically of one year though some life insurance companies allow a one-time premium payment too.</Typography>
+                                <Typography sx={{ color: "#1976d2" }} variant='body2'>Ans: The premium payments can be made lump sum one time or they can be made on fixed intervals - monthly or quarterly. Most of our customers choose to make monthly payments. </Typography>
                             </Box>
                             <Box p={1} mb={3} sx={{ border: "1px solid #dddddd" }}>
-                                <Typography sx={{ color: "#E34935" }} variant='body2'>Model Feedback: You explained it well. You give the brief explanation for this answer.
-                                    You presented work properly checked and completely free of error. From a set of data, you are able to establish a principle, or work out a rule, or suggest a reason for failure or success. His analysis is usually accurate but not original. Bhavya has outstanding artistic or craft skills, bringing creativity and originality to the task. Easy-going, relaxed, always welcome in a group – though not the strongest personality.
-                                </Typography>
+                                <Typography sx={{ color: "#E34935" }} variant='body2'>Model Feedback: This is a good answer. Although the answer may be contextual, you can specify in the answer what kind of insurance plans are being discussed.</Typography>
                             </Box>
 
                             {/* Question Three */}
@@ -209,12 +208,10 @@ const DetailedReport = () => {
                                 <Typography mt={1} variant='body2'>Oues-3: When does one get the critical illness benefit from health insurance plans?</Typography>
                             </Box>
                             <Box p={1} sx={{ border: "1px solid #dddddd" }}>
-                                <Typography sx={{ color: "#1976d2" }} variant='body2'>Ans: In case of life insurance companies, this benefit is typically paid in full, on the diagnosis of the critical illnesses. Of course, the critical illness needs to be present in the list of critical illnesses covered by health insurance plans.</Typography>
+                                <Typography sx={{ color: "#1976d2" }} variant='body2'>Ans: Our benefits are paid in actual whenever they are required - after the diagnosis of the critical illness. The illness should also be covered by the health insurance plans.</Typography>
                             </Box>
                             <Box p={1} mb={3} sx={{ border: "1px solid #dddddd" }}>
-                                <Typography sx={{ color: "#E34935" }} variant='body2'>Model Feedback: Great!!, your answer is correct.
-                                    A persuasive, engaging speaker when well-prepared, but uncomfortable and less effective when asked to speak off-the-cuff. Has proven ability to produce creative, original ideas, plans, products or methods, even if they're not always practical, in line with organization needs, or successful.
-                                </Typography>
+                                <Typography sx={{ color: "#E34935" }} variant='body2'>Model Feedback: Great, this is a good answer! Please add some details about what is defined as a critical illness. Direct them to the policy documents where they can find more details about the same.</Typography>
                             </Box>
                         </Box>
                     </Box>
