@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './StudentDashboard.module.css';
 
 import {
     Box,
     Typography,
+    Avatar,
     Button,
 } from "@mui/material";
+
+// Icon
+import { Icon } from "@iconify/react";
 
 import LoadAnimation from '../LoadAnimation/index';
 
@@ -89,13 +94,23 @@ const StudentDashboard = () => {
 
     return (
         <>
+            <Typography sx={{ display: "flex", alignItems: "center" }} variant="h5">
+                <Avatar variant="rounded" className={styles.avatar}>
+                    <Icon
+                        icon="ic:sharp-dashboard-customize"
+                        className={styles.dashboardIcon}
+                    />
+                </Avatar>
+                Records
+            </Typography>
+
             <Box mt={3} xs={12} sm={12} md={12} lg={12}>
                 {
                     loading ? (
                         <LoadAnimation />
                     ) : (
                         <MaterialTable
-                            title={<Typography variant='h5'>Student Dashboard</Typography>}
+                            title={<Typography variant='h5'>Interaction History</Typography>}
                             columns={columns}
                             data={dashboardStudentData}
                             options={{
