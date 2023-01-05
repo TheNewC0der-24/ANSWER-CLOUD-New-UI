@@ -9,6 +9,9 @@ import {
     Alert,
     Typography,
     TextField,
+    FormGroup,
+    FormControlLabel,
+    Checkbox,
     LinearProgress,
     InputAdornment,
     Button,
@@ -38,6 +41,9 @@ import eyeFill from '@iconify/icons-eva/eye-fill';
 import eyeOffFill from '@iconify/icons-eva/eye-off-fill';
 
 const SignUp = () => {
+
+    // const [hide, setHidden] = useState(true);
+    const [checked, setChecked] = useState(false);
 
     const navigate = useNavigate();
 
@@ -94,6 +100,10 @@ const SignUp = () => {
     if (loading) {
         setLoading(true);
         return <LoadingScreen />;
+    }
+
+    const handleCheck = () => {
+        setChecked((prev) => !prev);
     }
 
     return (
@@ -214,17 +224,27 @@ const SignUp = () => {
                                 helperText={touched.confirmpassword && errors.confirmpassword}
                             />
                         </Stack>
-                        <Stack direction='row'>
-                            <TextField
-                                fullWidth
-                                size='small'
-                                label="Invitation Code"
-                                required
-                                type='text'
-                                {...getFieldProps('invitationcode')}
-                                error={Boolean(touched.invitationcode && errors.invitationcode)}
-                                helperText={touched.invitationcode && errors.invitationcode}
-                            />
+                        {
+                            !checked && (
+                                <Stack direction='row'>
+                                    <TextField
+                                        fullWidth
+                                        size='small'
+                                        label="Invitation Code"
+                                        required
+                                        type='text'
+                                        {...getFieldProps('invitationcode')}
+                                        error={Boolean(touched.invitationcode && errors.invitationcode)}
+                                        helperText={touched.invitationcode && errors.invitationcode}
+                                    />
+                                </Stack>
+                            )
+                        }
+
+                        <Stack>
+                            <FormGroup>
+                                <FormControlLabel control={<Checkbox onClick={handleCheck} />} label="Register as a Participant" />
+                            </FormGroup>
                         </Stack>
 
                         <Stack direction='row' pb={1} pt={1}>
