@@ -232,30 +232,6 @@ const WorkspaceWhenInteraction = () => {
                                 </Card>
                             )
                     }
-
-                    {
-                        loading ? (
-                            <LoadAnimation />
-                        ) :
-                            (
-                                <Card sx={{ mt: 3 }}>
-                                    <CardContent>
-                                        <Typography mb={2} variant="h5">Group Discussions</Typography>
-                                        <Box sx={{ width: "100%" }}>
-                                            <DataGrid
-                                                rows={workspaceData}
-                                                columns={columns}
-                                                pageSize={5}
-                                                rowsPerPageOptions={[5]}
-                                                disableSelectionOnClick
-                                                // checkboxSelection
-                                                autoHeight
-                                            />
-                                        </Box>
-                                    </CardContent>
-                                </Card>
-                            )
-                    }
                 </Box>
 
             </Box>
