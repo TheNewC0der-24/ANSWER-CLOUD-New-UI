@@ -168,6 +168,24 @@ const FormThankyou = (props) => {
 
             <Container sx={{ marginTop: "2rem" }} maxWidth="md">
                 <Card sx={{ backgroundColor: "#F7F8F9" }}>
+                    <CardContent ref={cardRef} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <Box mb={3} p={2} sx={{ backgroundColor: "#1976d2", width: '100%' }} align='center'>
+                            <Typography color='white' align='center' variant='h5'>
+                                Register for Download Certificate and View Report
+                            </Typography>
+                        </Box>
+
+                    </CardContent>
+                    <Box sx={{ display: "flex", justifyContent: "center", margin: "auto" }}>
+                        <Button sx={{ marginBottom: "1rem" }} variant='contained'>
+                            Sign Up
+                        </Button>
+                    </Box>
+                </Card>
+            </Container>
+
+            <Container sx={{ marginTop: "2rem" }} maxWidth="md">
+                <Card sx={{ backgroundColor: "#F7F8F9" }}>
                     <CardContent>
                         <Typography mb={3} align='center' variant='h6'>How was your test taking experience?</Typography>
 
