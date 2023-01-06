@@ -21,6 +21,8 @@ import {
     RadioGroup,
     Radio,
     Button,
+    Badge,
+    Chip,
 } from '@mui/material';
 
 import { DatePicker } from "@mui/x-date-pickers";
@@ -48,9 +50,12 @@ const InternalBot = () => {
     const [mode, setMode] = useState('');
     const [certificate, setCertificate] = useState(false);
     const [reportSent, setReportSent] = useState(false);
+    const [expiry, setExpiry] = useState(false);
     const [name, setName] = useState(false);
     const [noOfRows, setNoOfRows] = useState(1);
     const [skills, setSkills] = useState('');
+    const [value, setValue] = useState(null);
+    const [model, setModel] = useState('');
 
 
     const internalBotSchema = Yup.object().shape({
@@ -60,7 +65,7 @@ const InternalBot = () => {
         track: Yup.string().required('Select your Track'),
         interactionMode: Yup.string().required('Select Interaction Mode'),
         accessCode: Yup.string().min(6, 'Too Short!').max(6, 'Too Long!').required('Access must be of exactly 6 numbers'),
-        expiryDate: Yup.string().required('Expiry Date is required'),
+        // expiryDate: Yup.string().required('Expiry Date is required'),
         timer: Yup.string().required('Select Timer'),
         description: Yup.string().required('Description is required'),
         generalFeedback: Yup.string().max(615, 'Too Long!').required('Maximum 615 characters required'),
@@ -80,7 +85,7 @@ const InternalBot = () => {
             track: '',
             interactionMode: '',
             accessCode: '',
-            expiryDate: '',
+            // expiryDate: '',
             timer: '',
             description: '',
             generalFeedback: '',
@@ -123,6 +128,15 @@ const InternalBot = () => {
         }
     };
 
+    const handleExpiry = (event) => {
+        if (event.target.value === "No") {
+            setExpiry(false);
+        }
+        else {
+            setExpiry(true);
+        }
+    }
+
     const handleCoachName = (event) => {
         if (event.target.value === "No") {
             setName(false);
@@ -140,6 +154,15 @@ const InternalBot = () => {
             setReportSent(true);
         }
     }
+
+    const handleModelData = (event) => {
+        if (event.target.value === "No") {
+            setModel(false);
+        }
+        else {
+            setModel(true);
+        }
+    };
 
     const [checked, setChecked] = useState(false);
 
@@ -385,24 +408,6 @@ const InternalBot = () => {
                                 </Stack>
                                 <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                                     <Stack sx={{ width: '100%' }}>
-                                        <DatePicker
-                                            inputFormat='dd/MM/yyyy'
-                                            value={values.expiryDate}
-                                            label='Expiry Date'
-                                            onChange={(newValue) => setFieldValue("expiryDate", newValue)}
-                                            renderInput={(params) => (
-                                                <TextField
-                                                    required
-                                                    size='small'
-                                                    fullWidth
-                                                    {...params}
-                                                    error={Boolean(touched.expiryDate && errors.expiryDate)}
-                                                    helperText={touched.expiryDate && errors.expiryDate}
-                                                />
-                                            )}
-                                        ></DatePicker>
-                                    </Stack>
-                                    <Stack sx={{ width: '100%' }}>
                                         <TextField
                                             select
                                             value={timer}
@@ -418,71 +423,6 @@ const InternalBot = () => {
                                                 <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
                                             ))}
                                         </TextField>
-                                    </Stack>
-                                </Stack>
-                                <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
-                                    <Stack sx={{ width: '100%' }}>
-                                        <FormControl>
-                                            <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Generate Certificate</FormLabel>
-                                            <RadioGroup
-                                                row
-                                                aria-labelledby="demo-row-radio-buttons-group-label"
-                                                defaultValue="No"
-                                                name="row-radio-buttons-group"
-                                                onClick={handleCertificateName}
-                                            >
-                                                <FormControlLabel value="No" control={<Radio />} label="No" />
-                                                <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-                                            </RadioGroup>
-                                        </FormControl>
-                                        {
-                                            certificate &&
-                                            <Box>
-                                                <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Upload Logo</Typography>
-                                                <Box mb={1}>
-                                                    <TextField
-                                                        fullWidth
-                                                        size='small'
-                                                        type='file'
-                                                    />
-                                                </Box>
-                                                <TextField
-                                                    fullWidth
-                                                    size='small'
-                                                    label="Certificate Name"
-                                                    required
-                                                    type='text'
-                                                />
-                                                <FormGroup>
-                                                    <FormControlLabel control={<Checkbox />} label="Show company name in certificate" />
-                                                </FormGroup>
-                                            </Box>
-                                        }
-                                    </Stack>
-                                    <Stack sx={{ width: '100%' }}>
-                                        <FormControl>
-                                            <FormLabel id="demo-row-radio-buttons-group-label" variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Coach Name(in Report)</FormLabel>
-                                            <RadioGroup
-                                                row
-                                                aria-labelledby="demo-row-radio-buttons-group-label"
-                                                defaultValue="No"
-                                                name="row-radio-buttons-group"
-                                                onClick={handleCoachName}
-                                            >
-                                                <FormControlLabel value="No" control={<Radio />} label="No" />
-                                                <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-                                            </RadioGroup>
-                                        </FormControl>
-                                        {
-                                            name &&
-                                            <TextField
-                                                fullWidth
-                                                size='small'
-                                                label="Coach name"
-                                                required
-                                                type='text'
-                                            />
-                                        }
                                     </Stack>
                                     <Stack sx={{ width: '100%' }}>
                                         <FormControl>
@@ -516,6 +456,7 @@ const InternalBot = () => {
                                         }
                                     </Stack>
                                 </Stack>
+
                                 <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                                     <Stack sx={{ width: '100%' }}>
                                         <InputLabel sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Interaction Objective *</InputLabel>
@@ -548,6 +489,145 @@ const InternalBot = () => {
                                             helperText={touched.generalFeedback && errors.generalFeedback}
                                         />
                                     </Stack>
+                                </Stack>
+                            </CardContent>
+                        </Card>
+
+                        <Card component={Stack} p={3} mt={3} spacing={2} elevation={3}>
+                            <CardContent>
+                                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                                    <div>
+                                        <Typography mb={3} variant="h4">Super Coach</Typography>
+                                    </div>
+                                    <div>
+                                        <Chip label="Premium" sx={{ bgcolor: "#9c27b0", color: "#fff", fontSize: "18px", fontWeight: "bold" }} />
+                                    </div>
+                                </Box>
+
+                                <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
+                                    <Stack sx={{ width: '100%' }}>
+                                        <FormControl>
+                                            <FormLabel variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Expiry Date</FormLabel>
+                                            <RadioGroup
+                                                row
+                                                defaultValue="No"
+                                                onClick={handleExpiry}
+                                            >
+                                                <FormControlLabel value="No" control={<Radio />} label="No" />
+                                                <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                                            </RadioGroup>
+                                        </FormControl>
+                                        {
+                                            expiry &&
+                                            <DatePicker
+                                                inputFormat='dd/MM/yyyy'
+                                                value={value}
+                                                label='Expiry Date'
+                                                onChange={(newValue) => {
+                                                    setValue(newValue);
+                                                }}
+                                                renderInput={(params) => (
+                                                    <TextField
+                                                        size='small'
+                                                        fullWidth
+                                                        {...params}
+                                                    />
+                                                )}
+                                            ></DatePicker>
+                                        }
+                                    </Stack>
+                                    <Stack sx={{ width: '100%' }}>
+                                        <FormControl>
+                                            <FormLabel variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Generate Certificate</FormLabel>
+                                            <RadioGroup
+                                                row
+                                                defaultValue="No"
+                                                onClick={handleCertificateName}
+                                            >
+                                                <FormControlLabel value="No" control={<Radio />} label="No" />
+                                                <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                                            </RadioGroup>
+                                        </FormControl>
+                                        {
+                                            certificate &&
+                                            <Box>
+                                                <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Upload Logo</Typography>
+                                                <Box mb={1}>
+                                                    <TextField
+                                                        fullWidth
+                                                        size='small'
+                                                        type='file'
+                                                    />
+                                                </Box>
+                                                <TextField
+                                                    fullWidth
+                                                    size='small'
+                                                    label="Certificate Name"
+                                                    type='text'
+                                                />
+                                                <FormGroup>
+                                                    <FormControlLabel control={<Checkbox />} label="Show company name in certificate" />
+                                                </FormGroup>
+                                            </Box>
+                                        }
+                                    </Stack>
+                                    <Stack sx={{ width: '100%' }}>
+                                        <FormControl>
+                                            <FormLabel variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Coach Name(in Report)</FormLabel>
+                                            <RadioGroup
+                                                row
+                                                defaultValue="No"
+                                                onClick={handleCoachName}
+                                            >
+                                                <FormControlLabel value="No" control={<Radio />} label="No" />
+                                                <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                                            </RadioGroup>
+                                        </FormControl>
+                                        {
+                                            name &&
+                                            <TextField
+                                                fullWidth
+                                                size='small'
+                                                label="Coach name"
+                                                type='text'
+                                            />
+                                        }
+                                    </Stack>
+                                </Stack>
+                            </CardContent>
+                        </Card>
+
+                        <Card component={Stack} p={3} mt={3} spacing={2} elevation={3}>
+                            <CardContent>
+                                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                                    <div>
+                                        <Typography mb={3} variant="h4">Cloud Context Engine</Typography>
+                                    </div>
+                                    <div>
+                                        <Chip label="Premium" sx={{ bgcolor: "#9c27b0", color: "#fff", fontSize: "18px", fontWeight: "bold" }} />
+                                    </div>
+                                </Box>
+
+                                <Stack spacing={2} mb={3}>
+                                    <FormControl>
+                                        <FormLabel variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Model Data</FormLabel>
+                                        <RadioGroup
+                                            row
+                                            defaultValue="No"
+                                            onClick={handleModelData}
+                                        >
+                                            <FormControlLabel value="No" control={<Radio />} label="No" />
+                                            <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                                        </RadioGroup>
+                                    </FormControl>
+                                    {
+                                        model &&
+                                        <TextField
+                                            fullWidth
+                                            size='small'
+                                            type='file'
+                                        />
+                                    }
                                 </Stack>
                             </CardContent>
                         </Card>

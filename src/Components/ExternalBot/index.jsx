@@ -20,7 +20,8 @@ import {
     Button,
     Card,
     CardContent,
-    Grid
+    Grid,
+    Chip,
 } from '@mui/material';
 
 import { useNavigate } from 'react-router-dom';
@@ -114,10 +115,17 @@ const ExternalBot = () => {
                         <Card component={Stack} p={3} spacing={2} elevation={3}>
                             <CardContent>
                                 {errors.afterSubmit && <Alert severity="error">{errors.afterSubmit}</Alert>}
-                                <Typography variant="h4" mb={3}>External Bot</Typography>
+                                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                                    <div>
+                                        <Typography mb={3} variant="h4">External Bot</Typography>
+                                    </div>
+                                    <div>
+                                        <Chip label="Premium" sx={{ bgcolor: "#9c27b0", color: "#fff", fontSize: "18px", fontWeight: "bold" }} />
+                                    </div>
+                                </Box>
                                 <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
                                     <Stack sx={{ width: '100%' }}>
-                                        <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Who can Initiate</Typography>
+                                        <Typography variant='subtitle1' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#1976d2' }}>Who can initiate?</Typography>
                                         <TextField
                                             select
                                             value={initiate}
