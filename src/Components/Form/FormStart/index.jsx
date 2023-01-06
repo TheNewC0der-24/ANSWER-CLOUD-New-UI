@@ -94,7 +94,7 @@ const Start = () => {
 
     const systemInstructionOptions = [
         {
-            value: "1. Please make sure you are in center of camera.",
+            value: "1. Please make sure you are in the center of camera.",
         },
         {
             value: "2. Make sure you have good lighting.",
@@ -106,13 +106,13 @@ const Start = () => {
             value: "4. Not ready for video yet? Toggle video off to record responses as audio.",
         },
         {
-            value: "5. You will have a preview of video before you finalize.",
+            value: "5. You will have a preview of video before you finalize it.",
         },
         {
-            value: "6. Limit your answers to two minutes, timer will guide you.",
+            value: "6. Limit your answers to two minutes. The timer will guide you.",
         },
         {
-            value: "7. And lastly smile more, smile often. Good Luck!",
+            value: "7. And lastly, smile more; smile often. Good Luck!",
         },
     ];
 

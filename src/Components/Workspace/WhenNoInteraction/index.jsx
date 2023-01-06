@@ -47,7 +47,7 @@ const Workspace = () => {
                 <Box mt={5} className={styles.container}>
                     <img className={styles.noPreviewImg} src={noPreview} alt="no preview" />
                     <Typography mt={3} variant='h5'>Come on in, <span className={styles.name}>Bhavya</span></Typography>
-                    <Typography variant='subtitle1'>No interaction created yet! Let's get started</Typography>
+                    <Typography variant='subtitle1'>No interaction has been created yet! Let's get started</Typography>
                     <Typography mb={2} variant='subtitle1'>to create something special.</Typography>
                     <Button size='small' variant="contained" className={styles.createButton} onClick={() => navigate('/account/internal-bot')}><AddIcon /> Create interaction</Button>
                 </Box>

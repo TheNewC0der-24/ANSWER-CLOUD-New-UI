@@ -53,7 +53,7 @@ const Certificate = () => {
                             </Box>
                         </Box>
                         <Typography color='error' mt={5} variant='body1' sx={{ fontStyle: "italic" }} align='center'>
-                            This is system generated certificate and can be validated by appropriate authority. No signature required.
+                            This is system generated certificate and can be validated by an appropriate authority. No signature is required.
                         </Typography>
                     </Box>
                 </Box>

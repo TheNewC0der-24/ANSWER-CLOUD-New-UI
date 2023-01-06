@@ -157,7 +157,7 @@ const Login = () => {
                             />
                             <Typography variant='subtitle2'>
                                 <Link to='/forget-password' underline="hover">
-                                    Forget Password
+                                    Forgot Password
                                 </Link>
                             </Typography>
                         </Stack>

@@ -42,7 +42,7 @@ function Dashboard() {
                                         1
                                     </Avatar>
                                     <Typography variant="subtitle1" component="div">
-                                        Create interactions via the dashboard and distribute it to your participants.
+                                        Create interactions via the dashboard and distribute them to your participants.
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>
@@ -56,7 +56,7 @@ function Dashboard() {
                                         2
                                     </Avatar>
                                     <Typography variant="subtitle1" component="div">
-                                        Participants engage and complete the interactions as per their convenience.
+                                        Participants engage and complete the interactions at their convenience.
                                     </Typography>
                                 </CardContent>
                             </CardActionArea>

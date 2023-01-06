@@ -32,21 +32,29 @@ export default function InterviewPreparation() {
                     >
                         Interaction Preparation
                     </Typography>
-                    <Typography sx={{ mb: 3, fontStyle: "italic" }}>Helpful tips to get you ready to rock your interaction! </Typography>
+                    <Typography sx={{ mb: 3, fontStyle: "italic" }}>
+                        Helpful tips to get you ready to rock your interaction!
+                    </Typography>
 
                     <Typography>What is an interaction?</Typography>
                     <Typography mb={2} color='primary'>
-                        Interaction is an audio, video or text based one way conversation with a cloud AI coach. This experience is customized for you by your mentor or coach. After you complete this simulated experience, you will automatically receive feedback.
+                        Interaction is an audio, video, or text-based one-way conversation with a cloud Al coach. This experience is customized for you by your mentor or coach. After you complete this simulated experience, you will automatically receive feedback.
                     </Typography>
 
                     <Typography>When will I get the feedback?</Typography>
-                    <Typography mb={2} color='primary'>Depending upon the server loads it can be anywhere from 2 minutes to a day. Your feedback report, certificate etc. will be sent to your email as well. </Typography>
+                    <Typography mb={2} color='primary'>
+                        Depending upon the server loads, it can be anywhere from 2 minutes to a day. Your feedback report, certificate, etc., will also be sent to your email.
+                    </Typography>
 
                     <Typography>Any tips or best practices?</Typography>
-                    <Typography mb={2} color='primary'>Treat this as formal business scenarios and act accordingly. Besides the content, how you present the content is evaluated as well.</Typography>
+                    <Typography mb={2} color='primary'>
+                        Treat this as a formal business scenario and act accordingly. Besides the content, how you present the content is evaluated as well.
+                    </Typography>
 
                     <Typography>More questions?</Typography>
-                    <Typography mb={2} color='primary'>Please contact your mentor and coach about the content of interaction. For technical support please contact cloud coach helpdesk.</Typography>
+                    <Typography mb={2} color='primary'>
+                        Please get in touch with your mentor and coach about the content of the interaction. For technical support, please get in touch with the cloud coach help desk.
+                    </Typography>
                 </CardContent>
             </Card>
         </ThemeProvider>

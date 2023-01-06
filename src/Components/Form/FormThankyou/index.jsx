@@ -117,10 +117,9 @@ const FormThankyou = (props) => {
                             <img src={thanksImg} alt="ThankYou" width={200} />
                         </Box>
                         <Typography mb={3} align='center' variant='h4'>Great, your interaction is now complete!</Typography>
-                        <Typography color='red' align='center' paragraph>
-                            This will now be analyzed by our AI
-                            models (and coaches/HR managers, if applicable). You or your administrator will receive a
-                            detailed feedback report soon via email.
+                        <Typography color='red' align='center' mb={2} variant='subtitle1'>
+                            Our Al models will now analyze this (and coaches/HR managers, if applicable). You or your administrator will receive a detailed feedback report soon via email.
+
                         </Typography>
                         {/* <Typography align='center' paragraph>
                             Every human interaction is an opportunity to learn. It's also an opportunity to demonstrate your skills and
@@ -187,7 +186,7 @@ const FormThankyou = (props) => {
             <Container sx={{ marginTop: "2rem" }} maxWidth="md">
                 <Card sx={{ backgroundColor: "#F7F8F9" }}>
                     <CardContent>
-                        <Typography mb={3} align='center' variant='h6'>How was your test taking experience?</Typography>
+                        <Typography mb={3} align='center' variant='h6'>How was your test-taking experience?</Typography>
 
                         <Box sx={{ display: "flex", justifyContent: "center", margin: "auto" }}>
                             <Rating

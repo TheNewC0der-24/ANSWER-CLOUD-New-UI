@@ -102,7 +102,9 @@ const SummaryReport = () => {
                                 <Rating name="size-small" defaultValue={4} readOnly size="small" />
                             </td>
                             <td className={styles.td}>B</td>
-                            <td className={styles.td}>Respond with voice modulation,higher  pitch range and to sound “high energy”</td>
+                            <td className={styles.td}>
+                                Respond with voice modulation,higher  pitch range and to sound “high energy”.
+                            </td>
                         </tr>
                         <tr>
                             <td className={styles.td}>Confidence</td>
@@ -128,7 +130,7 @@ const SummaryReport = () => {
                             <td className={styles.td}>Pace</td>
                             {/* <td className={styles.td}>XX compared to an ideal  140-160 words/minute. Word Cloud : &lt;&lt;URL&gt;&gt;</td> */}
                             <td className={styles.td}>XX compared to an ideal  140-160 words/minute.</td>
-                            <td className={styles.td}>Rate of speech and word frequency by the participant in the interaction</td>
+                            <td className={styles.td}>Rate of speech and word frequency by the participant in the interaction.</td>
                         </tr>
                         {/* <tr>
                             <td className={styles.td}>Gesture (Video Only)</td>

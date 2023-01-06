@@ -99,7 +99,7 @@ const ForgetPassword = () => {
                         {/***************************** Lock Icon *****************************/}
                         <Stack alignItems='center' spacing={1}>
                             <img src={logo} alt="coach-cloud" style={{ width: '50%' }} />
-                            <Typography variant='h4' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b', textAlign: "center" }}>Forget Password</Typography>
+                            <Typography variant='h4' sx={{ fontWeight: 'bold', fontFamily: "Public Sans,sans-serif", color: '#971b8b', textAlign: "center" }}>Forgot Password</Typography>
                         </Stack>
 
                         {/***************************** Alert for Error  *****************************/}
