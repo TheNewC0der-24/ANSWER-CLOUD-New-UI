@@ -21,7 +21,6 @@ import {
     RadioGroup,
     Radio,
     Button,
-    Badge,
     Chip,
 } from '@mui/material';
 
@@ -39,6 +38,7 @@ import * as Yup from 'yup';
 
 // Alert
 import { message } from 'antd';
+import axios from 'axios';
 
 const InternalBot = () => {
 
@@ -49,6 +49,8 @@ const InternalBot = () => {
     const [timer, setTimer] = useState('');
     const [mode, setMode] = useState('');
     const [certificate, setCertificate] = useState(false);
+    const [rating, setRating] = useState('');
+    const [focusGroup, setFocusGroup] = useState('');
     const [reportSent, setReportSent] = useState(false);
     const [expiry, setExpiry] = useState(false);
     const [name, setName] = useState(false);
@@ -65,7 +67,8 @@ const InternalBot = () => {
         track: Yup.string().required('Select your Track'),
         interactionMode: Yup.string().required('Select Interaction Mode'),
         accessCode: Yup.string().min(6, 'Too Short!').max(6, 'Too Long!').required('Access must be of exactly 6 numbers'),
-        // expiryDate: Yup.string().required('Expiry Date is required'),
+        rating: Yup.string().required('Select Complexity Rating'),
+        focusGroup: Yup.string().required('Select Focus Group'),
         timer: Yup.string().required('Select Timer'),
         description: Yup.string().required('Description is required'),
         generalFeedback: Yup.string().max(615, 'Too Long!').required('Maximum 615 characters required'),
@@ -85,7 +88,8 @@ const InternalBot = () => {
             track: '',
             interactionMode: '',
             accessCode: '',
-            // expiryDate: '',
+            rating: '',
+            focusGroup: '',
             timer: '',
             description: '',
             generalFeedback: '',
@@ -97,10 +101,11 @@ const InternalBot = () => {
         },
         validationSchema: internalBotSchema,
         onSubmit: async (values, { setErrors, resetForm }) => {
+            console.log(values, "IB values")
             try {
                 setLoading(true);
                 setLoading(false);
-                navigate('/dashboard');
+                navigate('/thank-you');
                 resetForm();
             } catch (error) {
                 setErrors({ afterSubmit: error.message });
@@ -117,6 +122,8 @@ const InternalBot = () => {
         setTimer(event.target.value);
         setMode(event.target.value);
         setSkills(event.target.value);
+        setRating(event.target.value);
+        setFocusGroup(event.target.value);
     };
 
     const handleCertificateName = (event) => {
@@ -198,6 +205,40 @@ const InternalBot = () => {
         }
     ];
 
+    const ratingOptions = [
+        {
+            value: "Easy",
+            label: "Easy"
+        },
+        {
+            value: "Medium",
+            label: "Medium"
+        },
+        {
+            value: "Hard",
+            label: "Hard"
+        },
+    ];
+
+    const focusGroupOptions = [
+        {
+            value: "Student",
+            label: "Student"
+        },
+        {
+            value: "Specialist",
+            label: "Specialist"
+        },
+        {
+            value: "New Manager",
+            label: "New Manager"
+        },
+        {
+            value: "Mid Manager",
+            label: "Mid Manager"
+        },
+    ];
+
     const timerOptions = [
         {
             value: "15 minutes",
@@ -253,30 +294,31 @@ const InternalBot = () => {
         overflow: 'auto',
     }
 
-    const handleSubmitIb = () => {
-        if (
-            values.companyName === '' ||
-            values.interactionTitle === '' ||
-            values.testId === '' ||
-            values.track === '' ||
-            values.interactionMode === '' ||
-            values.accessCode === '' ||
-            values.expiryDate === '' ||
-            values.timer === '' ||
-            values.description === '' ||
-            values.generalFeedback === '' ||
-            // values.questions === '' ||
-            // values.mediaContext === '' ||
-            // values.hints === '' ||
-            // values.idealAnswer === '' &&
-            values.skills === ""
-        ) {
-            return null;
-        }
-        else {
-            navigate('/thank-you');
-        }
-    }
+    // const handleSubmitIb = () => {
+    //     if (
+    //         values.companyName === '' ||
+    //         values.interactionTitle === '' ||
+    //         values.testId === '' ||
+    //         values.track === '' ||
+    //         values.interactionMode === '' ||
+    //         values.accessCode === '' ||
+    //         // values.rating === '' ||
+    //         // values.focusGroup === '' ||
+    //         values.timer === '' ||
+    //         values.description === '' ||
+    //         values.generalFeedback === '' ||
+    //         // values.questions === '' ||
+    //         // values.mediaContext === '' ||
+    //         // values.hints === '' ||
+    //         // values.idealAnswer === '' &&
+    //         values.skills === ""
+    //     ) {
+    //         return null;
+    //     }
+    //     else {
+    //         navigate('/thank-you');
+    //     }
+    // }
 
     const handleGoto = () => {
         if (
@@ -286,7 +328,8 @@ const InternalBot = () => {
             values.track === '' ||
             values.interactionMode === '' ||
             values.accessCode === '' ||
-            values.expiryDate === '' ||
+            values.rating === '' ||
+            values.focusGroup === '' ||
             values.timer === '' ||
             values.description === '' ||
             values.generalFeedback === '' ||
@@ -322,6 +365,7 @@ const InternalBot = () => {
                                             label="Company/Institute Name"
                                             required
                                             type='text'
+                                            name='companyName'
                                             sx={{ marginBottom: { xs: '0', sm: '0', md: '0' } }}
                                             {...getFieldProps('companyName')}
                                             error={Boolean(touched.companyName && errors.companyName)}
@@ -404,6 +448,42 @@ const InternalBot = () => {
                                         <FormGroup>
                                             <FormControlLabel control={<Checkbox />} label="One time use only" />
                                         </FormGroup>
+                                    </Stack>
+                                </Stack>
+                                <Stack spacing={2} mb={5} direction={{ xs: 'column', sm: 'row', md: "row" }}>
+                                    <Stack sx={{ width: '100%' }}>
+                                        <TextField
+                                            select
+                                            size='small'
+                                            value={rating}
+                                            label="Complexity Rating"
+                                            required
+                                            onChange={handleChange}
+                                            {...getFieldProps('rating')}
+                                            error={Boolean(touched.rating && errors.rating)}
+                                            helperText={touched.rating && errors.rating}
+                                        >
+                                            {ratingOptions.map(option => (
+                                                <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+                                            ))}
+                                        </TextField>
+                                    </Stack>
+                                    <Stack sx={{ width: '100%' }}>
+                                        <TextField
+                                            select
+                                            size='small'
+                                            value={focusGroup}
+                                            label="Focus Group"
+                                            required
+                                            onChange={handleChange}
+                                            {...getFieldProps('focusGroup')}
+                                            error={Boolean(touched.focusGroup && errors.focusGroup)}
+                                            helperText={touched.focusGroup && errors.focusGroup}
+                                        >
+                                            {focusGroupOptions.map(option => (
+                                                <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+                                            ))}
+                                        </TextField>
                                     </Stack>
                                 </Stack>
                                 <Stack spacing={2} mb={3} direction={{ xs: 'column', sm: 'row', md: "row" }}>
@@ -917,7 +997,7 @@ const InternalBot = () => {
                                     || errors.accessCode || errors.expiryDate || errors.emailOne || errors.timer || errors.description
                                     || errors.generalFeedback || errors.skills
                                 }
-                                onClick={handleSubmitIb}
+                                // onClick={handleSubmitIb}
                                 variant='contained'
                                 type='submit'
                             >

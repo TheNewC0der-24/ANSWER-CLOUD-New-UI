@@ -52,7 +52,7 @@ const SummaryReport = () => {
                     <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                         {/* <Typography sx={{ fontWeight: "bold" }} variant='subtitle1'>Name: <span style={{ color: "#1976d2" }}>Bhavya Khurana</span></Typography> */}
                         <Typography sx={{ fontWeight: "bold" }} variant='subtitle1'>Team Name: <span style={{ color: "#1976d2" }}>Frontenders</span></Typography>
-                        <Link variant='subtitle1' href="https://www.talentsumo.co/feedback" target="_blank">Feedback Rubric</Link>
+                        <Link variant='subtitle1' href="https://www.mycloudcoaches.com/feedback" target="_blank">Feedback Rubric</Link>
                     </Box>
                     <Typography sx={{ fontWeight: "bold" }} variant='subtitle1'>Date: <span style={{ color: "#1976d2" }}>04-12-2022</span></Typography>
                     <Typography sx={{ fontWeight: "bold" }} variant='subtitle1'>Title: <span style={{ color: "#1976d2" }}>Sample title (via company)</span></Typography>

@@ -100,8 +100,8 @@ function Dashboard() {
                     <ViewInteraction />
                 </Box>
 
-                {/* <StudentDashboard /> */}
             </Box>
+            {/* <StudentDashboard /> */}
         </>
     )
 }

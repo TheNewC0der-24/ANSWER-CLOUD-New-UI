@@ -7,12 +7,18 @@ import {
     Typography,
     Avatar,
     Button,
+    Grid,
+    Card,
+    CardContent,
+    Link,
 } from "@mui/material";
 
 // Icon
 import { Icon } from "@iconify/react";
 
 import LoadAnimation from '../LoadAnimation/index';
+
+import CountUp from "react-countup";
 
 import MaterialTable from "@material-table/core";
 
@@ -90,7 +96,7 @@ const StudentDashboard = () => {
         { interactionID: "428964", interactionTitle: "Backend Developer", track: "Service" },
         { interactionID: "775698", interactionTitle: "Android Developer", track: "New Grad." },
         { interactionID: "587123", interactionTitle: "Fullstack Developer", track: "Others" },
-    ]
+    ];
 
     return (
         <>
@@ -103,6 +109,113 @@ const StudentDashboard = () => {
                 </Avatar>
                 Records
             </Typography>
+
+            <Box mt={3}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={12} md={6} lg={4}>
+                        <Card sx={{ bgcolor: "#E9F2FF" }}>
+                            <CardContent>
+                                <Typography variant='h5'>Streak</Typography>
+                                <Typography variant='h3'>
+                                    <CountUp end={25} />days
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={6} lg={4}>
+                        <Card sx={{ bgcolor: "#FFEDEB" }}>
+                            <CardContent>
+                                <Typography variant='h5'>Interaction Count</Typography>
+                                <Typography variant='h3'>
+                                    <CountUp end={100} />
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={6} lg={4}>
+                        <Card sx={{ bgcolor: "#FFF7D6" }}>
+                            <CardContent>
+                                <Typography variant='h5'>Current Level</Typography>
+                                <Typography variant='h3'>
+                                    Ninja
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                </Grid>
+            </Box>
+
+            <Box mt={3} xs={12} sm={12} md={12} lg={12}>
+                <Card>
+                    <CardContent>
+                        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                            <div>
+                                <Typography variant='h5' mb={2}>Cloud Coach Certified</Typography>
+                            </div>
+                            <div>
+                                <Link variant='subtitle1' href="https://chat.mycloudcoaches.com/request" target="_blank" underline="hover">
+                                    {'Request Interactions'}
+                                </Link>
+                            </div>
+                        </Box>
+
+
+                        <table className={styles.table}>
+                            <tr>
+                                <th className={styles.th}>10</th>
+                                <th className={styles.th}>50</th>
+                                <th className={styles.th} style={{ backgroundColor: "#FFF7D6" }}>100</th>
+                                <th className={styles.th}>200</th>
+                            </tr>
+                            <tr>
+                                <td className={styles.td}>
+                                    <Button
+                                        size='small'
+                                        variant='contained'
+                                        disabled
+                                        onClick={() => navigate("/basicCertificate")}
+                                    >
+                                        Basic
+                                    </Button>
+                                    <Typography variant='subtitle2'>Download Certificate</Typography>
+                                </td>
+                                <td className={styles.td}>
+                                    <Button
+                                        size='small'
+                                        variant='contained'
+                                        disabled
+                                        onClick={() => navigate("/expertCertificate")}
+                                    >
+                                        Expert
+                                    </Button>
+                                    <Typography variant='subtitle2'>Download Certificate</Typography>
+                                </td>
+                                <td className={styles.td} style={{ backgroundColor: "#FFF7D6" }}>
+                                    <Button
+                                        size='small'
+                                        variant='contained'
+                                        onClick={() => navigate("/ninjaCertificate")}
+                                    >
+                                        Ninja
+                                    </Button>
+                                    <Typography variant='subtitle2'>Download Certificate</Typography>
+                                </td>
+                                <td className={styles.td}>
+                                    <Button
+                                        size='small'
+                                        variant='contained'
+                                        disabled
+                                        onClick={() => navigate("/extraordinaryCertificate")}
+                                    >
+                                        Extraordinary
+                                    </Button>
+                                    <Typography variant='subtitle2'>Download Certificate</Typography>
+                                </td>
+                            </tr>
+                        </table>
+                    </CardContent>
+                </Card>
+            </Box>
 
             <Box mt={3} xs={12} sm={12} md={12} lg={12}>
                 {

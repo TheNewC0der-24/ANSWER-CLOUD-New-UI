@@ -7,3 +7,20 @@
 .dashboardIcon {
     color: #1976d2 !important;
 }
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.td,
+.th {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #dddddd;
+}
+
+.th {
+    font-weight: bold;
+    font-size: x-large;
+}

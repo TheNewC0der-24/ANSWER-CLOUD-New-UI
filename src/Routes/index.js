@@ -36,6 +36,10 @@ import Responses from '../Components/ViewResponses/Responses/index';
 import Certificate from '../Components/Certificate';
 import QAGenerator from '../Components/Q&AGenerator';
 import Questions from '../Components/Questions';
+import BasicCertificate from '../Components/BasicCertificate';
+import ExpertCertificate from '../Components/ExpertCertificate';
+import NinjaCertificate from '../Components/NinjaCertificate';
+import ExtraordinaryCertificate from '../Components/ExtraordinaryCertificate';
 
 const Router = () => {
 
@@ -113,6 +117,22 @@ const Router = () => {
         {
             path: "/certificate",
             element: <Certificate />
+        },
+        {
+            path: "/basicCertificate",
+            element: <BasicCertificate />
+        },
+        {
+            path: "/expertCertificate",
+            element: <ExpertCertificate />
+        },
+        {
+            path: "/ninjaCertificate",
+            element: <NinjaCertificate />
+        },
+        {
+            path: "/extraordinaryCertificate",
+            element: <ExtraordinaryCertificate />
         },
         {
             path: "form",
